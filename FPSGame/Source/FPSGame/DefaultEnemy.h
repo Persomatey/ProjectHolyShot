@@ -1,0 +1,28 @@
+#pragma once
+
+#include "CoreMinimal.h"
+#include "GameFramework/Character.h"
+#include "DefaultEnemy.generated.h"
+
+UCLASS()
+class FPSGAME_API ADefaultEnemy : public ACharacter
+{
+	GENERATED_BODY() 
+
+public:
+	// Sets default values for this character's properties
+	ADefaultEnemy();
+
+protected:
+	// Called when the game starts or when spawned
+	virtual void BeginPlay() override;
+
+	// Called every frame 
+	virtual void Tick(float DeltaTime) override; 
+
+	UFUNCTION(BlueprintCallable)
+	void TakeDamage(float damageTaken); 
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Enemy)
+	float health; 
+};
