@@ -137,6 +137,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Respawn)
 		bool justDied;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Respawn)
+		bool isFirstLife; 
+
 protected:
 	
 	/** Fires a projectile. */

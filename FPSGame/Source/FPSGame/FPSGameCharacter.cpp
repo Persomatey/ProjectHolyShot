@@ -97,6 +97,7 @@ AFPSGameCharacter::AFPSGameCharacter() // Constructor
 
 	isSameLoc = false;
 	justDied = false; 
+	isFirstLife = true; 
 }
 
 void AFPSGameCharacter::BeginPlay()

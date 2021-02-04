@@ -17,6 +17,15 @@ https://trello.com/b/ABDPFNxA/project-holy-shot
 ## Changelist 
 
 <details>
+  <summary>CL-000002</summary>
+  
+  - Made the following changes: 
+    - Fixed a bug where, when you die for the first time before reaching a checkpoint then run into the checkpoint, the message says "Checkpoint Loaded" instead of "Checkpoint Reached". 
+    - Fixing the above also revealed another bug where when the player died and respawns for the first time, it doesn't say anything. It now says "Checkpoint Loaded" (Even though technically you never hit a checkpoint). To solve this, I added a "Spawn Point" Interactable that is to be placed underneath the player in each scene. For all intents and purposes, it's a checkpoint that doesn't say "Checkpoint Reached" the first time you run into it. 
+    
+</details>
+
+<details>
   <summary>CL-000001</summary>
   
   - Made the following changes: 
