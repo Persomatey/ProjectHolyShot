@@ -114,10 +114,28 @@ public:
 
 	FTimerHandle ability2TimerHandle; 
 
-	// Health Stuff 
+	// Health / Respawn Stuff 
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Health)
 		float health; 
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Respawn)
+		FVector respawnLoc;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Respawn)
+		FRotator respawnRot;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Respawn)
+		bool messageAppear; 
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Respawn)
+		FString hudMessage; 
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Respawn)
+		bool isSameLoc; 
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Respawn)
+		bool justDied;
 
 protected:
 	
@@ -172,6 +190,15 @@ protected:
 
 	UFUNCTION(BlueprintCallable)
 		void TakeDamage(float damageAmount); 
+
+	UFUNCTION(BlueprintCallable)
+		void Die(); 
+
+	UFUNCTION(BlueprintCallable)
+		void Respawn(); 
+
+	UFUNCTION(BlueprintCallable)
+		void SetNewSpawnLoc(FVector newLoc, FRotator newRot);
 
 	struct TouchData
 	{

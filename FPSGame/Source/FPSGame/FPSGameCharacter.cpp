@@ -17,7 +17,7 @@ DEFINE_LOG_CATEGORY_STATIC(LogFPChar, Warning, All);
 
 #pragma region TemplateCode
 
-AFPSGameCharacter::AFPSGameCharacter()
+AFPSGameCharacter::AFPSGameCharacter() // Constructor 
 {
 	// Set size for collision capsule
 	GetCapsuleComponent()->InitCapsuleSize(55.f, 96.0f);
@@ -87,6 +87,16 @@ AFPSGameCharacter::AFPSGameCharacter()
 	weapon = nullptr; 
 
 	health = 1.0f; 
+
+	respawnLoc = FVector(-350.0f, -100.0f, 235.0f); 
+	respawnRot = FRotator(0, 0, 0); 
+
+	messageAppear = false; 
+
+	hudMessage = FString(TEXT(" ")); 
+
+	isSameLoc = false;
+	justDied = false; 
 }
 
 void AFPSGameCharacter::BeginPlay()
@@ -440,10 +450,43 @@ void AFPSGameCharacter::TakeDamage(float damageAmount)
 {
 	health -= damageAmount; 
 	UE_LOG(LogTemp, Warning, TEXT("Damage taken! "));
-
-	if (health < 0.0f)
+	
+	if (health <= 0.0f)
 	{
+		UE_LOG(LogTemp, Warning, TEXT("Player is at 0 health! "));
 		health = 0.0f; 
+		Die(); 
+	}
+}
+
+void AFPSGameCharacter::Die()
+{
+	UE_LOG(LogTemp, Warning, TEXT("Player Dying! "));
+	justDied = true;
+	Respawn(); 
+}
+
+void AFPSGameCharacter::Respawn()
+{
+	UE_LOG(LogTemp, Warning, TEXT("Player Respawning... "));
+	health = 1.0; 
+	SetActorLocationAndRotation(respawnLoc, respawnRot); 
+	GetWorld()->GetFirstPlayerController()->SetControlRotation(respawnRot); 
+}
+
+void AFPSGameCharacter::SetNewSpawnLoc(FVector newLoc, FRotator newRot)
+{
+	if (respawnLoc == newLoc)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("This is already the current spawn location! "));
+		isSameLoc = true; 
+	}
+	else
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Setting a new spawn location... "));
+		respawnLoc = newLoc;
+		respawnRot = newRot;
+		isSameLoc = true; 
 	}
 }
 
