@@ -12,6 +12,7 @@
 // This is so that I can access the GetCharacterMovement() functions required in the Sprint() and StopSprinting() functions. 
 // In older versions of UE I didn't need to do this, but in this newer version I do. 
 #include "GameFramework/CharacterMovementComponent.h"  
+#include "Kismet/KismetSystemLibrary.h"
 
 DEFINE_LOG_CATEGORY_STATIC(LogFPChar, Warning, All);
 
@@ -98,6 +99,15 @@ AFPSGameCharacter::AFPSGameCharacter() // Constructor
 	isSameLoc = false;
 	justDied = false; 
 	isFirstLife = true; 
+
+	healDelay = 0.01f;
+	healTime = 0.0f;
+	healWait = 2.0f;
+	justDamaged = false; 
+	healAmount = 0.002f; 
+	healing = false; 
+	temp = 0; 
+	stopLooping = false; 
 }
 
 void AFPSGameCharacter::BeginPlay()
@@ -457,6 +467,53 @@ void AFPSGameCharacter::TakeDamage(float damageAmount)
 		UE_LOG(LogTemp, Warning, TEXT("Player is at 0 health! "));
 		health = 0.0f; 
 		Die(); 
+	}
+
+	UE_LOG(LogTemp, Warning, TEXT("justDamaged = true! "));
+	justDamaged = true; 
+	stopLooping = true; 
+}
+
+void AFPSGameCharacter::RegenHealth()
+{
+	UE_LOG(LogTemp, Warning, TEXT("Healing Player %d"), temp);
+	health += healAmount;
+
+	temp++; 
+
+	if (health > 1.0f)
+	{
+		health = 1.0f; 
+	}
+
+	/*UE_LOG(LogTemp, Warning, TEXT("Healing Player "));
+	justDamaged = false; 
+
+
+	float curTime = GetWorld()->GetTimeSeconds(); 
+	float regTime = curTime + 0.5f; 
+
+	while (health < 1.0f && !justDamaged)
+	{
+		if (curTime >= regTime)
+		{
+			curTime = GetWorld()->GetTimeSeconds();
+			regTime = curTime + 0.5f;
+			health += healAmount;
+			UE_LOG(LogTemp, Warning, TEXT("Healed a little ")); 
+		}
+	}*/
+}
+
+bool AFPSGameCharacter::isFullHealth()
+{
+	if (health >= 1.0f)
+	{
+		return true; 
+	}
+	else
+	{
+		return false; 
 	}
 }
 

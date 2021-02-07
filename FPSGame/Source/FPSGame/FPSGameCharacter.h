@@ -137,8 +137,31 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Respawn)
 		bool justDied;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Respawn)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Health)
+		bool justDamaged;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Health)
 		bool isFirstLife; 
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Health)
+		float healDelay;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Health)
+		float healTime; 
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Health)
+		float healWait;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Health)
+		float healAmount;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Health)
+		bool healing;
+
+	int temp; 
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Health)
+		bool stopLooping;
 
 protected:
 	
@@ -188,6 +211,9 @@ protected:
 
 	void Ability2CooldownComplete(); 
 
+	UFUNCTION(BlueprintCallable)
+		void RegenHealth();
+
 	UFUNCTION(BlueprintImplementableEvent, Category = "HUD")
 		void TriggerOutOfAmmoPopUp(); 
 
@@ -202,6 +228,9 @@ protected:
 
 	UFUNCTION(BlueprintCallable)
 		void SetNewSpawnLoc(FVector newLoc, FRotator newRot);
+
+	UFUNCTION(BlueprintCallable)
+		bool isFullHealth();
 
 	struct TouchData
 	{

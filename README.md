@@ -17,6 +17,14 @@ https://trello.com/b/ABDPFNxA/project-holy-shot
 ## Changelist 
 
 <details>
+  <summary>CL-000003</summary>
+  
+  - Made the following changes: 
+    - Added healing in the game. When the player gets damaged, the game will wait a few seconds, then start healing. If the player is damaged while waiting, the wait timer will start up again. If the player is damaged while healing, the wait timer will start up again. The code for this is a little messy, but I want to commit this while it's working right now. 
+    
+</details>
+
+<details>
   <summary>CL-000002</summary>
   
   - Made the following changes: 
