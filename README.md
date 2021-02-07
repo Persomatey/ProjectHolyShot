@@ -17,6 +17,14 @@ https://trello.com/b/ABDPFNxA/project-holy-shot
 ## Changelist 
 
 <details>
+  <summary>CL-000004</summary>
+  
+  - Made the following changes: 
+    - Fixed a bug with the healing system where the wait timer wouldn't start back up again when the player takes damage while waiting on the timer. 
+    
+</details>
+
+<details>
   <summary>CL-000003</summary>
   
   - Made the following changes: 

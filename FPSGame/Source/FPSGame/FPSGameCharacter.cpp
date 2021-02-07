@@ -102,9 +102,9 @@ AFPSGameCharacter::AFPSGameCharacter() // Constructor
 
 	healDelay = 0.01f;
 	healTime = 0.0f;
-	healWait = 2.0f;
+	healWait = 2.0f; // Actually going to end up being double whatever this is 
 	justDamaged = false; 
-	healAmount = 0.002f; 
+	healAmount = 0.003f; 
 	healing = false; 
 	temp = 0; 
 	stopLooping = false; 
