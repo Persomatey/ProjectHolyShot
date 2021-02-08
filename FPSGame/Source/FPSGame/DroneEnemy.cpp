@@ -1,0 +1,23 @@
+#include "DroneEnemy.h"
+
+// Sets default values
+ADroneEnemy::ADroneEnemy()
+{
+	health = 1.0f;
+	diff = 0.00000000000001f; 
+
+	//oldLoc = GetActorLocation(); 
+	//newLoc = FVector(oldLoc.X, oldLoc.Y, oldLoc.Z + diff);
+}
+
+void ADroneEnemy::Tick(float DeltaTime)
+{
+	Super::Tick(DeltaTime);
+	//UE_LOG(LogTemp, Warning, TEXT("Hello, World! I am a Drone! "));
+}
+
+void ADroneEnemy::BeginPlay()
+{
+	Super::BeginPlay();
+	UE_LOG(LogTemp, Warning, TEXT("Hello, World! I am a Drone! "));
+}

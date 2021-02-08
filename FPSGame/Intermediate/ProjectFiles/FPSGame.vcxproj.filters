@@ -3,7 +3,7 @@
   <ItemGroup>
     <None Include="..\..\FPSGame.uproject" />
     <Filter Include="Source">
-      <UniqueIdentifier>{D91A78B8-FD8E-4A83-8C48-795A4D504FD7}</UniqueIdentifier>
+      <UniqueIdentifier>{3627BC2A-B26D-4912-9305-996C4DFAE591}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Source\FPSGame.Target.cs">
       <Filter>Source</Filter>
@@ -12,7 +12,7 @@
       <Filter>Source</Filter>
     </None>
     <Filter Include="Config">
-      <UniqueIdentifier>{2E6E70CA-AFA4-49CE-962A-49DD4F5543EB}</UniqueIdentifier>
+      <UniqueIdentifier>{7077448F-AD75-4CF8-B170-A9AA8D1B318F}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Config\DefaultEditor.ini">
       <Filter>Config</Filter>
@@ -30,7 +30,7 @@
       <Filter>Config</Filter>
     </None>
     <Filter Include="Source\FPSGame">
-      <UniqueIdentifier>{F3DB0BB6-445F-4104-A27F-EFF89F94C2A7}</UniqueIdentifier>
+      <UniqueIdentifier>{4DA99350-049A-4666-93AA-CB62C11BDDB5}</UniqueIdentifier>
     </Filter>
     <ClCompile Include="..\..\Source\FPSGame\BaseWeapon.cpp">
       <Filter>Source\FPSGame</Filter>
@@ -42,6 +42,18 @@
       <Filter>Source\FPSGame</Filter>
     </ClCompile>
     <ClInclude Include="..\..\Source\FPSGame\DefaultEnemy.h">
+      <Filter>Source\FPSGame</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\FPSGame\DroneEnemy.cpp">
+      <Filter>Source\FPSGame</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\FPSGame\DroneEnemy.h">
+      <Filter>Source\FPSGame</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\FPSGame\EliteEnemy.cpp">
+      <Filter>Source\FPSGame</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\FPSGame\EliteEnemy.h">
       <Filter>Source\FPSGame</Filter>
     </ClInclude>
     <None Include="..\..\Source\FPSGame\FPSGame.Build.cs">
@@ -75,6 +87,12 @@
       <Filter>Source\FPSGame</Filter>
     </ClCompile>
     <ClInclude Include="..\..\Source\FPSGame\FPSGameProjectile.h">
+      <Filter>Source\FPSGame</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\FPSGame\TurretEnemy.cpp">
+      <Filter>Source\FPSGame</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\FPSGame\TurretEnemy.h">
       <Filter>Source\FPSGame</Filter>
     </ClInclude>
   </ItemGroup>

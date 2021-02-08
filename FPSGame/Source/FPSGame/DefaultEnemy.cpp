@@ -10,16 +10,16 @@ ADefaultEnemy::ADefaultEnemy()
 }
 
 // Called when the game starts or when spawned
-void ADefaultEnemy::BeginPlay()
-{
-	Super::BeginPlay();
-}
+//void ADefaultEnemy::BeginPlay()
+//{
+//	Super::BeginPlay();
+//}
 
 // Called every frame
-void ADefaultEnemy::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
-}
+//void ADefaultEnemy::Tick(float DeltaTime)
+//{
+//	Super::Tick(DeltaTime);
+//}
 
 void ADefaultEnemy::TakeDamage(float damageTaken)
 {

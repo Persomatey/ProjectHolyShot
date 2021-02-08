@@ -9,20 +9,21 @@ class FPSGAME_API ADefaultEnemy : public ACharacter
 {
 	GENERATED_BODY() 
 
-public:
-	// Sets default values for this character's properties
-	ADefaultEnemy();
+	public:
+		// Sets default values for this character's properties
+		ADefaultEnemy(); 
 
-protected:
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
+		// Called every frame 
+		//virtual void Tick(float DeltaTime) override;
 
-	// Called every frame 
-	virtual void Tick(float DeltaTime) override; 
+	protected:
+		// Called when the game starts or when spawned
+		//virtual void BeginPlay() override;
 
-	UFUNCTION(BlueprintCallable)
-	void TakeDamage(float damageTaken); 
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Enemy)
-	float health; 
+		UFUNCTION(BlueprintCallable)
+			void TakeDamage(float damageTaken); 
+
+		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Enemy)
+			float health; 
 };
