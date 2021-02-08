@@ -14,13 +14,37 @@ https://visualstudio.microsoft.com/vs/community/
 Trello board: 
 https://trello.com/b/ABDPFNxA/project-holy-shot
 
+## Credits 
+
+**Programming**
+[Hunter Goodin](huntergoodin.com)
+
+**Art**
+[ursa.anim](https://assetstore.unity.com/publishers/13142)
+[Dungeon Mason](https://assetstore.unity.com/publishers/23554)
+[Adequate](https://assetstore.unity.com/publishers/9348)
+
 ## Changelist 
+
+<details>
+  <summary>CL-000005</summary>
+  
+  - Made the following changes: 
+    - Created three separate enemies that all inherit from the Default Enemy class. None of them do much right now, they basically just act like the "Targets" 
+    - The 'Elite' enemy is using the 'Sci Fi Warrior PBR HP Polyart' model from 'Dungeon Mason'. It is currently T-Posing. When spawned, it sends a "Hello, World" to the console. I edited the colors for the textures to make it black and red instead of white and blue to make it feel more like a bad guy. 
+    - The 'Drone' enemy is using the 'Space Droid' model from 'Adequate'. It currently is able to hover up and down pretty slowly. When spawned, it sends a "Hello, World" to the console. 
+    - The 'Turret' enemy is using the 'Laser Turret' model from 'ursa.anim'. It is currently not doing anything. When spawned, it sends a "Hello, World" to the console. 
+    - Updated the .gitignore to be more friendly with Unreal (hopefully). 
+    - Edited the README to reflect the above changes. 
+    
+</details>
 
 <details>
   <summary>CL-000004</summary>
   
   - Made the following changes: 
     - Fixed a bug with the healing system where the wait timer wouldn't start back up again when the player takes damage while waiting on the timer. 
+    - Edited the README to reflect the above changes. 
     
 </details>
 
@@ -29,6 +53,7 @@ https://trello.com/b/ABDPFNxA/project-holy-shot
   
   - Made the following changes: 
     - Added healing in the game. When the player gets damaged, the game will wait a few seconds, then start healing. If the player is damaged while waiting, the wait timer will start up again. If the player is damaged while healing, the wait timer will start up again. The code for this is a little messy, but I want to commit this while it's working right now. 
+    - Edited the README to reflect the above changes. 
     
 </details>
 
@@ -38,6 +63,7 @@ https://trello.com/b/ABDPFNxA/project-holy-shot
   - Made the following changes: 
     - Fixed a bug where, when you die for the first time before reaching a checkpoint then run into the checkpoint, the message says "Checkpoint Loaded" instead of "Checkpoint Reached". 
     - Fixing the above also revealed another bug where when the player died and respawns for the first time, it doesn't say anything. It now says "Checkpoint Loaded" (Even though technically you never hit a checkpoint). To solve this, I added a "Spawn Point" Interactable that is to be placed underneath the player in each scene. For all intents and purposes, it's a checkpoint that doesn't say "Checkpoint Reached" the first time you run into it. 
+    - Edited the README to reflect the above changes. 
     
 </details>
 
@@ -53,6 +79,7 @@ https://trello.com/b/ABDPFNxA/project-holy-shot
     - Added checkpoints to the game. If the player walks up to them, the player's respawn location and rotation will be set to the checkpoint's values. 
     - Changed the README to reflect the new Trello Board for this project: https://trello.com/b/ABDPFNxA/project-holy-shot 
     - Added a Changelist portion to the README 
+    - Edited the README to reflect the above changes. 
       
 </details>
 
