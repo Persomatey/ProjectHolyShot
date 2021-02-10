@@ -1,6 +1,6 @@
 # Project: Holy Shot
 
-*An FPS in the style of Halo*
+*An FPS in the style of Halo* 
 
 *Following this tutorial by Shawnthebro on YouTube: https://www.youtube.com/playlist?list=PLfAjixzz6o82cLilSI3Vbv0hu868hAp7P*
 
