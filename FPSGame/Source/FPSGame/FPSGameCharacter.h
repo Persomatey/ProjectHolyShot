@@ -2,6 +2,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "BaseWeapon.h"
+#include "BaseAmmo.h" 
 #include "FPSGameCharacter.generated.h"
 
 class UInputComponent;
@@ -11,248 +12,238 @@ class AFPSGameCharacter : public ACharacter
 {
 	GENERATED_BODY()
 
-	/** Pawn mesh: 1st person view (arms; seen only by self) */
-	UPROPERTY(VisibleDefaultsOnly, Category=Mesh)
-	class USkeletalMeshComponent* Mesh1P;
+	UPROPERTY(VisibleDefaultsOnly, Category=Mesh) 
+		class USkeletalMeshComponent* Mesh1P;	// Pawn mesh: 1st person view (arms; seen only by self)
 
-	/** Gun mesh: 1st person view (seen only by self) */
-	UPROPERTY(VisibleDefaultsOnly, Category = Mesh)
-	class USkeletalMeshComponent* FP_Gun;
+	UPROPERTY(VisibleDefaultsOnly, Category = Mesh)	
+		class USkeletalMeshComponent* FP_Gun;	// Gun mesh: 1st person view (seen only by self)
 
-	/** Location on gun mesh where projectiles should spawn. */
-	UPROPERTY(VisibleDefaultsOnly, Category = Mesh)
-	class USceneComponent* FP_MuzzleLocation;
+	UPROPERTY(VisibleDefaultsOnly, Category = Mesh)	
+		class USceneComponent* FP_MuzzleLocation;	// Location on gun mesh where projectiles should spawn.
 
-	/** Gun mesh: VR view (attached to the VR controller directly, no arm, just the actual gun) */
-	UPROPERTY(VisibleDefaultsOnly, Category = Mesh)
-	class USkeletalMeshComponent* VR_Gun;
+	UPROPERTY(VisibleDefaultsOnly, Category = Mesh)	
+		class USkeletalMeshComponent* VR_Gun;	// Gun mesh: VR view (attached to the VR controller directly, no arm, just the actual gun)
 
-	/** Location on VR gun mesh where projectiles should spawn. */
-	UPROPERTY(VisibleDefaultsOnly, Category = Mesh)
-	class USceneComponent* VR_MuzzleLocation;
+	UPROPERTY(VisibleDefaultsOnly, Category = Mesh)	
+		class USceneComponent* VR_MuzzleLocation;	// Location on VR gun mesh where projectiles should spawn.
 
-	/** First person camera */
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
-	class UCameraComponent* FirstPersonCameraComponent;
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))	
+		class UCameraComponent* FirstPersonCameraComponent;	// First person camera
 
-	/** Motion controller (right hand) */
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
-	class UMotionControllerComponent* R_MotionController;
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))	
+		class UMotionControllerComponent* R_MotionController;	// Motion controller (right hand)
 
-	/** Motion controller (left hand) */
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
-	class UMotionControllerComponent* L_MotionController;
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))	
+		class UMotionControllerComponent* L_MotionController;	// Motion controller (left hand)
 
-public:
-	AFPSGameCharacter();
+	public:
+		AFPSGameCharacter();
 
-protected:
-	virtual void BeginPlay();
+	protected:
+		virtual void BeginPlay();
 
-public:
+	public:
 
-#pragma region TemplateHeaderCode
+	#pragma region TemplateHeaderCode
 
-	/** Base turn rate, in deg/sec. Other scaling may affect final turn rate. */
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category=Camera)
-	float BaseTurnRate;
+		UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category=Camera)
+			float BaseTurnRate;	// Base turn rate, in deg/sec. Other scaling may affect final turn rate. 
 
-	/** Base look up/down rate, in deg/sec. Other scaling may affect final rate. */
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category=Camera)
-	float BaseLookUpRate;
+		UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category=Camera)
+			float BaseLookUpRate;	// Base look up/down rate, in deg/sec. Other scaling may affect final rate. 
 
-	/** Gun muzzle's offset from the characters location */
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category=Gameplay)
-	FVector GunOffset;
+		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category=Gameplay)
+			FVector GunOffset;	// Gun muzzle's offset from the characters location 
 
-	/** Projectile class to spawn */
-	UPROPERTY(EditDefaultsOnly, Category=Projectile)
-	TSubclassOf<class AFPSGameProjectile> ProjectileClass;
+		UPROPERTY(EditDefaultsOnly, Category=Projectile)
+			TSubclassOf<class AFPSGameProjectile> ProjectileClass;	// Projectile class to spawn 
 
-	/** Sound to play each time we fire */
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category=Gameplay)
-	class USoundBase* FireSound;
+		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category=Gameplay)
+			class USoundBase* FireSound;	// Sound to play each time we fire 
 
-	/** AnimMontage to play each time we fire */
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Gameplay)
-	class UAnimMontage* FireAnimation;
+		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Gameplay)
+			class UAnimMontage* FireAnimation;	// AnimMontage to play each time we fire 
 
-	/** Whether to use motion controller location for aiming. */
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Gameplay)
-	uint32 bUsingMotionControllers : 1; 
+		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Gameplay)
+			uint32 bUsingMotionControllers : 1; 	// Whether to use motion controller location for aiming. 
 
-#pragma endregion TemplateHeaderCode
+	#pragma endregion TemplateHeaderCode
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Gameplay)
-		bool isSprinting; 
+		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Gameplay)
+			bool isSprinting; 
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Gameplay)
-		bool isZoomedIn; 
+		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Gameplay)
+			bool isZoomedIn; 
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Weapon)
-		ABaseWeapon* weapon; 
+		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Weapon)
+			ABaseWeapon* weapon; 
 
-	// Ability Stuff 
+		// Ability Stuff 
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Abilities)
-		bool hasUsedAbility1; 
+		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Abilities)
+			bool hasUsedAbility1; 
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Abilities)
-		bool hasUsedAbility2; 
+		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Abilities)
+			bool hasUsedAbility2; 
 
-	float ability1Duration; 
+		float ability1Duration; 
 
-	float ability2Duration; 
+		float ability2Duration; 
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Abilities)
-		float ability1CooldownTime; 
+		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Abilities)
+			float ability1CooldownTime; 
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Abilities)
-		float ability2CooldownTime; 
+		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Abilities)
+			float ability2CooldownTime; 
 
-	FTimerHandle ability1TimerHandle; 
+		FTimerHandle ability1TimerHandle; 
 
-	FTimerHandle ability2TimerHandle; 
+		FTimerHandle ability2TimerHandle; 
 
-	// Health / Respawn Stuff 
+		// Health / Respawn Stuff 
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Health)
-		float health; 
+		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Health)
+			float health; 
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Respawn)
-		FVector respawnLoc;
+		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Respawn)
+			FVector respawnLoc;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Respawn)
-		FRotator respawnRot;
+		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Respawn)
+			FRotator respawnRot;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Respawn)
-		bool messageAppear; 
+		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Respawn)
+			bool messageAppear; 
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Respawn)
-		FString hudMessage; 
+		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Respawn)
+			FString hudMessage; 
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Respawn)
-		bool isSameLoc; 
+		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Respawn)
+			bool isSameLoc; 
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Respawn)
-		bool justDied;
+		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Respawn)
+			bool justDied;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Health)
-		bool justDamaged;
+		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Health)
+			bool justDamaged;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Health)
-		bool isFirstLife; 
+		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Health)
+			bool isFirstLife; 
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Health)
-		float healDelay;
+		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Health)
+			float healDelay;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Health)
-		float healTime; 
+		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Health)
+			float healTime; 
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Health)
-		float healWait;
+		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Health)
+			float healWait;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Health)
-		float healAmount;
+		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Health)
+			float healAmount;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Health)
-		bool healing;
+		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Health)
+			bool healing;
 
-	int temp; 
+		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Health)
+			bool stopLooping;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Health)
-		bool stopLooping;
+		// Weapon / Ammo Stuff 
 
-protected:
+		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Weapon)
+			int assaultRifleAmmo;
+
+		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Weapon)
+			int pistolAmmo;
+
+		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Weapon)
+			int sniperRifleAmmo;
+
+		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Weapon)
+			int shotgunAmmo; 
+
+	protected:
+		void OnFire();					// Fires a projectile. 
+
+		void OnResetVR(); 				// Resets HMD orientation and position in VR. 
+
+		void MoveForward(float Val);	// Handles moving forward/backward 
+
+		void MoveRight(float Val);		// Handles stafing movement, left and right 
+
+		void TurnAtRate(float Rate);	// Called via input to turn at a given rate. Rate is a normalized rate, i.e. 1.0 means 100% of desired turn rate
+
+		void LookUpAtRate(float Rate);	// Called via input to turn look up/down at a given rate. Rate	This is a normalized rate, i.e. 1.0 means 100% of desired turn rate
+
+		void Sprint(); 
+
+		void StopSprinting(); 
+
+		void ZoomIn(); 
+
+		void StopZoom(); 
+
+		void ManualReload();
+
+		void ReloadWeapon(EWeaponType _weaponType); 
+
+		int CalculateAmmo(int _ammoAmount); 
+
+		void UseAbility1(); 
 	
-	/** Fires a projectile. */
-	void OnFire();
+		void UseAbility2(); 
 
-	/** Resets HMD orientation and position in VR. */
-	void OnResetVR();
+		void ResetAbility1(); 
 
-	/** Handles moving forward/backward */
-	void MoveForward(float Val);
+		void ResetAbility2(); 
 
-	/** Handles stafing movement, left and right */
-	void MoveRight(float Val);
+		void Ability1CooldownComplete(); 
 
-	/**
-	 * Called via input to turn at a given rate.
-	 * @param Rate	This is a normalized rate, i.e. 1.0 means 100% of desired turn rate
-	 */
-	void TurnAtRate(float Rate);
+		void Ability2CooldownComplete(); 
 
-	/**
-	 * Called via input to turn look up/down at a given rate.
-	 * @param Rate	This is a normalized rate, i.e. 1.0 means 100% of desired turn rate
-	 */
-	void LookUpAtRate(float Rate);
+		UFUNCTION(BlueprintCallable)
+			void RegenHealth();
 
-	void Sprint(); 
+		UFUNCTION(BlueprintImplementableEvent, Category = "HUD")
+			void TriggerOutOfAmmoPopUp(); 
 
-	void StopSprinting(); 
+		UFUNCTION(BlueprintCallable)
+			void TakeDamage(float damageAmount); 
 
-	void ZoomIn(); 
+		UFUNCTION(BlueprintCallable)
+			void Die(); 
 
-	void StopZoom(); 
+		UFUNCTION(BlueprintCallable)
+			void Respawn(); 
 
-	void ReloadWeapon(); 
+		UFUNCTION(BlueprintCallable)
+			void SetNewSpawnLoc(FVector newLoc, FRotator newRot);
 
-	void UseAbility1(); 
+		UFUNCTION(BlueprintCallable)
+			bool isFullHealth();
+
+		UFUNCTION(BlueprintCallable)
+			void AddAmmo(EAmmoType _ammoType, int _ammoAmount); 
+
+		struct TouchData
+		{
+			TouchData() { bIsPressed = false;Location=FVector::ZeroVector;}
+			bool bIsPressed;
+			ETouchIndex::Type FingerIndex;
+			FVector Location;
+			bool bMoved;
+		};
+
+		void BeginTouch(const ETouchIndex::Type FingerIndex, const FVector Location);
+		void EndTouch(const ETouchIndex::Type FingerIndex, const FVector Location);
+		void TouchUpdate(const ETouchIndex::Type FingerIndex, const FVector Location);
+		TouchData	TouchItem;
 	
-	void UseAbility2(); 
+	protected:
+		virtual void SetupPlayerInputComponent(UInputComponent* InputComponent) override;
+		bool EnableTouchscreenMovement(UInputComponent* InputComponent);
 
-	void ResetAbility1(); 
-
-	void ResetAbility2(); 
-
-	void Ability1CooldownComplete(); 
-
-	void Ability2CooldownComplete(); 
-
-	UFUNCTION(BlueprintCallable)
-		void RegenHealth();
-
-	UFUNCTION(BlueprintImplementableEvent, Category = "HUD")
-		void TriggerOutOfAmmoPopUp(); 
-
-	UFUNCTION(BlueprintCallable)
-		void TakeDamage(float damageAmount); 
-
-	UFUNCTION(BlueprintCallable)
-		void Die(); 
-
-	UFUNCTION(BlueprintCallable)
-		void Respawn(); 
-
-	UFUNCTION(BlueprintCallable)
-		void SetNewSpawnLoc(FVector newLoc, FRotator newRot);
-
-	UFUNCTION(BlueprintCallable)
-		bool isFullHealth();
-
-	struct TouchData
-	{
-		TouchData() { bIsPressed = false;Location=FVector::ZeroVector;}
-		bool bIsPressed;
-		ETouchIndex::Type FingerIndex;
-		FVector Location;
-		bool bMoved;
-	};
-	void BeginTouch(const ETouchIndex::Type FingerIndex, const FVector Location);
-	void EndTouch(const ETouchIndex::Type FingerIndex, const FVector Location);
-	void TouchUpdate(const ETouchIndex::Type FingerIndex, const FVector Location);
-	TouchData	TouchItem;
-	
-protected:
-	virtual void SetupPlayerInputComponent(UInputComponent* InputComponent) override;
-	bool EnableTouchscreenMovement(UInputComponent* InputComponent);
-
-public:
-	/** Returns Mesh1P subobject **/
-	FORCEINLINE class USkeletalMeshComponent* GetMesh1P() const { return Mesh1P; }
-	/** Returns FirstPersonCameraComponent subobject **/
-	FORCEINLINE class UCameraComponent* GetFirstPersonCameraComponent() const { return FirstPersonCameraComponent; }
+	public:
+		FORCEINLINE class USkeletalMeshComponent* GetMesh1P() const { return Mesh1P; } // Returns Mesh1P subobject
+		FORCEINLINE class UCameraComponent* GetFirstPersonCameraComponent() const { return FirstPersonCameraComponent; } // Returns FirstPersonCameraComponent subobject
 };
 

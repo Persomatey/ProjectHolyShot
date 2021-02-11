@@ -28,12 +28,26 @@ https://trello.com/b/ABDPFNxA/project-holy-shot
 ## Changelist 
 
 <details>
+  <summary>CL-000008</summary>
+  
+  - Made the following changes: 
+    - Fixed bug where the grav lift worked every frame instead of a fixed time. Apparently I had basically fixed this a while ago, but now it's a little better. It wont work too well if the player runs the game at low framerates though. 
+    - Added different ammo types. 
+    - Started making changes to pave the way for having different weapon types. 
+    - Added ammo pickups. When the player collides with an ammo pickup, more ammo is added to their inventory. The type of ammo and ammount of ammo added is customizable in the Details window under the "Weapon" dropdown. 
+    - Changed the HUD so that the clip and max ammo will display the type of weapon that is currently equipped. 
+    - Edited the README to reflect the above changes. 
+    
+</details>
+
+<details>
   <summary>CL-000007</summary>
   
   - Made the following changes: 
     - Started making some changes to pave the way for having multiple ammo types. Which will, in turn, pave the way for having multiple weapon types. 
     - Added some models to the project for "Ammo Boxes". 
     - Turned the turret around in the main room of the test level. Not much of a change but it felt like it made more sense this way. 
+    - Edited the README to reflect the above changes. 
     
 </details>
 

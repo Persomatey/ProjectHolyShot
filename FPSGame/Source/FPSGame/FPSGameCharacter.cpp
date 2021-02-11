@@ -16,8 +16,6 @@
 
 DEFINE_LOG_CATEGORY_STATIC(LogFPChar, Warning, All);
 
-#pragma region TemplateCode
-
 AFPSGameCharacter::AFPSGameCharacter() // Constructor 
 {
 	// Set size for collision capsule
@@ -75,6 +73,7 @@ AFPSGameCharacter::AFPSGameCharacter() // Constructor
 	VR_MuzzleLocation->SetRelativeRotation(FRotator(0.0f, 90.0f, 0.0f));		// Counteract the rotation of the VR gun model.
 	//bUsingMotionControllers = true;
 
+	/* Setting Some Values */ 
 	isSprinting = false; 
 	isZoomedIn = false; 
 
@@ -84,10 +83,6 @@ AFPSGameCharacter::AFPSGameCharacter() // Constructor
 	ability2Duration = 10.0f; 
 	ability1CooldownTime = 3.0f; 
 	ability2CooldownTime = 5.0f; 
-
-	weapon = nullptr; 
-
-	health = 1.0f; 
 
 	respawnLoc = FVector(-350.0f, -100.0f, 235.0f); 
 	respawnRot = FRotator(0, 0, 0); 
@@ -100,14 +95,20 @@ AFPSGameCharacter::AFPSGameCharacter() // Constructor
 	justDied = false; 
 	isFirstLife = true; 
 
+	health = 1.0f;
 	healDelay = 0.01f;
 	healTime = 0.0f;
-	healWait = 2.0f; // Actually going to end up being double whatever this is 
+	healWait = 2.0f; // It will actually going to end up being double whatever this is 
 	justDamaged = false; 
 	healAmount = 0.003f; 
 	healing = false; 
-	temp = 0; 
 	stopLooping = false; 
+
+	weapon = nullptr;
+	assaultRifleAmmo = 80; 
+	pistolAmmo = 30; 
+	sniperRifleAmmo = 8; 
+	shotgunAmmo = 16; 
 }
 
 void AFPSGameCharacter::BeginPlay()
@@ -130,6 +131,8 @@ void AFPSGameCharacter::BeginPlay()
 		Mesh1P->SetHiddenInGame(false, true);
 	}
 }
+
+#pragma region TemplateCode
 
 void AFPSGameCharacter::SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent)
 {
@@ -154,10 +157,9 @@ void AFPSGameCharacter::SetupPlayerInputComponent(class UInputComponent* PlayerI
 	PlayerInputComponent->BindAction("StopSprinting", IE_Released, this, &AFPSGameCharacter::StopSprinting); 
 	PlayerInputComponent->BindAction("ZoomIn", IE_Pressed, this, &AFPSGameCharacter::ZoomIn); 
 	PlayerInputComponent->BindAction("ZoomIn", IE_Released, this, &AFPSGameCharacter::StopZoom);
-	PlayerInputComponent->BindAction("Reload", IE_Pressed, this, &AFPSGameCharacter::ReloadWeapon);
+	PlayerInputComponent->BindAction("Reload", IE_Pressed, this, &AFPSGameCharacter::ManualReload);
 	PlayerInputComponent->BindAction("ActivateAbility1", IE_Pressed, this, &AFPSGameCharacter::UseAbility1);
 	PlayerInputComponent->BindAction("ActivateAbility2", IE_Pressed, this, &AFPSGameCharacter::UseAbility2);
-
 }
 
 void AFPSGameCharacter::OnFire()
@@ -194,13 +196,9 @@ void AFPSGameCharacter::OnFire()
 
 					weapon->clipAmmo -= 1; 
 				}
-				else if (weapon->totalAmmo > 0)
+				else 
 				{
-					ReloadWeapon(); 
-				}
-				else
-				{
-					TriggerOutOfAmmoPopUp(); 
+					ReloadWeapon(weapon->weaponType);
 				}
 			}
 		}
@@ -326,11 +324,11 @@ bool AFPSGameCharacter::EnableTouchscreenMovement(class UInputComponent* PlayerI
 		PlayerInputComponent->BindTouch(EInputEvent::IE_Pressed, this, &AFPSGameCharacter::BeginTouch);
 		PlayerInputComponent->BindTouch(EInputEvent::IE_Released, this, &AFPSGameCharacter::EndTouch);
 
-		//Commenting this out to be more consistent with FPS BP template.
-		//PlayerInputComponent->BindTouch(EInputEvent::IE_Repeat, this, &AFPSGameCharacter::TouchUpdate);
-		return true;
+//Commenting this out to be more consistent with FPS BP template.
+//PlayerInputComponent->BindTouch(EInputEvent::IE_Repeat, this, &AFPSGameCharacter::TouchUpdate);
+return true;
 	}
-	
+
 	return false;
 }
 
@@ -343,8 +341,8 @@ void AFPSGameCharacter::Sprint()
 	if (auto characterMovement = GetCharacterMovement())
 	{
 		UE_LOG(LogTemp, Warning, TEXT("We are now sprinting. "));
-		GetCharacterMovement()->MaxWalkSpeed = 1500.0f; 
-		isSprinting = true; 
+		GetCharacterMovement()->MaxWalkSpeed = 1500.0f;
+		isSprinting = true;
 		// Also find a way to speed up the running animation if sprinting 
 	}
 }
@@ -355,7 +353,7 @@ void AFPSGameCharacter::StopSprinting()
 	{
 		UE_LOG(LogTemp, Warning, TEXT("We have stopped sprinting. "));
 		GetCharacterMovement()->MaxWalkSpeed = 600.0f;
-		isSprinting = false; 
+		isSprinting = false;
 		// Also if I figure out how to speed up the rrunning anim, slow it again here 
 	}
 }
@@ -365,8 +363,8 @@ void AFPSGameCharacter::ZoomIn()
 	if (auto firstPersonCamera = GetFirstPersonCameraComponent())
 	{
 		UE_LOG(LogTemp, Warning, TEXT("We are now zooming in. "));
-		firstPersonCamera->SetFieldOfView(65.0f); 
-		isZoomedIn = true; 
+		firstPersonCamera->SetFieldOfView(65.0f);
+		isZoomedIn = true;
 		GetCharacterMovement()->MaxWalkSpeed = 300.0f;
 	}
 }
@@ -382,23 +380,82 @@ void AFPSGameCharacter::StopZoom()
 	}
 }
 
-void AFPSGameCharacter::ReloadWeapon()
+void AFPSGameCharacter::ManualReload()
 {
 	if (weapon)
 	{
+		ReloadWeapon(weapon->weaponType);
+	}
+}
+
+void AFPSGameCharacter::ReloadWeapon(EWeaponType _weaponType)
+{
+	if (weapon)
+	{
+		switch (_weaponType)
+		{
+			case EWeaponType::E_AssaultRifle:
+				assaultRifleAmmo = CalculateAmmo(assaultRifleAmmo);
+				break;
+			case EWeaponType::E_Pistol:
+				pistolAmmo = CalculateAmmo(pistolAmmo);
+				break;
+			case EWeaponType::E_SniperRifle:
+				sniperRifleAmmo = CalculateAmmo(sniperRifleAmmo);
+				break;
+			case EWeaponType::E_Shotgun:
+				shotgunAmmo = CalculateAmmo(shotgunAmmo);
+				break; 
+			default: 
+				break; 
+		}
+	}
+}
+
+int AFPSGameCharacter::CalculateAmmo(int _ammoAmount)
+{
+	if (_ammoAmount > 0)
+	{
 		if (weapon->clipAmmo != weapon->maxClipAmmo)
 		{
-			if (weapon->totalAmmo - (weapon->maxClipAmmo - weapon->clipAmmo) >= 0)
+			if (_ammoAmount - (weapon->maxClipAmmo - weapon->clipAmmo) >= 0)
 			{
-				weapon->totalAmmo -= (weapon->maxClipAmmo - weapon->clipAmmo); 
-				weapon->clipAmmo = weapon->maxClipAmmo; 
+				_ammoAmount -= (weapon->maxClipAmmo - weapon->clipAmmo);
+				weapon->clipAmmo = weapon->maxClipAmmo;
 			}
 			else
 			{
-				weapon->clipAmmo += weapon->totalAmmo; 
-				weapon->totalAmmo = 0; 
+				weapon->clipAmmo += _ammoAmount;
+				_ammoAmount = 0;
 			}
 		}
+	}
+	else
+	{
+		TriggerOutOfAmmoPopUp(); 
+	}
+
+	return _ammoAmount; 
+}
+
+void AFPSGameCharacter::AddAmmo(EAmmoType _ammoType, int _ammoAmount)
+{
+	switch (_ammoType)
+	{
+		case EAmmoType::E_AssaultRifle: 
+			assaultRifleAmmo += _ammoAmount; 
+			break; 
+		case EAmmoType::E_Pistol:
+			pistolAmmo += _ammoAmount;
+			break; 
+		case EAmmoType::E_SniperRifle:
+			sniperRifleAmmo += _ammoAmount;
+			break; 
+		case EAmmoType::E_Shotgun:
+			shotgunAmmo += _ammoAmount;
+			break; 
+		default: 
+			break; 
 	}
 }
 
@@ -476,10 +533,8 @@ void AFPSGameCharacter::TakeDamage(float damageAmount)
 
 void AFPSGameCharacter::RegenHealth()
 {
-	UE_LOG(LogTemp, Warning, TEXT("Healing Player %d"), temp);
+	UE_LOG(LogTemp, Warning, TEXT("Healing Player"));
 	health += healAmount;
-
-	temp++; 
 
 	if (health > 1.0f)
 	{

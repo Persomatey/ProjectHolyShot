@@ -3,11 +3,14 @@
 ABaseWeapon::ABaseWeapon()
 {
 	PrimaryActorTick.bCanEverTick = true; 
+
 	maxTotalAmmo = 100; 
 	maxClipAmmo = 12; 
 	totalAmmo = 64; 
 	clipAmmo = 12; 
 	reloadTime = 1.0f; 
+
+	weaponType = EWeaponType::E_AssaultRifle; 
 }
 
 void ABaseWeapon::BeginPlay()

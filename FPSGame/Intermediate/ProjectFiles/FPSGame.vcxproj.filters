@@ -3,7 +3,7 @@
   <ItemGroup>
     <None Include="..\..\FPSGame.uproject" />
     <Filter Include="Source">
-      <UniqueIdentifier>{A4E5702F-685E-4B12-9159-6F76A37E43EC}</UniqueIdentifier>
+      <UniqueIdentifier>{B461AB0E-0183-4416-8793-124CB509240B}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Source\FPSGame.Target.cs">
       <Filter>Source</Filter>
@@ -12,7 +12,7 @@
       <Filter>Source</Filter>
     </None>
     <Filter Include="Config">
-      <UniqueIdentifier>{00257F23-2A02-4D2C-87AC-9FA62FAC28B3}</UniqueIdentifier>
+      <UniqueIdentifier>{A84BC1E5-D264-4195-ACA5-1A373C694BD1}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Config\DefaultEditor.ini">
       <Filter>Config</Filter>
@@ -30,8 +30,14 @@
       <Filter>Config</Filter>
     </None>
     <Filter Include="Source\FPSGame">
-      <UniqueIdentifier>{9DCC52E2-8BA1-4FB9-8138-173401815C17}</UniqueIdentifier>
+      <UniqueIdentifier>{382BFDD3-FE4A-4B97-84B0-EAB2A2A3CFFA}</UniqueIdentifier>
     </Filter>
+    <ClCompile Include="..\..\Source\FPSGame\BaseAmmo.cpp">
+      <Filter>Source\FPSGame</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\FPSGame\BaseAmmo.h">
+      <Filter>Source\FPSGame</Filter>
+    </ClInclude>
     <ClCompile Include="..\..\Source\FPSGame\BaseWeapon.cpp">
       <Filter>Source\FPSGame</Filter>
     </ClCompile>
