@@ -23,8 +23,19 @@ https://trello.com/b/ABDPFNxA/project-holy-shot
 [ursa.anim](https://assetstore.unity.com/publishers/13142)
 [Dungeon Mason](https://assetstore.unity.com/publishers/23554)
 [Adequate](https://assetstore.unity.com/publishers/9348)
+[MLX](https://assetstore.unity.com/publishers/21576)
 
 ## Changelist 
+
+<details>
+  <summary>CL-000007</summary>
+  
+  - Made the following changes: 
+    - Started making some changes to pave the way for having multiple ammo types. Which will, in turn, pave the way for having multiple weapon types. 
+    - Added some models to the project for "Ammo Boxes". 
+    - Turned the turret around in the main room of the test level. Not much of a change but it felt like it made more sense this way. 
+    
+</details>
 
 <details>
   <summary>CL-000006</summary>
