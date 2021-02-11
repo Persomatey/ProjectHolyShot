@@ -4,7 +4,7 @@
 ADroneEnemy::ADroneEnemy()
 {
 	health = 1.0f;
-	diff = 0.00000000000001f; 
+	diff = 0.00000000000001f;
 
 	//oldLoc = GetActorLocation(); 
 	//newLoc = FVector(oldLoc.X, oldLoc.Y, oldLoc.Z + diff);
@@ -20,4 +20,18 @@ void ADroneEnemy::BeginPlay()
 {
 	Super::BeginPlay();
 	UE_LOG(LogTemp, Warning, TEXT("Hello, World! I am a Drone! "));
+}
+
+void ADroneEnemy::TakeDamage(float damageTaken)
+{
+	if (health <= 0)
+	{
+		health = 0;
+		UE_LOG(LogTemp, Warning, TEXT("I'm dead. I'm a Drone! "));
+	}
+	else
+	{
+		health -= damageTaken;
+		UE_LOG(LogTemp, Warning, TEXT("Oww, that hurt. I'm a Drone! "));
+	}
 }

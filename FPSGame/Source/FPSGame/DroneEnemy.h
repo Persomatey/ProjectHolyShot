@@ -1,28 +1,34 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "DefaultEnemy.h"
+#include "GameFramework/Character.h"
 #include "DroneEnemy.generated.h"
 
 UCLASS()
-class FPSGAME_API ADroneEnemy : public ADefaultEnemy
+class FPSGAME_API ADroneEnemy : public ACharacter
 {
 	GENERATED_BODY()
-	
-	public: 
-		// Sets default values for this character's properties
-		ADroneEnemy();
 
-	protected:
-		// Called when the game starts or when spawned
-		virtual void BeginPlay() override;
+public:
+	// Sets default values for this character's properties
+	ADroneEnemy();
 
-		// Called every frame 
-		virtual void Tick(float DeltaTime) override;
+protected:
+	// Called when the game starts or when spawned
+	void BeginPlay();
 
-		float diff; 
+	// Called every frame 
+	void Tick(float DeltaTime);
 
-		FVector oldLoc; 
+	UFUNCTION(BlueprintCallable)
+		void TakeDamage(float damageTaken);
 
-		FVector newLoc; 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Enemy)
+		float health;
+
+	float diff;
+
+	FVector oldLoc;
+
+	FVector newLoc;
 };
