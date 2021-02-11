@@ -17,15 +17,28 @@ https://trello.com/b/ABDPFNxA/project-holy-shot
 ## Credits 
 
 **Programming**
-[Hunter Goodin](huntergoodin.com)
+- [Hunter Goodin](https://huntergoodin.com/)
 
 **Art**
-[ursa.anim](https://assetstore.unity.com/publishers/13142)
-[Dungeon Mason](https://assetstore.unity.com/publishers/23554)
-[Adequate](https://assetstore.unity.com/publishers/9348)
-[MLX](https://assetstore.unity.com/publishers/21576)
+- [ursa.anim](https://assetstore.unity.com/publishers/13142)
+- [Dungeon Mason](https://assetstore.unity.com/publishers/23554)
+- [Adequate](https://assetstore.unity.com/publishers/9348)
+- [MLX](https://assetstore.unity.com/publishers/21576)
 
 ## Changelist 
+
+<details>
+  <summary>CL-000009</summary>
+  
+  - Made the following changes: 
+    - Made it so that, when the drone dies, it falls to the ground then dissappears after a little while.
+    - Made it so that, when the turret dies, it dissappears after a little while. 
+    - Added another ammo pack to interact with and moved their locations in the test level. 
+    - Edited the README so that when you click on my name in the credits, it will link to my website. The link was broken before. 
+    - Edited the README so that the credits look a little nicer. 
+    - Edited the README to reflect the above changes. 
+
+</details>
 
 <details>
   <summary>CL-000008</summary>

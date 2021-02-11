@@ -39,5 +39,5 @@ void AEliteEnemy::TakeDamage(float damageTaken)
 
 void AEliteEnemy::BeginDeath()
 {
-	UE_LOG(LogTemp, Warning, TEXT("Death Starting"));
+	UE_LOG(LogTemp, Warning, TEXT("Elite Death Starting"));
 }

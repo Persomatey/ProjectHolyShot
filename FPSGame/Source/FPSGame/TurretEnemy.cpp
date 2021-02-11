@@ -7,6 +7,7 @@ ATurretEnemy::ATurretEnemy()
 	isIdling = true; 
 	isLookingLeft = false; 
 	startNewLoop = false; 
+	isDead = false;
 }
 
 void ATurretEnemy::Tick(float DeltaTime)
@@ -23,14 +24,20 @@ void ATurretEnemy::BeginPlay()
 
 void ATurretEnemy::TakeDamage(float damageTaken)
 {
+	health -= damageTaken;
 	if (health <= 0)
 	{
 		health = 0;
 		UE_LOG(LogTemp, Warning, TEXT("I'm dead. I'm a Turret! "));
+		isDead = true;
 	}
 	else
 	{
-		health -= damageTaken;
-		UE_LOG(LogTemp, Warning, TEXT("Oww, that hurt. I'm a turret! "));
+		UE_LOG(LogTemp, Warning, TEXT("Oww, that hurt. I'm a Turret! "));
 	}
+}
+
+void ATurretEnemy::BeginDeath()
+{
+	UE_LOG(LogTemp, Warning, TEXT("Turret Death Starting"));
 }

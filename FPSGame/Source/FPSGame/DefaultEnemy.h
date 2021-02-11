@@ -25,4 +25,10 @@ protected:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Enemy)
 		float health;
+
+	UFUNCTION(BlueprintCallable)
+		void BeginDeath(); 
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Enemy)
+		bool isDead;
 };

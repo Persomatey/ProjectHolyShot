@@ -8,6 +8,8 @@ ADroneEnemy::ADroneEnemy()
 
 	//oldLoc = GetActorLocation(); 
 	//newLoc = FVector(oldLoc.X, oldLoc.Y, oldLoc.Z + diff);
+
+	isDead = false;
 }
 
 void ADroneEnemy::Tick(float DeltaTime)
@@ -24,14 +26,21 @@ void ADroneEnemy::BeginPlay()
 
 void ADroneEnemy::TakeDamage(float damageTaken)
 {
+	health -= damageTaken;
+
 	if (health <= 0)
 	{
 		health = 0;
 		UE_LOG(LogTemp, Warning, TEXT("I'm dead. I'm a Drone! "));
+		isDead = true;
 	}
 	else
 	{
-		health -= damageTaken;
 		UE_LOG(LogTemp, Warning, TEXT("Oww, that hurt. I'm a Drone! "));
 	}
+}
+
+void ADroneEnemy::BeginDeath()
+{
+	UE_LOG(LogTemp, Warning, TEXT("Drone Death Starting"));
 }

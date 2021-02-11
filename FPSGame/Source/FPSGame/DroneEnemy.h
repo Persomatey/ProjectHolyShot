@@ -23,8 +23,14 @@ protected:
 	UFUNCTION(BlueprintCallable)
 		void TakeDamage(float damageTaken);
 
+	UFUNCTION(BlueprintCallable)
+		void BeginDeath();
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Enemy)
 		float health;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Enemy)
+		bool isDead;
 
 	float diff;
 

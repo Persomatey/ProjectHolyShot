@@ -23,6 +23,9 @@ protected:
 	UFUNCTION(BlueprintCallable)
 		void TakeDamage(float damageTaken);
 
+	UFUNCTION(BlueprintCallable)
+		void BeginDeath();
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Enemy)
 		float health;
 
@@ -34,4 +37,7 @@ protected:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Enemy)
 		bool startNewLoop;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Enemy)
+		bool isDead;
 };

@@ -7,6 +7,8 @@ ADefaultEnemy::ADefaultEnemy()
 	PrimaryActorTick.bCanEverTick = true;
 
 	health = 1.0f;
+
+	isDead = false; 
 }
 
 // Called when the game starts or when spawned
@@ -23,12 +25,21 @@ ADefaultEnemy::ADefaultEnemy()
 
 void ADefaultEnemy::TakeDamage(float damageTaken)
 {
+	health -= damageTaken;
+
 	if (health <= 0)
 	{
 		health = 0;
+		UE_LOG(LogTemp, Warning, TEXT("I'm dead. I'm a Target! "));
+		isDead = true;
 	}
 	else
 	{
-		health -= damageTaken;
+		UE_LOG(LogTemp, Warning, TEXT("Oww, that hurt. I'm a Target! "));
 	}
+}
+
+void ADefaultEnemy::BeginDeath()
+{
+	UE_LOG(LogTemp, Warning, TEXT("Target Death Starting"));
 }
