@@ -27,6 +27,19 @@ https://trello.com/b/ABDPFNxA/project-holy-shot
 ## Changelist 
 
 <details>
+  <summary>CL-000006</summary>
+  
+  - Made the following changes: 
+    - Changed the Elite's character art from the gundam looking robot to a more generic looking robot. 
+    - I removed all the inheritance from the other enemies. I decided that the game would work better if I wasn't inheriting from DefaultEnemy so that I can make their logic a bit more advanced. 
+    - I made it so that when the player's projectile collides with enemies, it gets destroyed instead of bouncing everywhere. Eventully I'll probably use a different kind of projectile anyways or just do a hit scan or somehting but for now, this makes me feel better. 
+    - Added some animations for when the Elite gets hit and for when the Elite dies. 
+    - Made it so that the turret aims at the player when the player is close. When the player is further away, it will switch between looking left and looking right every 4 seconds. 
+    - Edited the README to reflect the above changes. 
+    
+</details>
+
+<details>
   <summary>CL-000005</summary>
   
   - Made the following changes: 
