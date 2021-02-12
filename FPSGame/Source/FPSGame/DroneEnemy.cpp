@@ -6,9 +6,6 @@ ADroneEnemy::ADroneEnemy()
 	health = 1.0f;
 	diff = 0.00000000000001f;
 
-	//oldLoc = GetActorLocation(); 
-	//newLoc = FVector(oldLoc.X, oldLoc.Y, oldLoc.Z + diff);
-
 	isDead = false;
 }
 
@@ -42,5 +39,7 @@ void ADroneEnemy::TakeDamage(float damageTaken)
 
 void ADroneEnemy::BeginDeath()
 {
-	UE_LOG(LogTemp, Warning, TEXT("Drone Death Starting"));
+	UE_LOG(LogTemp, Warning, TEXT("Drone Death Starting")); 
+
+	// Blueprint_Effect_Explosion
 }

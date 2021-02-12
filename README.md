@@ -28,6 +28,23 @@ https://trello.com/b/ABDPFNxA/project-holy-shot
 ## Changelist 
 
 <details>
+  <summary>CL-000010</summary>
+  
+  - Made the following changes: 
+    - Added the following effects to use under Content > FirstPerson > Blueprints > Effects: 
+      - Explosion 
+      - Fire 
+      - Smoke 
+      - Sparks 
+      - Steam 
+    - Made it so that, when the drone dies, sparks start flying from it then an explosion ooccurs before it dissappears. 
+    - Made it so that, when the turret dies,the head starts looking downard, sparks start flying from it, then an explosion ooccurs before it dissappears. 
+    - Also, made the healthbars for the enemies toggle invisible when yhe enemy dies. 
+    - Edited the README to reflect the above changes. 
+
+</details>
+
+<details>
   <summary>CL-000009</summary>
   
   - Made the following changes: 
