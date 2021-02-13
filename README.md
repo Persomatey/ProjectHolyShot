@@ -41,7 +41,7 @@ https://trello.com/b/ABDPFNxA/project-holy-shot
     - Edited the original textures for all of the weapons to make them more white and orange like the Pistol. 
     - Stretched out the Sniper model because I like it better that way. 
     - Created some silhouette images for each weapon which will be useful when I do weapon switching. 
-    - Added the credits for the people who made the SR, Pistol, and Sniper models. The Shotgun modeler is already in there because it was the same person who did the ammo moxes. 
+    - Added the credits for the people who made the SR, Pistol, and Sniper models. The Shotgun modeler is already in there because it was the same person who did the ammo boxes. 
     - Also added the credits for mixamo which I've been using the animations for for a few changelists now. They also did the current art for the Elite enemy. 
     - Edited the README to reflect the above changes. 
 
