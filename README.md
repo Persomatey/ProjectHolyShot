@@ -24,8 +24,28 @@ https://trello.com/b/ABDPFNxA/project-holy-shot
 - [Dungeon Mason](https://assetstore.unity.com/publishers/23554)
 - [Adequate](https://assetstore.unity.com/publishers/9348)
 - [MLX](https://assetstore.unity.com/publishers/21576)
+- [LemmoLab](https://assetstore.unity.com/publishers/28991) 
+- [MASH Virtual](https://assetstore.unity.com/publishers/26592) 
+- [Factory Of Models](https://assetstore.unity.com/publishers/26499) 
+
+**Animation**
+- [mixamo](https://www.mixamo.com/#/2)
 
 ## Changelist 
+
+<details>
+  <summary>CL-000012</summary>
+  
+  - Made the following changes: 
+    - Added the weapon models for the AR, Pistol, Sniper, and Shotgun. 
+    - Edited the original textures for all of the weapons to make them more white and orange like the Pistol. 
+    - Stretched out the Sniper model because I like it better that way. 
+    - Created some silhouette images for each weapon which will be useful when I do weapon switching. 
+    - Added the credits for the people who made the SR, Pistol, and Sniper models. The Shotgun modeler is already in there because it was the same person who did the ammo moxes. 
+    - Also added the credits for mixamo which I've been using the animations for for a few changelists now. They also did the current art for the Elite enemy. 
+    - Edited the README to reflect the above changes. 
+
+</details>
 
 <details>
   <summary>CL-000011</summary>
