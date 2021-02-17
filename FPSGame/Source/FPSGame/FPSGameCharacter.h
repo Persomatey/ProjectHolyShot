@@ -15,7 +15,10 @@ class AFPSGameCharacter : public ACharacter
 	UPROPERTY(VisibleDefaultsOnly, Category=Mesh) 
 		class USkeletalMeshComponent* Mesh1P;	// Pawn mesh: 1st person view (arms; seen only by self)
 
-	UPROPERTY(VisibleDefaultsOnly, Category = Mesh)	
+	// UPROPERTY(BlueprintReadWrite, Category = Mesh) 
+	// UPROPERTY(VisibleDefaultsOnly, Category = Mesh) 
+	// UPROPERTY(EditAnywhere, Category = Mesh) 
+	UPROPERTY(VisibleDefaultsOnly, Category = Mesh)
 		class USkeletalMeshComponent* FP_Gun;	// Gun mesh: 1st person view (seen only by self)
 
 	UPROPERTY(VisibleDefaultsOnly, Category = Mesh)	
@@ -55,7 +58,7 @@ class AFPSGameCharacter : public ACharacter
 		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category=Gameplay)
 			FVector GunOffset;	// Gun muzzle's offset from the characters location 
 
-		UPROPERTY(EditDefaultsOnly, Category=Projectile)
+		UPROPERTY(BlueprintReadWrite, Category=Projectile)
 			TSubclassOf<class AFPSGameProjectile> ProjectileClass;	// Projectile class to spawn 
 
 		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category=Gameplay)
@@ -161,6 +164,12 @@ class AFPSGameCharacter : public ACharacter
 		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Weapon)
 			int shotgunAmmo; 
 
+		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Weapon)
+			TArray<ABaseWeapon*> weapons;  
+
+		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Weapon)
+			int weaponIndex; // 0 = Default, 1 = AR, 2 = Pistol, 3 = Sniper, 4 = Shotgun 
+
 	protected:
 		void OnFire();					// Fires a projectile. 
 
@@ -200,11 +209,16 @@ class AFPSGameCharacter : public ACharacter
 
 		void Ability2CooldownComplete(); 
 
+		void SwitchToNextPrimaryWeapon(); 
+
+		UFUNCTION(BlueprintImplementableEvent, Category = "HUD")
+			void SwitchWeaponMesh(int _index); 
+
 		UFUNCTION(BlueprintCallable)
 			void RegenHealth();
 
 		UFUNCTION(BlueprintImplementableEvent, Category = "HUD")
-			void TriggerOutOfAmmoPopUp(); 
+			void TriggerOutOfAmmoPopUp(); // Not using this at the moment 
 
 		UFUNCTION(BlueprintCallable)
 			void TakeDamage(float damageAmount); 
@@ -223,6 +237,9 @@ class AFPSGameCharacter : public ACharacter
 
 		UFUNCTION(BlueprintCallable)
 			void AddAmmo(EAmmoType _ammoType, int _ammoAmount); 
+
+		UFUNCTION(BlueprintCallable)
+			FVector TestWhereProjectileSpawnIs();
 
 		struct TouchData
 		{

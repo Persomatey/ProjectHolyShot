@@ -109,6 +109,7 @@ AFPSGameCharacter::AFPSGameCharacter() // Constructor
 	pistolAmmo = 30; 
 	sniperRifleAmmo = 8; 
 	shotgunAmmo = 16; 
+	weaponIndex = 0; 
 }
 
 void AFPSGameCharacter::BeginPlay()
@@ -160,9 +161,10 @@ void AFPSGameCharacter::SetupPlayerInputComponent(class UInputComponent* PlayerI
 	PlayerInputComponent->BindAction("Reload", IE_Pressed, this, &AFPSGameCharacter::ManualReload);
 	PlayerInputComponent->BindAction("ActivateAbility1", IE_Pressed, this, &AFPSGameCharacter::UseAbility1);
 	PlayerInputComponent->BindAction("ActivateAbility2", IE_Pressed, this, &AFPSGameCharacter::UseAbility2);
+	PlayerInputComponent->BindAction("SwitchWeapon", IE_Pressed, this, &AFPSGameCharacter::SwitchToNextPrimaryWeapon);
 }
 
-void AFPSGameCharacter::OnFire()
+void AFPSGameCharacter::OnFire() 
 {
 	// try and fire a projectile
 	if (ProjectileClass != NULL)
@@ -170,9 +172,9 @@ void AFPSGameCharacter::OnFire()
 		UWorld* const World = GetWorld();
 		if (World != NULL)
 		{
-			if (weapon)
+			if (weapons[weaponIndex])
 			{
-				if (weapon->clipAmmo > 0)
+				if (weapons[weaponIndex]->clipAmmo > 0)
 				{
 					if (bUsingMotionControllers)
 					{
@@ -184,21 +186,48 @@ void AFPSGameCharacter::OnFire()
 					{
 						const FRotator SpawnRotation = GetControlRotation();
 						// MuzzleOffset is in camera space, so transform it to world space before offsetting from the character location to find the final muzzle position
-						const FVector SpawnLocation = ((FP_MuzzleLocation != nullptr) ? FP_MuzzleLocation->GetComponentLocation() : GetActorLocation()) + SpawnRotation.RotateVector(GunOffset);
+						//const FVector SpawnLocation = ((FP_MuzzleLocation != nullptr) ? FP_MuzzleLocation->GetComponentLocation() : GetActorLocation()) + SpawnRotation.RotateVector(GunOffset);
+						FVector SpawnLocation = GetActorLocation() + SpawnRotation.RotateVector(GunOffset); 
 
 						//Set Spawn Collision Handling Override
 						FActorSpawnParameters ActorSpawnParams;
 						ActorSpawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AdjustIfPossibleButDontSpawnIfColliding;
 
-						// spawn the projectile at the muzzle
-						World->SpawnActor<AFPSGameProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams);
+						switch (weaponIndex)
+						{
+							case 0: // spawn projectile for the Default Weapon... 
+								GunOffset = FVector(100.0f, 28.0f, 8.0f); // X = ??? , Y = Side , Z = Height 
+								SpawnLocation = GetActorLocation() + SpawnRotation.RotateVector(GunOffset);
+								World->SpawnActor<AFPSGameProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams);
+								break; 
+							case 1: // spawn projectile for the AR... 
+								GunOffset = FVector(100.0f, 28.0f, 8.0f); // X = ??? , Y = ??? , Z = Height 
+								SpawnLocation = GetActorLocation() + SpawnRotation.RotateVector(GunOffset);
+								World->SpawnActor<AFPSGameProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams);
+								break;
+							case 2: // spawn projectile for the Pistol... 
+								GunOffset = FVector(100.0f, 28.0f, 8.0f); // X = ??? , Y = ??? , Z = Height 
+								SpawnLocation = GetActorLocation() + SpawnRotation.RotateVector(GunOffset);
+								World->SpawnActor<AFPSGameProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams);
+								break;
+							case 3: // spawn projectile for the Sniper... 
+								GunOffset = FVector(100.0f, 28.0f, 8.0f); // X = ??? , Y = ??? , Z = Height 
+								SpawnLocation = GetActorLocation() + SpawnRotation.RotateVector(GunOffset);
+								World->SpawnActor<AFPSGameProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams);
+								break;
+							case 4: // spawn projectile for the Shotgun... 
+								GunOffset = FVector(100.0f, 28.0f, 8.0f); // X = ??? , Y = ??? , Z = Height 
+								SpawnLocation = GetActorLocation() + SpawnRotation.RotateVector(GunOffset);
+								World->SpawnActor<AFPSGameProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams);
+								break;
+						}
 					}
 
-					weapon->clipAmmo -= 1; 
+					weapons[weaponIndex]->clipAmmo -= 1; 
 				}
 				else 
 				{
-					ReloadWeapon(weapon->weaponType);
+					ReloadWeapon(weapons[weaponIndex]->weaponType);
 				}
 			}
 		}
@@ -382,15 +411,15 @@ void AFPSGameCharacter::StopZoom()
 
 void AFPSGameCharacter::ManualReload()
 {
-	if (weapon)
+	if (weapons[weaponIndex])
 	{
-		ReloadWeapon(weapon->weaponType);
+		ReloadWeapon(weapons[weaponIndex]->weaponType);
 	}
 }
 
 void AFPSGameCharacter::ReloadWeapon(EWeaponType _weaponType)
 {
-	if (weapon)
+	if (weapons[weaponIndex])
 	{
 		switch (_weaponType)
 		{
@@ -416,16 +445,16 @@ int AFPSGameCharacter::CalculateAmmo(int _ammoAmount)
 {
 	if (_ammoAmount > 0)
 	{
-		if (weapon->clipAmmo != weapon->maxClipAmmo)
+		if (weapons[weaponIndex]->clipAmmo != weapons[weaponIndex]->maxClipAmmo)
 		{
-			if (_ammoAmount - (weapon->maxClipAmmo - weapon->clipAmmo) >= 0)
+			if (_ammoAmount - (weapons[weaponIndex]->maxClipAmmo - weapons[weaponIndex]->clipAmmo) >= 0)
 			{
-				_ammoAmount -= (weapon->maxClipAmmo - weapon->clipAmmo);
-				weapon->clipAmmo = weapon->maxClipAmmo;
+				_ammoAmount -= (weapons[weaponIndex]->maxClipAmmo - weapons[weaponIndex]->clipAmmo);
+				weapons[weaponIndex]->clipAmmo = weapons[weaponIndex]->maxClipAmmo;
 			}
 			else
 			{
-				weapon->clipAmmo += _ammoAmount;
+				weapons[weaponIndex]->clipAmmo += _ammoAmount;
 				_ammoAmount = 0;
 			}
 		}
@@ -601,6 +630,87 @@ void AFPSGameCharacter::SetNewSpawnLoc(FVector newLoc, FRotator newRot)
 		respawnRot = newRot;
 		isSameLoc = true; 
 	}
+}
+
+void AFPSGameCharacter::SwitchToNextPrimaryWeapon()
+{
+	switch (weaponIndex)
+	{
+		case 0: // if we're weaponless, switch to AR 
+			if (weapons.Num() > 1)
+			{
+				weaponIndex = 1; 
+				SwitchWeaponMesh(weaponIndex); 
+			}
+			else
+			{
+				weaponIndex = 0; 
+				SwitchWeaponMesh(weaponIndex); 
+			}
+			break; 
+
+		case 1: // if we're holding the AR, switch to Pistol 
+			if (weapons.Num() > 2)
+			{
+				weaponIndex = 2;
+				SwitchWeaponMesh(weaponIndex);
+			}
+			else
+			{
+				weaponIndex = 0;
+				SwitchWeaponMesh(weaponIndex);
+			}
+			break;
+
+		case 2: // if we're holding the Pistol, switch to Sniper 
+			if (weapons.Num() > 3)
+			{
+				weaponIndex = 3;
+				SwitchWeaponMesh(weaponIndex);
+			}
+			else
+			{
+				weaponIndex = 0;
+				SwitchWeaponMesh(weaponIndex);
+			}
+			break;
+
+		case 3: // If we're holding the Sniper, switch to Shotgun 
+			if (weapons.Num() > 4)
+			{
+				weaponIndex = 4;
+				SwitchWeaponMesh(weaponIndex);
+			}
+			else
+			{
+				weaponIndex = 0;
+				SwitchWeaponMesh(weaponIndex);
+			}
+			break;
+
+		case 4: // If we're holding the Sniper, switch to Shotgun 
+			if (weapons.Num() > 5)
+			{
+				weaponIndex = 0;
+				SwitchWeaponMesh(weaponIndex);
+			}
+			else
+			{
+				weaponIndex = 0;
+				SwitchWeaponMesh(weaponIndex);
+			}
+			break;
+		
+		default: break; 
+	}
+}
+
+FVector AFPSGameCharacter::TestWhereProjectileSpawnIs()
+{
+	FRotator SpawnRotation = GetControlRotation();
+	GunOffset = FVector(55.0, 10.0f, 40.0f); // X = Forward , Y = Side , Z = Height 
+	FVector SpawnLocation = GetActorLocation() + SpawnRotation.RotateVector(GunOffset);
+	return SpawnLocation; 
 }
 
 #pragma endregion MyCode 

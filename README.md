@@ -34,6 +34,20 @@ https://trello.com/b/ABDPFNxA/project-holy-shot
 ## Changelist 
 
 <details>
+  <summary>CL-000013</summary>
+
+  - Made the following changes: 
+    - Made it so that weapon switching works 
+    - When you walk over a weapon, you gain that weapon and can switch to it by pressing "T" 
+    - Currenly, you can pick up as many weapons as you want and pressing "T" cycles through all of the weapons. Unsure if I will change this so you can only hold two weapons at a time (like Halo), or leave it this way and add a weapon wheel (Like Doom) 
+    - Switching the weapons also switches which kind of bullet you're shooting, and which ammo supply you're going through. 
+    - Added some new versions of the weapon models (basically the same) that are just Skeletal Mesh versions of each  weapon so that the player can hold them. 
+    - Still need to slightly alter where the projectile are spawning from for certain weapons but having a hard time figuring out the perfect placement currently. 
+    - Edited the README to reflect the above changes. 
+
+</details>
+
+<details>
   <summary>CL-000012</summary>
   
   - Made the following changes: 
