@@ -196,27 +196,27 @@ void AFPSGameCharacter::OnFire()
 						switch (weaponIndex)
 						{
 							case 0: // spawn projectile for the Default Weapon... 
-								GunOffset = FVector(100.0f, 28.0f, 8.0f); // X = ??? , Y = Side , Z = Height 
+								GunOffset = FVector(50.0f, 10.0f, 40.0f); // X = Depth , Y = Side , Z = Height 
 								SpawnLocation = GetActorLocation() + SpawnRotation.RotateVector(GunOffset);
 								World->SpawnActor<AFPSGameProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams);
 								break; 
 							case 1: // spawn projectile for the AR... 
-								GunOffset = FVector(100.0f, 28.0f, 8.0f); // X = ??? , Y = ??? , Z = Height 
+								GunOffset = FVector(50.0f, 8.0f, 40.0f); // X = Depth , Y = Side , Z = Height 
 								SpawnLocation = GetActorLocation() + SpawnRotation.RotateVector(GunOffset);
 								World->SpawnActor<AFPSGameProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams);
 								break;
 							case 2: // spawn projectile for the Pistol... 
-								GunOffset = FVector(100.0f, 28.0f, 8.0f); // X = ??? , Y = ??? , Z = Height 
+								GunOffset = FVector(50.0f, 8.0f, 40.0f); // X = Depth , Y = Side , Z = Height 
 								SpawnLocation = GetActorLocation() + SpawnRotation.RotateVector(GunOffset);
 								World->SpawnActor<AFPSGameProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams);
 								break;
 							case 3: // spawn projectile for the Sniper... 
-								GunOffset = FVector(100.0f, 28.0f, 8.0f); // X = ??? , Y = ??? , Z = Height 
+								GunOffset = FVector(100.0f, 8.0f, 40.0f); // X = Depth , Y = Side , Z = Height 
 								SpawnLocation = GetActorLocation() + SpawnRotation.RotateVector(GunOffset);
 								World->SpawnActor<AFPSGameProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams);
 								break;
 							case 4: // spawn projectile for the Shotgun... 
-								GunOffset = FVector(100.0f, 28.0f, 8.0f); // X = ??? , Y = ??? , Z = Height 
+								GunOffset = FVector(50.0f, 8.0f, 40.0f); // X = Depth , Y = Side , Z = Height 
 								SpawnLocation = GetActorLocation() + SpawnRotation.RotateVector(GunOffset);
 								World->SpawnActor<AFPSGameProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams);
 								break;
@@ -236,7 +236,7 @@ void AFPSGameCharacter::OnFire()
 	// try and play the sound if specified
 	if (FireSound != NULL)
 	{
-		UGameplayStatics::PlaySoundAtLocation(this, FireSound, GetActorLocation());
+		//UGameplayStatics::PlaySoundAtLocation(this, FireSound, GetActorLocation());
 	}
 
 	// try and play a firing animation if specified

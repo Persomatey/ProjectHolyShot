@@ -34,6 +34,17 @@ https://trello.com/b/ABDPFNxA/project-holy-shot
 ## Changelist 
 
 <details>
+  <summary>CL-000014</summary>
+
+  - Made the following changes: 
+    - Slightly altered where the projectiles are spawning from for each weapon. 
+    - Created a camera render texture which takes input from a camera (already currently in my test scene) and renders it to a material which renders it to a texture, which renders it to an image in the HUD. Right now the HUD image is invisible but if I need to enable it again for testing purposes, it's there). 
+    - (I might end up doing the minimap like this in the future). 
+    - Edited the README to reflect the above changes. 
+
+</details>
+
+<details>
   <summary>CL-000013</summary>
 
   - Made the following changes: 
