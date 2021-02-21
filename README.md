@@ -63,6 +63,16 @@ https://trello.com/b/ABDPFNxA/project-holy-shot
 ## Changelist 
 
 <details>
+  <summary>CL-000016</summary>
+
+  - Made the following changes: 
+    - Added ammo boxes for each weapon type. 
+    - Removed the functionality where the enemy blueprints would try to destroy the player projectile after the player projectile already destroyed itself causing an error. 
+    - Edited the README to reflect the above changes. 
+
+</details>
+
+<details>
   <summary>CL-000015</summary>
 
   - Made the following changes: 
