@@ -10,6 +10,10 @@ ABaseWeapon::ABaseWeapon()
 	clipAmmo = 12; 
 	reloadTime = 1.0f; 
 
+	isObtained = false; 
+	index = 0; 
+	name = "Weapon"; 
+
 	weaponType = EWeaponType::E_AssaultRifle; 
 }
 

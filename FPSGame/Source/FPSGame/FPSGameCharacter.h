@@ -209,7 +209,8 @@ class AFPSGameCharacter : public ACharacter
 
 		void Ability2CooldownComplete(); 
 
-		void SwitchToNextPrimaryWeapon(); 
+		UFUNCTION(BlueprintCallable, Category = "weapon")
+			void SwitchToNextPrimaryWeapon(); 
 
 		UFUNCTION(BlueprintImplementableEvent, Category = "HUD")
 			void SwitchWeaponMesh(int _index); 

@@ -4,6 +4,27 @@
 
 *Following this tutorial by Shawnthebro on YouTube: https://www.youtube.com/playlist?list=PLfAjixzz6o82cLilSI3Vbv0hu868hAp7P*
 
+<details>
+  <summary>Name Ideas</summary>
+
+_ |
+------------------ |
+Halation | 
+Coroter | 
+Corotor | 
+Halated Shot | 
+Discus Shot | 
+Radiant Shot | 
+Halation Shooter |
+Radiant Shooter |
+Halation Arena |
+Radiant Arena | 
+Coroning Arena | 
+Discus Arena | 
+Glowing Arena | 
+
+</details>
+
 ## Specs
 
 Unreal Engine 4.25.4
@@ -19,7 +40,11 @@ https://trello.com/b/ABDPFNxA/project-holy-shot
 **Programming**
 - [Hunter Goodin](https://huntergoodin.com/)
 
+**UI/UX Art/Design**
+- [Hunter Goodin](https://huntergoodin.com/)
+
 **Art**
+- [Hunter Goodin](https://huntergoodin.com/)
 - [ursa.anim](https://assetstore.unity.com/publishers/13142)
 - [Dungeon Mason](https://assetstore.unity.com/publishers/23554)
 - [Adequate](https://assetstore.unity.com/publishers/9348)
@@ -31,15 +56,38 @@ https://trello.com/b/ABDPFNxA/project-holy-shot
 **Animation**
 - [mixamo](https://www.mixamo.com/#/2)
 
+**Special Thanks**
+- [Gerardo Bonnet](https://screams-from-the-cellar.itch.io/) 
+- [Shawn the Bro](https://www.youtube.com/c/Shawnthebro/) 
+
 ## Changelist 
+
+<details>
+  <summary>CL-000015</summary>
+
+  - Made the following changes: 
+    - Added "Press E To Interact" functionality to each weapon. Now when walking up to a weapon, the player doesn't automatically pick it up. Instead the player message area will say "Press 'E' To Equip [weapon name]" and it will remove that message when the player walks away from it. When the player presses 'E' when right to the weapon, the player will equip that weapon. 
+    - Changed out the old way of equipping weapons (called it the Doom-Like System) where the weapons are obtained in a certain order (like Doom) for the new system where the weapons can be obtained in any order (called it the Any Order System). 
+      - If I ever want to go back any change it back to the old way, I can do so by uncommenting the "Doom-Like System" region and commenting the "Any Order System" region in FPSGameCharacter.cpp. 
+    - Added my name to a new "UI/UX Art/Design" credits section in the README. It just occured to me that I've been doing some of the UI/UX art like the HUD image, reticles, weapon silhouettes, etc. so it felt right to credit myself. 
+    - Changed the "Switch Weapon" key to 'Q' because I would keep forgetting that it's 'Y'. Q seems better because it's closer to the rest of your keys. 
+    - Slightly altered where the projectiles spawn again. Before when shooting, sometimes, the projectiles would spawn so close to the character that they would slightly push the character. Changed the 50.0f to 75.0f and that seems to be the sweet spot. 
+    - Changed the base ammo that the player has for each weapon to 0. Will be relying on ammo box pickups going forward. 
+    - Made it so that when the player switches to a weapon, the weapon's name appears below the ammo counter in the HUD. In the future, I'm probably going to remove this in favor of adding the weapon's silhouettes under the ammo counter instead. 
+    - Added the weapon silhouettes to the HUD. Currently they are all inactive but I will make them active according to which weapon is equipped later. 
+    - Added my name to the "Art" credits section of the README. It just occured to me that I've changed the textures for the weapon meshes and that probably deserves some credit. 
+    - Added some final name ideas in the README under a dropdown titled "Name Ideas"
+    - Edited the README to reflect the above changes. 
+
+</details>
 
 <details>
   <summary>CL-000014</summary>
 
   - Made the following changes: 
     - Slightly altered where the projectiles are spawning from for each weapon. 
-    - Created a camera render texture which takes input from a camera (already currently in my test scene) and renders it to a material which renders it to a texture, which renders it to an image in the HUD. Right now the HUD image is invisible but if I need to enable it again for testing purposes, it's there). 
-    - (I might end up doing the minimap like this in the future). 
+    - Created a camera render texture which takes input from a camera (already currently in my test scene) and renders it to a material which renders it to a texture which renders it to an image in the HUD. Right now the HUD image is invisible but if I need to enable it again for testing purposes, it's there). 
+      - (I might end up doing the minimap like this in the future). 
     - Edited the README to reflect the above changes. 
 
 </details>
@@ -53,7 +101,7 @@ https://trello.com/b/ABDPFNxA/project-holy-shot
     - Currenly, you can pick up as many weapons as you want and pressing "T" cycles through all of the weapons. Unsure if I will change this so you can only hold two weapons at a time (like Halo), or leave it this way and add a weapon wheel (Like Doom) 
     - Switching the weapons also switches which kind of bullet you're shooting, and which ammo supply you're going through. 
     - Added some new versions of the weapon models (basically the same) that are just Skeletal Mesh versions of each  weapon so that the player can hold them. 
-    - Still need to slightly alter where the projectile are spawning from for certain weapons but having a hard time figuring out the perfect placement currently. 
+    - Still need to slightly alter where the projectiles are spawning from for certain weapons but having a hard time figuring out the perfect placement currently. 
     - Edited the README to reflect the above changes. 
 
 </details>

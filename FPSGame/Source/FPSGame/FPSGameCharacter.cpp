@@ -105,10 +105,10 @@ AFPSGameCharacter::AFPSGameCharacter() // Constructor
 	stopLooping = false; 
 
 	weapon = nullptr;
-	assaultRifleAmmo = 80; 
-	pistolAmmo = 30; 
-	sniperRifleAmmo = 8; 
-	shotgunAmmo = 16; 
+	assaultRifleAmmo = 0; 
+	pistolAmmo = 0; 
+	sniperRifleAmmo = 0; 
+	shotgunAmmo = 0; 
 	weaponIndex = 0; 
 }
 
@@ -196,17 +196,17 @@ void AFPSGameCharacter::OnFire()
 						switch (weaponIndex)
 						{
 							case 0: // spawn projectile for the Default Weapon... 
-								GunOffset = FVector(50.0f, 10.0f, 40.0f); // X = Depth , Y = Side , Z = Height 
+								GunOffset = FVector(75.0f, 10.0f, 40.0f); // X = Depth , Y = Side , Z = Height 
 								SpawnLocation = GetActorLocation() + SpawnRotation.RotateVector(GunOffset);
 								World->SpawnActor<AFPSGameProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams);
 								break; 
 							case 1: // spawn projectile for the AR... 
-								GunOffset = FVector(50.0f, 8.0f, 40.0f); // X = Depth , Y = Side , Z = Height 
+								GunOffset = FVector(75.0f, 8.0f, 40.0f); // X = Depth , Y = Side , Z = Height 
 								SpawnLocation = GetActorLocation() + SpawnRotation.RotateVector(GunOffset);
 								World->SpawnActor<AFPSGameProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams);
 								break;
 							case 2: // spawn projectile for the Pistol... 
-								GunOffset = FVector(50.0f, 8.0f, 40.0f); // X = Depth , Y = Side , Z = Height 
+								GunOffset = FVector(75.0f, 8.0f, 40.0f); // X = Depth , Y = Side , Z = Height 
 								SpawnLocation = GetActorLocation() + SpawnRotation.RotateVector(GunOffset);
 								World->SpawnActor<AFPSGameProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams);
 								break;
@@ -216,7 +216,7 @@ void AFPSGameCharacter::OnFire()
 								World->SpawnActor<AFPSGameProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams);
 								break;
 							case 4: // spawn projectile for the Shotgun... 
-								GunOffset = FVector(50.0f, 8.0f, 40.0f); // X = Depth , Y = Side , Z = Height 
+								GunOffset = FVector(75.0f, 8.0f, 40.0f); // X = Depth , Y = Side , Z = Height 
 								SpawnLocation = GetActorLocation() + SpawnRotation.RotateVector(GunOffset);
 								World->SpawnActor<AFPSGameProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams);
 								break;
@@ -634,75 +634,103 @@ void AFPSGameCharacter::SetNewSpawnLoc(FVector newLoc, FRotator newRot)
 
 void AFPSGameCharacter::SwitchToNextPrimaryWeapon()
 {
-	switch (weaponIndex)
+	// Use this code if I want weapons to be obtained in any order 
+	#pragma region Any Order System
+	bool success = false; 
+
+	for (int i = 0; i < weapons.Num(); i++)
 	{
-		case 0: // if we're weaponless, switch to AR 
-			if (weapons.Num() > 1)
+		if (i > weaponIndex)
+		{
+			if (weapons[i]->isObtained)
 			{
-				weaponIndex = 1; 
-				SwitchWeaponMesh(weaponIndex); 
+				success = true; 
+				weaponIndex = i; 
+				SwitchWeaponMesh(weapons[i]->index); 
+				break; 
 			}
-			else
-			{
-				weaponIndex = 0; 
-				SwitchWeaponMesh(weaponIndex); 
-			}
-			break; 
-
-		case 1: // if we're holding the AR, switch to Pistol 
-			if (weapons.Num() > 2)
-			{
-				weaponIndex = 2;
-				SwitchWeaponMesh(weaponIndex);
-			}
-			else
-			{
-				weaponIndex = 0;
-				SwitchWeaponMesh(weaponIndex);
-			}
-			break;
-
-		case 2: // if we're holding the Pistol, switch to Sniper 
-			if (weapons.Num() > 3)
-			{
-				weaponIndex = 3;
-				SwitchWeaponMesh(weaponIndex);
-			}
-			else
-			{
-				weaponIndex = 0;
-				SwitchWeaponMesh(weaponIndex);
-			}
-			break;
-
-		case 3: // If we're holding the Sniper, switch to Shotgun 
-			if (weapons.Num() > 4)
-			{
-				weaponIndex = 4;
-				SwitchWeaponMesh(weaponIndex);
-			}
-			else
-			{
-				weaponIndex = 0;
-				SwitchWeaponMesh(weaponIndex);
-			}
-			break;
-
-		case 4: // If we're holding the Sniper, switch to Shotgun 
-			if (weapons.Num() > 5)
-			{
-				weaponIndex = 0;
-				SwitchWeaponMesh(weaponIndex);
-			}
-			else
-			{
-				weaponIndex = 0;
-				SwitchWeaponMesh(weaponIndex);
-			}
-			break;
-		
-		default: break; 
+		}
 	}
+
+	if (!success)
+	{
+		weaponIndex = 0; 
+		SwitchWeaponMesh(weaponIndex); 
+	}
+	#pragma endregion Any Order System
+
+	// Use the following code if I want all weapons to be obtained in a certain order (Like Doom) 
+	#pragma region Doom-Like System
+	//switch (weaponIndex)
+	//{
+	//	case 0: // if we're weaponless, switch to AR 
+	//		if (weapons.Num() > 1)
+	//		{
+	//			weaponIndex = 1; 
+	//			SwitchWeaponMesh(weaponIndex); 
+	//		}
+	//		else
+	//		{
+	//			weaponIndex = 0; 
+	//			SwitchWeaponMesh(weaponIndex); 
+	//		}
+	//		break; 
+
+	//	case 1: // if we're holding the AR, switch to Pistol 
+	//		if (weapons.Num() > 2)
+	//		{
+	//			weaponIndex = 2;
+	//			SwitchWeaponMesh(weaponIndex);
+	//		}
+	//		else
+	//		{
+	//			weaponIndex = 0;
+	//			SwitchWeaponMesh(weaponIndex);
+	//		}
+	//		break;
+
+	//	case 2: // if we're holding the Pistol, switch to Sniper 
+	//		if (weapons.Num() > 3)
+	//		{
+	//			weaponIndex = 3;
+	//			SwitchWeaponMesh(weaponIndex);
+	//		}
+	//		else
+	//		{
+	//			weaponIndex = 0;
+	//			SwitchWeaponMesh(weaponIndex);
+	//		}
+	//		break;
+
+	//	case 3: // If we're holding the Sniper, switch to Shotgun 
+	//		if (weapons.Num() > 4)
+	//		{
+	//			weaponIndex = 4;
+	//			SwitchWeaponMesh(weaponIndex);
+	//		}
+	//		else
+	//		{
+	//			weaponIndex = 0;
+	//			SwitchWeaponMesh(weaponIndex);
+	//		}
+	//		break;
+
+	//	case 4: // If we're holding the Sniper, switch to Shotgun 
+	//		if (weapons.Num() > 5)
+	//		{
+	//			weaponIndex = 0;
+	//			SwitchWeaponMesh(weaponIndex);
+	//		}
+	//		else
+	//		{
+	//			weaponIndex = 0;
+	//			SwitchWeaponMesh(weaponIndex);
+	//		}
+	//		break;
+	//	
+	//	default: break; 
+	//}
+	#pragma endregion Doom-Like System
 }
 
 FVector AFPSGameCharacter::TestWhereProjectileSpawnIs()

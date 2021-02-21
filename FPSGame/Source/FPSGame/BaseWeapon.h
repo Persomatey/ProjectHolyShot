@@ -38,6 +38,15 @@ class FPSGAME_API ABaseWeapon : public AActor
 		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Weapon")
 			EWeaponType weaponType;
 
+		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Weapon")
+			FString name; 
+
+		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Weapon")
+			bool isObtained; 
+
+		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Weapon")
+			int index; 
+
 	protected: 
 		virtual void BeginPlay() override; 
 
