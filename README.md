@@ -63,6 +63,15 @@ https://trello.com/b/ABDPFNxA/project-holy-shot
 ## Changelist 
 
 <details>
+  <summary>CL-000018</summary>
+
+  - Made the following changes: 
+    - Fixed bug where the ammo boxes would add ammo to your inventory even if you didn't have that weapon yet. Now the player needs to have that weapon in order to get ammo for it. 
+    - Edited the README to reflect the above changes. 
+
+</details>
+
+<details>
   <summary>CL-000017</summary>
 
   - Made the following changes: 
