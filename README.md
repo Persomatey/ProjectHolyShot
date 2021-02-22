@@ -63,6 +63,21 @@ https://trello.com/b/ABDPFNxA/project-holy-shot
 ## Changelist 
 
 <details>
+  <summary>CL-000017</summary>
+
+  - Made the following changes: 
+    - Made it so that picking up a weapon also adds ammo for that weapon to the player's stash. 
+    - Made it so that when you pick up a weapon by pressing 'E', that weapon enters a destroyed state. The destroyed state doesn't actually destory it, but it makes is invisible and removes all functionality from it. 
+    - Made it so that when you walk over a weapon while you have that weapon type equipped, it will add ammo for that weapon to player's stash then makes that weapon on the ground enter the destroyed state. 
+    - Changed the pickup collider for the weapons to a cylinder instead of a cube. 
+    - Got rid of that cloudy texture for the pickup collider. 
+    - Added gravity to the weapons so that they're not just floating. The weapons will ignore all player and projectile collision so the player can't mess with it's position, but will collide with the ground so that it doesn't fall through the earth. 
+    - Fixed a bug where the player could pick up more than the "max ammo" for a weapon type. Added some constant integers to the player's header file for each weapon, then did a check every time AddAmmo() was called. 
+    - Edited the README to reflect the above changes. 
+
+</details>
+
+<details>
   <summary>CL-000016</summary>
 
   - Made the following changes: 

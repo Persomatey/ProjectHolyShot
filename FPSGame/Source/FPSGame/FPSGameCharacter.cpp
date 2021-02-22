@@ -110,6 +110,11 @@ AFPSGameCharacter::AFPSGameCharacter() // Constructor
 	sniperRifleAmmo = 0; 
 	shotgunAmmo = 0; 
 	weaponIndex = 0; 
+
+	assaultObtained = false; 
+	pistolObtained = false;
+	sniperObtained = false;
+	shotgunObtained = false;
 }
 
 void AFPSGameCharacter::BeginPlay()
@@ -473,15 +478,31 @@ void AFPSGameCharacter::AddAmmo(EAmmoType _ammoType, int _ammoAmount)
 	{
 		case EAmmoType::E_AssaultRifle: 
 			assaultRifleAmmo += _ammoAmount; 
+			if (assaultRifleAmmo > maxAssaultAmmo)
+			{
+				assaultRifleAmmo = maxAssaultAmmo;
+			}
 			break; 
 		case EAmmoType::E_Pistol:
 			pistolAmmo += _ammoAmount;
+			if (pistolAmmo > maxPistolAmmo)
+			{
+				pistolAmmo = maxPistolAmmo;
+			}
 			break; 
 		case EAmmoType::E_SniperRifle:
 			sniperRifleAmmo += _ammoAmount;
+			if (sniperRifleAmmo > maxSniperAmmo)
+			{
+				sniperRifleAmmo = maxSniperAmmo;
+			}
 			break; 
 		case EAmmoType::E_Shotgun:
 			shotgunAmmo += _ammoAmount;
+			if (shotgunAmmo > maxShotgunAmmo)
+			{
+				shotgunAmmo = maxShotgunAmmo;
+			}
 			break; 
 		default: 
 			break; 

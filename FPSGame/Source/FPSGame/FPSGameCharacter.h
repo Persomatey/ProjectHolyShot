@@ -170,6 +170,26 @@ class AFPSGameCharacter : public ACharacter
 		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Weapon)
 			int weaponIndex; // 0 = Default, 1 = AR, 2 = Pistol, 3 = Sniper, 4 = Shotgun 
 
+		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Weapon)
+			bool assaultObtained; 
+
+		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Weapon)
+			bool pistolObtained;
+
+		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Weapon)
+			bool sniperObtained;
+
+		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Weapon)
+			bool shotgunObtained;
+
+		const int maxAssaultAmmo = 320; 
+
+		const int maxPistolAmmo = 32;
+
+		const int maxSniperAmmo = 20;
+
+		const int maxShotgunAmmo = 30;
+
 	protected:
 		void OnFire();					// Fires a projectile. 
 

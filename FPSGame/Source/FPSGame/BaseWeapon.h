@@ -45,6 +45,9 @@ class FPSGAME_API ABaseWeapon : public AActor
 			bool isObtained; 
 
 		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Weapon")
+			bool isDestroyed;
+
+		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Weapon")
 			int index; 
 
 	protected: 
