@@ -63,6 +63,17 @@ https://trello.com/b/ABDPFNxA/project-holy-shot
 ## Changelist 
 
 <details>
+  <summary>CL-000019</summary>
+
+  - Made the following changes: 
+    - Fixed the name it shows for the Sniper. It used to show "SniperRifle" (no spaces), now it shows "Sniper Rifle" (with spaces). Felt like that makes it more consistent with how the AR shows "Assault Rifle" (with spaces). 
+    - Made it to where when you switch to a weapon, it shows that weapon's silhouette in the HUD instead of the weapon's name. 
+    - Added a FileSources folder to the GitHub folder. This folder will store the assets that I'm using before Unreal converts them to .uasset files. Sometimes I want the original file and exporting the .uasset file as the original file doesn't always make it the original filetype like in the case of .psd files. 
+    - Edited the README to reflect the above changes. 
+
+</details>
+
+<details>
   <summary>CL-000018</summary>
 
   - Made the following changes: 
