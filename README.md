@@ -63,6 +63,17 @@ https://trello.com/b/ABDPFNxA/project-holy-shot
 ## Changelist 
 
 <details>
+  <summary>CL-000020</summary>
+
+  - Made the following changes: 
+    - Added reticles for each weapon. The reticles change depending on what weapon is being held at the time. 
+    - Removed the old red reticle. 
+    - Fixed the bug where the hitboxes for some of the enemies were way too big. Turns out it was the health bars' fault. When you would shoot a health bar, that would count as shooting the enemy. 
+    - Edited the README to reflect the above changes. 
+
+</details>
+
+<details>
   <summary>CL-000019</summary>
 
   - Made the following changes: 
