@@ -63,6 +63,19 @@ https://trello.com/b/ABDPFNxA/project-holy-shot
 ## Changelist 
 
 <details>
+  <summary>CL-000021</summary>
+
+  - Made the following changes: 
+    - Made some changes to the player projectiles 
+      - Made it so that the projectiles dissappear after a 2 seconds 
+      - Removed the gravity from the projectiles 
+      - Changed the projectiles' texture from yellow to metal 
+      - Made the projectiles move faster. Before it was like 3000 or something, now it's 20000. 
+    - Edited the README to reflect the above changes. 
+
+</details>
+
+<details>
   <summary>CL-000020</summary>
 
   - Made the following changes: 
