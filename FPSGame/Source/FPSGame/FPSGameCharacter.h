@@ -262,6 +262,9 @@ class AFPSGameCharacter : public ACharacter
 		UFUNCTION(BlueprintCallable)
 			FVector TestWhereProjectileSpawnIs();
 
+		UFUNCTION(BlueprintImplementableEvent)
+			void AlterGunSize();
+
 		struct TouchData
 		{
 			TouchData() { bIsPressed = false;Location=FVector::ZeroVector;}

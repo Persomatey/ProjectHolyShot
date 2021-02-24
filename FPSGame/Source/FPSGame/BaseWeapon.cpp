@@ -4,10 +4,10 @@ ABaseWeapon::ABaseWeapon()
 {
 	PrimaryActorTick.bCanEverTick = true; 
 
-	maxTotalAmmo = 100; 
-	maxClipAmmo = 12; 
-	totalAmmo = 64; 
-	clipAmmo = 12; 
+	maxTotalAmmo = 0; 
+	maxClipAmmo = 0; 
+	totalAmmo = 0; 
+	clipAmmo = 0; 
 	reloadTime = 1.0f; 
 
 	isObtained = false; 

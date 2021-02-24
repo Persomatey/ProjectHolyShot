@@ -63,11 +63,26 @@ https://trello.com/b/ABDPFNxA/project-holy-shot
 ## Changelist 
 
 <details>
+  <summary>CL-000022</summary>
+
+  - Made the following changes: 
+    - Made the default weapon an "unarmed" weapon. 
+      - When you pick up your first real weapon, it "unequips" the Default Weapon. 
+      - Removed the ammo counter in the bottom right corner while having the Default Weapon equipped. 
+      - Moved the model of the arms while holding the Default Weapon so that they are not visible. 
+    - Moved the model of the arms while holding the Pistol so that they are not visible, then moved the FP_Gun component down so that the gun is visible. 
+    - Lowered the weapon pickup colliders. 
+    - Changed the reticle colors to more of a blue to fit with the rest of the HUD. 
+    - Edited the README to reflect the above changes. 
+
+</details>
+
+<details>
   <summary>CL-000021</summary>
 
   - Made the following changes: 
     - Made some changes to the player projectiles 
-      - Made it so that the projectiles dissappear after a 2 seconds 
+      - Made it so that the projectiles disappear after a 2 seconds 
       - Removed the gravity from the projectiles 
       - Changed the projectiles' texture from yellow to metal 
       - Made the projectiles move faster. Before it was like 3000 or something, now it's 20000. 
