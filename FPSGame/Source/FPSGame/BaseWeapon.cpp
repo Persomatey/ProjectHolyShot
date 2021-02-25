@@ -9,7 +9,9 @@ ABaseWeapon::ABaseWeapon()
 	totalAmmo = 0; 
 	clipAmmo = 0; 
 	reloadTime = 1.0f; 
+	fireRate = 0.25f; 
 
+	isAutomatic = false; 
 	isObtained = false; 
 	index = 0; 
 	name = "Weapon"; 

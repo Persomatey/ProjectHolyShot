@@ -13,11 +13,13 @@
 // In older versions of UE I didn't need to do this, but in this newer version I do. 
 #include "GameFramework/CharacterMovementComponent.h"  
 #include "Kismet/KismetSystemLibrary.h"
+#include <cassert>
 
 DEFINE_LOG_CATEGORY_STATIC(LogFPChar, Warning, All);
 
 AFPSGameCharacter::AFPSGameCharacter() // Constructor 
 {
+	#pragma region TemplateConstructorCode
 	// Set size for collision capsule
 	GetCapsuleComponent()->InitCapsuleSize(55.f, 96.0f);
 
@@ -72,11 +74,15 @@ AFPSGameCharacter::AFPSGameCharacter() // Constructor
 	VR_MuzzleLocation->SetRelativeLocation(FVector(0.000004, 53.999992, 10.000000));
 	VR_MuzzleLocation->SetRelativeRotation(FRotator(0.0f, 90.0f, 0.0f));		// Counteract the rotation of the VR gun model.
 	//bUsingMotionControllers = true;
+	#pragma endregion TemplateConstructorCode
 
 	/* Setting Some Values */ 
+
+	// Core Gameplay Stuff 
 	isSprinting = false; 
 	isZoomedIn = false; 
 
+	// Ability Stuff 
 	hasUsedAbility1 = false; 
 	hasUsedAbility2 = false; 
 	ability1Duration = 5.0f; 
@@ -84,17 +90,14 @@ AFPSGameCharacter::AFPSGameCharacter() // Constructor
 	ability1CooldownTime = 3.0f; 
 	ability2CooldownTime = 5.0f; 
 
+	// Health Stuff 
 	respawnLoc = FVector(-350.0f, -100.0f, 235.0f); 
 	respawnRot = FRotator(0, 0, 0); 
-
 	messageAppear = false; 
-
 	hudMessage = FString(TEXT(" ")); 
-
 	isSameLoc = false;
 	justDied = false; 
 	isFirstLife = true; 
-
 	health = 1.0f;
 	healDelay = 0.01f;
 	healTime = 0.0f;
@@ -104,17 +107,18 @@ AFPSGameCharacter::AFPSGameCharacter() // Constructor
 	healing = false; 
 	stopLooping = false; 
 
-	weapon = nullptr;
+	// Weapon Stuff 
+	weapon = nullptr; 
 	assaultRifleAmmo = 0; 
 	pistolAmmo = 0; 
 	sniperRifleAmmo = 0; 
 	shotgunAmmo = 0; 
 	weaponIndex = 0; 
-
 	assaultObtained = false; 
-	pistolObtained = false;
-	sniperObtained = false;
-	shotgunObtained = false;
+	pistolObtained = false; 
+	sniperObtained = false; 
+	shotgunObtained = false; 
+	isShooting = false; 
 }
 
 void AFPSGameCharacter::BeginPlay()
@@ -147,7 +151,8 @@ void AFPSGameCharacter::SetupPlayerInputComponent(class UInputComponent* PlayerI
 
 	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ACharacter::Jump);
 	PlayerInputComponent->BindAction("Jump", IE_Released, this, &ACharacter::StopJumping);
-	PlayerInputComponent->BindAction("Fire", IE_Pressed, this, &AFPSGameCharacter::OnFire);
+	PlayerInputComponent->BindAction("Fire", IE_Pressed, this, &AFPSGameCharacter::StartFiring);
+	PlayerInputComponent->BindAction("Fire", IE_Released, this, &AFPSGameCharacter::StopFiring); 
 	PlayerInputComponent->BindAction("ResetVR", IE_Pressed, this, &AFPSGameCharacter::OnResetVR);
 
 	EnableTouchscreenMovement(PlayerInputComponent);
@@ -170,7 +175,16 @@ void AFPSGameCharacter::SetupPlayerInputComponent(class UInputComponent* PlayerI
 	PlayerInputComponent->BindAction("SwitchWeapon", IE_Pressed, this, &AFPSGameCharacter::SwitchToNextPrimaryWeapon);
 }
 
-void AFPSGameCharacter::OnFire() 
+float randomFloat(float min, float max)
+{
+	assert(max > min);
+	float random = ((float)rand()) / (float)RAND_MAX;
+
+	float range = max - min;
+	return (random * range) + min;
+}
+
+void AFPSGameCharacter::OnFire()
 {
 	// try and fire a projectile
 	if (ProjectileClass != NULL)
@@ -192,8 +206,7 @@ void AFPSGameCharacter::OnFire()
 					{
 						const FRotator SpawnRotation = GetControlRotation();
 						// MuzzleOffset is in camera space, so transform it to world space before offsetting from the character location to find the final muzzle position
-						//const FVector SpawnLocation = ((FP_MuzzleLocation != nullptr) ? FP_MuzzleLocation->GetComponentLocation() : GetActorLocation()) + SpawnRotation.RotateVector(GunOffset);
-						FVector SpawnLocation = GetActorLocation() + SpawnRotation.RotateVector(GunOffset); 
+						FVector SpawnLocation = GetActorLocation() + SpawnRotation.RotateVector(GunOffset);
 
 						//Set Spawn Collision Handling Override
 						FActorSpawnParameters ActorSpawnParams;
@@ -201,39 +214,51 @@ void AFPSGameCharacter::OnFire()
 
 						switch (weaponIndex)
 						{
-							case 0: // spawn projectile for the Default Weapon... 
-								GunOffset = FVector(75.0f, 10.0f, 40.0f); // X = Depth , Y = Side , Z = Height 
-								SpawnLocation = GetActorLocation() + SpawnRotation.RotateVector(GunOffset);
-								World->SpawnActor<AFPSGameProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams);
-								break; 
-							case 1: // spawn projectile for the AR... 
-								GunOffset = FVector(75.0f, 8.0f, 40.0f); // X = Depth , Y = Side , Z = Height 
-								SpawnLocation = GetActorLocation() + SpawnRotation.RotateVector(GunOffset);
-								World->SpawnActor<AFPSGameProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams);
-								break;
-							case 2: // spawn projectile for the Pistol... 
-								GunOffset = FVector(75.0f, 8.0f, 40.0f); // X = Depth , Y = Side , Z = Height 
-								SpawnLocation = GetActorLocation() + SpawnRotation.RotateVector(GunOffset);
-								World->SpawnActor<AFPSGameProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams);
-								break;
-							case 3: // spawn projectile for the Sniper... 
-								GunOffset = FVector(100.0f, 8.0f, 40.0f); // X = Depth , Y = Side , Z = Height 
-								SpawnLocation = GetActorLocation() + SpawnRotation.RotateVector(GunOffset);
-								World->SpawnActor<AFPSGameProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams);
-								break;
-							case 4: // spawn projectile for the Shotgun... 
-								GunOffset = FVector(75.0f, 8.0f, 40.0f); // X = Depth , Y = Side , Z = Height 
-								SpawnLocation = GetActorLocation() + SpawnRotation.RotateVector(GunOffset);
-								World->SpawnActor<AFPSGameProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams);
-								break;
+						case 0: // spawn projectile for the Default Weapon... 
+							GunOffset = FVector(75.0f, 10.0f, 40.0f); // X = Depth , Y = Side , Z = Height 
+							SpawnLocation = GetActorLocation() + SpawnRotation.RotateVector(GunOffset);
+							World->SpawnActor<AFPSGameProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams);
+							break;
+						case 1: // spawn projectile for the AR... 
+							GunOffset = FVector(75.0f, 8.0f, 40.0f); // X = Depth , Y = Side , Z = Height 
+							SpawnLocation = GetActorLocation() + SpawnRotation.RotateVector(GunOffset);
+
+							//float f1 = 50; // randomFloat(-50.0f, 50.0f);
+							//float f2 = 50; // randomFloat(-50.0f, 50.0f);
+							//float f3 = 50; // randomFloat(-50.0f, 50.0f);
+							//rotOffset = FRotator(0.0f, 0.0f, 0.0f);
+							//rotOffset = FRotator(SpawnRotation.Pitch + 0.0f, SpawnRotation.Roll + 0.0f, SpawnRotation.Yaw + 0.0f); 
+
+							World->SpawnActor<AFPSGameProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams);
+							break;
+						case 2: // spawn projectile for the Pistol... 
+							GunOffset = FVector(75.0f, 8.0f, 40.0f); // X = Depth , Y = Side , Z = Height 
+							SpawnLocation = GetActorLocation() + SpawnRotation.RotateVector(GunOffset);
+							World->SpawnActor<AFPSGameProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams);
+							break;
+						case 3: // spawn projectile for the Sniper... 
+							GunOffset = FVector(100.0f, 8.0f, 40.0f); // X = Depth , Y = Side , Z = Height 
+							SpawnLocation = GetActorLocation() + SpawnRotation.RotateVector(GunOffset);
+							World->SpawnActor<AFPSGameProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams);
+							break;
+						case 4: // spawn projectile for the Shotgun... 
+							GunOffset = FVector(75.0f, 8.0f, 40.0f); // X = Depth , Y = Side , Z = Height 
+							SpawnLocation = GetActorLocation() + SpawnRotation.RotateVector(GunOffset);
+							World->SpawnActor<AFPSGameProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams);
+							break;
 						}
+					}
+
+					if (weapons[weaponIndex]->isAutomatic && isShooting)
+					{
+						GetWorld()->GetTimerManager().SetTimer(fireTimerHandle, this, &AFPSGameCharacter::OnFire, weapons[weaponIndex]->fireRate, false); 
 					}
 
 					weapons[weaponIndex]->clipAmmo -= 1; 
 				}
-				else 
+				else
 				{
-					ReloadWeapon(weapons[weaponIndex]->weaponType);
+					ReloadWeapon(weapons[weaponIndex]->weaponType); 
 				}
 			}
 		}
@@ -755,12 +780,16 @@ void AFPSGameCharacter::SwitchToNextPrimaryWeapon()
 	#pragma endregion Doom-Like System
 }
 
-FVector AFPSGameCharacter::TestWhereProjectileSpawnIs()
+void AFPSGameCharacter::StartFiring()
 {
-	FRotator SpawnRotation = GetControlRotation();
-	GunOffset = FVector(55.0, 10.0f, 40.0f); // X = Forward , Y = Side , Z = Height 
-	FVector SpawnLocation = GetActorLocation() + SpawnRotation.RotateVector(GunOffset);
-	return SpawnLocation; 
+	isShooting = true;
+	OnFire();
+}
+
+void AFPSGameCharacter::StopFiring()
+{
+	isShooting = false; 
+	fireTimerHandle.Invalidate(); 
 }
 
 #pragma endregion MyCode 

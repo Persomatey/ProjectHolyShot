@@ -50,6 +50,12 @@ class FPSGAME_API ABaseWeapon : public AActor
 		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Weapon")
 			int index; 
 
+		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Weapon")
+			float fireRate; 
+
+		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Weapon")
+			bool isAutomatic; 
+
 	protected: 
 		virtual void BeginPlay() override; 
 

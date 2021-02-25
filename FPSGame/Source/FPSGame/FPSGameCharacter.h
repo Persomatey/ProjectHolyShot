@@ -182,6 +182,11 @@ class AFPSGameCharacter : public ACharacter
 		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Weapon)
 			bool shotgunObtained;
 
+		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = State)
+			bool isShooting; 
+
+		FTimerHandle fireTimerHandle; 
+
 		const int maxAssaultAmmo = 320; 
 
 		const int maxPistolAmmo = 32;
@@ -190,8 +195,14 @@ class AFPSGameCharacter : public ACharacter
 
 		const int maxShotgunAmmo = 30;
 
+		FRotator rotOffset;
+
 	protected:
-		void OnFire();					// Fires a projectile. 
+		void OnFire();					// Fires a projectile 
+
+		void StartFiring();				// Starts firing projectiles (automatic weapon) 
+
+		void StopFiring();				// Stops firing projectiles (automatic weapon) 
 
 		void OnResetVR(); 				// Resets HMD orientation and position in VR. 
 
@@ -258,9 +269,6 @@ class AFPSGameCharacter : public ACharacter
 
 		UFUNCTION(BlueprintCallable)
 			void AddAmmo(EAmmoType _ammoType, int _ammoAmount); 
-
-		UFUNCTION(BlueprintCallable)
-			FVector TestWhereProjectileSpawnIs();
 
 		UFUNCTION(BlueprintImplementableEvent)
 			void AlterGunSize();

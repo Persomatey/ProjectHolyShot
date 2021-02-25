@@ -63,6 +63,19 @@ https://trello.com/b/ABDPFNxA/project-holy-shot
 ## Changelist 
 
 <details>
+  <summary>CL-000023</summary>
+
+  - Made the following changes: 
+    - Added different projectiles based on the different weapons. 
+    - Added a boolean on all weapons called isAutomatic where, if true, the weapon will keep calling OnFire() based on a fireRate as long as the mouse button is clicked, then stop firing when the mouse button is unlciked.
+    - Finished the Assault Rifle weapon.
+      - It is an automatic weapon. 
+      - To make the weapon spray, the projectiles spawn at slightly random velocities based on variables inside the blueprint. 
+    - Edited the README to reflect the above changes. 
+
+</details>
+
+<details>
   <summary>CL-000022</summary>
 
   - Made the following changes: 

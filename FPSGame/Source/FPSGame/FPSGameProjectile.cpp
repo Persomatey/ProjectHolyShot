@@ -26,9 +26,12 @@ AFPSGameProjectile::AFPSGameProjectile()
 	ProjectileMovement->MaxSpeed = 3000.f;
 	ProjectileMovement->bRotationFollowsVelocity = true;
 	ProjectileMovement->bShouldBounce = true;
+	//ProjectileMovement->Velocity = FVector(1.0f, 50.0f, 50.0f);
 
 	// Die after 3 seconds by default
 	InitialLifeSpan = 3.0f;
+
+	damage = 0.1f; 
 }
 
 void AFPSGameProjectile::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit)
