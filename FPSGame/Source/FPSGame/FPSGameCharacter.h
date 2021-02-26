@@ -185,6 +185,12 @@ class AFPSGameCharacter : public ACharacter
 		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = State)
 			bool isShooting; 
 
+		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = State)
+			bool readyToFire; 
+
+		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = State)
+			float reloadTime;
+
 		FTimerHandle fireTimerHandle; 
 
 		const int maxAssaultAmmo = 320; 
@@ -197,12 +203,30 @@ class AFPSGameCharacter : public ACharacter
 
 		FRotator rotOffset;
 
+		bool isReloading; 
+
+		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = State)
+			bool ableToSwitchWeapon; 
+
+		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = State)
+			bool weaponSwitched; 
+
+		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Gameplay)
+			class USoundBase* outOfAmmoSound; 
+
+		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Gameplay)
+			class USoundBase* reloadSFX;
+
 	protected:
 		void OnFire();					// Fires a projectile 
 
 		void StartFiring();				// Starts firing projectiles (automatic weapon) 
 
 		void StopFiring();				// Stops firing projectiles (automatic weapon) 
+
+		void FinishReloading(); 
+
+		void ResetReadyToFire(); 
 
 		void OnResetVR(); 				// Resets HMD orientation and position in VR. 
 
@@ -225,6 +249,9 @@ class AFPSGameCharacter : public ACharacter
 		void ManualReload();
 
 		void ReloadWeapon(EWeaponType _weaponType); 
+
+		UFUNCTION(BlueprintCallable, Category = "weapon")
+			void ReloadWeaponAmmoAdded(EWeaponType _weaponType);
 
 		int CalculateAmmo(int _ammoAmount); 
 
@@ -272,6 +299,12 @@ class AFPSGameCharacter : public ACharacter
 
 		UFUNCTION(BlueprintImplementableEvent)
 			void AlterGunSize();
+
+		UFUNCTION(BlueprintImplementableEvent)
+			void ReloadAnim();
+
+		UFUNCTION(BlueprintImplementableEvent)
+			void AmmoCounterFlashRed();
 
 		struct TouchData
 		{

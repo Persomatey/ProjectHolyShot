@@ -119,6 +119,10 @@ AFPSGameCharacter::AFPSGameCharacter() // Constructor
 	sniperObtained = false; 
 	shotgunObtained = false; 
 	isShooting = false; 
+	readyToFire = true; 
+	reloadTime = 1.96f; 
+	isReloading = false; 
+	ableToSwitchWeapon = true; 
 }
 
 void AFPSGameCharacter::BeginPlay()
@@ -175,19 +179,12 @@ void AFPSGameCharacter::SetupPlayerInputComponent(class UInputComponent* PlayerI
 	PlayerInputComponent->BindAction("SwitchWeapon", IE_Pressed, this, &AFPSGameCharacter::SwitchToNextPrimaryWeapon);
 }
 
-float randomFloat(float min, float max)
-{
-	assert(max > min);
-	float random = ((float)rand()) / (float)RAND_MAX;
-
-	float range = max - min;
-	return (random * range) + min;
-}
-
 void AFPSGameCharacter::OnFire()
 {
+	weaponSwitched = false; 
+
 	// try and fire a projectile
-	if (ProjectileClass != NULL)
+	if (ProjectileClass != NULL && weapons[weaponIndex]->index != 0 && !isReloading)
 	{
 		UWorld* const World = GetWorld();
 		if (World != NULL)
@@ -202,7 +199,7 @@ void AFPSGameCharacter::OnFire()
 						const FVector SpawnLocation = VR_MuzzleLocation->GetComponentLocation();
 						World->SpawnActor<AFPSGameProjectile>(ProjectileClass, SpawnLocation, SpawnRotation);
 					}
-					else
+					else if (!bUsingMotionControllers && readyToFire)
 					{
 						const FRotator SpawnRotation = GetControlRotation();
 						// MuzzleOffset is in camera space, so transform it to world space before offsetting from the character location to find the final muzzle position
@@ -214,70 +211,85 @@ void AFPSGameCharacter::OnFire()
 
 						switch (weaponIndex)
 						{
-						case 0: // spawn projectile for the Default Weapon... 
-							GunOffset = FVector(75.0f, 10.0f, 40.0f); // X = Depth , Y = Side , Z = Height 
-							SpawnLocation = GetActorLocation() + SpawnRotation.RotateVector(GunOffset);
-							World->SpawnActor<AFPSGameProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams);
-							break;
-						case 1: // spawn projectile for the AR... 
-							GunOffset = FVector(75.0f, 8.0f, 40.0f); // X = Depth , Y = Side , Z = Height 
-							SpawnLocation = GetActorLocation() + SpawnRotation.RotateVector(GunOffset);
-
-							//float f1 = 50; // randomFloat(-50.0f, 50.0f);
-							//float f2 = 50; // randomFloat(-50.0f, 50.0f);
-							//float f3 = 50; // randomFloat(-50.0f, 50.0f);
-							//rotOffset = FRotator(0.0f, 0.0f, 0.0f);
-							//rotOffset = FRotator(SpawnRotation.Pitch + 0.0f, SpawnRotation.Roll + 0.0f, SpawnRotation.Yaw + 0.0f); 
-
-							World->SpawnActor<AFPSGameProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams);
-							break;
-						case 2: // spawn projectile for the Pistol... 
-							GunOffset = FVector(75.0f, 8.0f, 40.0f); // X = Depth , Y = Side , Z = Height 
-							SpawnLocation = GetActorLocation() + SpawnRotation.RotateVector(GunOffset);
-							World->SpawnActor<AFPSGameProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams);
-							break;
-						case 3: // spawn projectile for the Sniper... 
-							GunOffset = FVector(100.0f, 8.0f, 40.0f); // X = Depth , Y = Side , Z = Height 
-							SpawnLocation = GetActorLocation() + SpawnRotation.RotateVector(GunOffset);
-							World->SpawnActor<AFPSGameProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams);
-							break;
-						case 4: // spawn projectile for the Shotgun... 
-							GunOffset = FVector(75.0f, 8.0f, 40.0f); // X = Depth , Y = Side , Z = Height 
-							SpawnLocation = GetActorLocation() + SpawnRotation.RotateVector(GunOffset);
-							World->SpawnActor<AFPSGameProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams);
-							break;
+							case 0: // spawn projectile for the Default Weapon... 
+								GunOffset = FVector(100.0f, 10.0f, 40.0f); // X = Depth , Y = Side , Z = Height 
+								SpawnLocation = GetActorLocation() + SpawnRotation.RotateVector(GunOffset);
+								World->SpawnActor<AFPSGameProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams);
+								break;
+							case 1: // spawn projectile for the AR... 
+								GunOffset = FVector(100.0f, 8.0f, 40.0f); // X = Depth , Y = Side , Z = Height 
+								SpawnLocation = GetActorLocation() + SpawnRotation.RotateVector(GunOffset);
+								World->SpawnActor<AFPSGameProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams);
+								break;
+							case 2: // spawn projectile for the Pistol... 
+								GunOffset = FVector(100.0f, 8.0f, 40.0f); // X = Depth , Y = Side , Z = Height 
+								SpawnLocation = GetActorLocation() + SpawnRotation.RotateVector(GunOffset);
+								World->SpawnActor<AFPSGameProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams);
+								break;
+							case 3: // spawn projectile for the Sniper... 
+								GunOffset = FVector(100.0f, 8.0f, 40.0f); // X = Depth , Y = Side , Z = Height 
+								SpawnLocation = GetActorLocation() + SpawnRotation.RotateVector(GunOffset);
+								World->SpawnActor<AFPSGameProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams);
+								break;
+							case 4: // spawn projectile for the Shotgun... 
+								GunOffset = FVector(100.0f, 8.0f, 40.0f); // X = Depth , Y = Side , Z = Height 
+								SpawnLocation = GetActorLocation() + SpawnRotation.RotateVector(GunOffset);
+								World->SpawnActor<AFPSGameProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams);
+								break;
 						}
-					}
 
-					if (weapons[weaponIndex]->isAutomatic && isShooting)
-					{
-						GetWorld()->GetTimerManager().SetTimer(fireTimerHandle, this, &AFPSGameCharacter::OnFire, weapons[weaponIndex]->fireRate, false); 
-					}
+						if (weapons[weaponIndex]->isAutomatic && isShooting)
+						{
+							GetWorld()->GetTimerManager().SetTimer(fireTimerHandle, this, &AFPSGameCharacter::OnFire, weapons[weaponIndex]->fireRate, false);
+						}
+						else if (weapons[weaponIndex]->isAutomatic == false)
+						{
+							readyToFire = false;
+							GetWorld()->GetTimerManager().SetTimer(fireTimerHandle, this, &AFPSGameCharacter::ResetReadyToFire, weapons[weaponIndex]->fireRate, false);
+						}
 
-					weapons[weaponIndex]->clipAmmo -= 1; 
+						// try and play the sound if specified
+						if (FireSound != NULL)
+						{
+							UGameplayStatics::PlaySoundAtLocation(this, FireSound, GetActorLocation());
+						}
+
+						// try and play a firing animation if specified
+						if (FireAnimation != NULL)
+						{
+							// Get the animation object for the arms mesh
+							UAnimInstance* AnimInstance = Mesh1P->GetAnimInstance();
+							if (AnimInstance != NULL)
+							{
+								switch(weapons[weaponIndex]->index)
+								{
+									//case 0: // Default Weapon animation 
+									//	AnimInstance->Montage_Play(FireAnimation, 1.0f);
+									//	break; 
+									case 1: // AR animation 
+										AnimInstance->Montage_Play(FireAnimation, 1.0f);
+										break;
+									case 2: // Pistol animation 
+										AnimInstance->Montage_Play(FireAnimation, 1.2f);
+										break;
+									case 3: // Sniper animation 
+										AnimInstance->Montage_Play(FireAnimation, 0.75f);
+										break;
+									case 4: // Shotgun animation 
+										AnimInstance->Montage_Play(FireAnimation, 0.8f);
+										break;
+								}
+							}
+						}
+
+						weapons[weaponIndex]->clipAmmo -= 1;
+					}
 				}
 				else
 				{
 					ReloadWeapon(weapons[weaponIndex]->weaponType); 
 				}
 			}
-		}
-	}
-
-	// try and play the sound if specified
-	if (FireSound != NULL)
-	{
-		//UGameplayStatics::PlaySoundAtLocation(this, FireSound, GetActorLocation());
-	}
-
-	// try and play a firing animation if specified
-	if (FireAnimation != NULL)
-	{
-		// Get the animation object for the arms mesh
-		UAnimInstance* AnimInstance = Mesh1P->GetAnimInstance();
-		if (AnimInstance != NULL)
-		{
-			AnimInstance->Montage_Play(FireAnimation, 1.f);
 		}
 	}
 }
@@ -442,38 +454,121 @@ void AFPSGameCharacter::StopZoom()
 
 void AFPSGameCharacter::ManualReload()
 {
-	if (weapons[weaponIndex])
+	if (weapons[weaponIndex]->clipAmmo < weapons[weaponIndex]->maxClipAmmo && !isReloading)
 	{
 		ReloadWeapon(weapons[weaponIndex]->weaponType);
 	}
 }
 
+void AFPSGameCharacter::FinishReloading()
+{
+	isReloading = false; 
+}
+
 void AFPSGameCharacter::ReloadWeapon(EWeaponType _weaponType)
 {
-	if (weapons[weaponIndex])
+	UE_LOG(LogTemp, Warning, TEXT("Attempting to reload... "));
+	isReloading = true; 
+	ableToSwitchWeapon = false; 
+
+	switch (weapons[weaponIndex]->index)
 	{
-		switch (_weaponType)
-		{
-			case EWeaponType::E_AssaultRifle:
-				assaultRifleAmmo = CalculateAmmo(assaultRifleAmmo);
-				break;
-			case EWeaponType::E_Pistol:
-				pistolAmmo = CalculateAmmo(pistolAmmo);
-				break;
-			case EWeaponType::E_SniperRifle:
-				sniperRifleAmmo = CalculateAmmo(sniperRifleAmmo);
-				break;
-			case EWeaponType::E_Shotgun:
-				shotgunAmmo = CalculateAmmo(shotgunAmmo);
-				break; 
-			default: 
-				break; 
-		}
+		case 1: // Assault Rifle 
+			if (assaultRifleAmmo > 0)
+			{
+				UE_LOG(LogTemp, Warning, TEXT("Reloading (AR)"));
+				ReloadAnim();
+				GetWorld()->GetTimerManager().SetTimer(fireTimerHandle, this, &AFPSGameCharacter::FinishReloading, reloadTime, false);
+				UGameplayStatics::PlaySoundAtLocation(this, reloadSFX, GetActorLocation());
+			}
+			else if (assaultRifleAmmo <= 0)
+			{
+				isReloading = false; 
+				UE_LOG(LogTemp, Warning, TEXT("Can't reload, no more ammo (AR)"));
+				AmmoCounterFlashRed(); 
+				UGameplayStatics::PlaySoundAtLocation(this, outOfAmmoSound, GetActorLocation());
+				ableToSwitchWeapon = true;
+			}
+			break; 
+		case 2: // Pistol 
+			if (pistolAmmo > 0)
+			{
+				UE_LOG(LogTemp, Warning, TEXT("Reloading (Pistol)"));
+				ReloadAnim();
+				GetWorld()->GetTimerManager().SetTimer(fireTimerHandle, this, &AFPSGameCharacter::FinishReloading, reloadTime, false);
+				UGameplayStatics::PlaySoundAtLocation(this, reloadSFX, GetActorLocation());
+			}
+			else if (pistolAmmo <= 0)
+			{
+				isReloading = false;
+				UE_LOG(LogTemp, Warning, TEXT("Can't reload, no more ammo (Pistol)"));
+				AmmoCounterFlashRed();
+				UGameplayStatics::PlaySoundAtLocation(this, outOfAmmoSound, GetActorLocation());
+				ableToSwitchWeapon = true;
+			}
+			break;
+		case 3: // Sniper 
+			if (sniperRifleAmmo > 0)
+			{
+				UE_LOG(LogTemp, Warning, TEXT("Reloading (Sniper)"));
+				ReloadAnim();
+				GetWorld()->GetTimerManager().SetTimer(fireTimerHandle, this, &AFPSGameCharacter::FinishReloading, reloadTime, false);
+				UGameplayStatics::PlaySoundAtLocation(this, reloadSFX, GetActorLocation());
+			}
+			else if (sniperRifleAmmo <= 0)
+			{
+				isReloading = false;
+				UE_LOG(LogTemp, Warning, TEXT("Can't reload, no more ammo (Sniper)"));
+				AmmoCounterFlashRed();
+				UGameplayStatics::PlaySoundAtLocation(this, outOfAmmoSound, GetActorLocation());
+				ableToSwitchWeapon = true;
+			}
+			break;
+		case 4: // Shotgun 
+			if (shotgunAmmo > 0)
+			{
+				UE_LOG(LogTemp, Warning, TEXT("Reloading (Shotgun)"));
+				ReloadAnim();
+				GetWorld()->GetTimerManager().SetTimer(fireTimerHandle, this, &AFPSGameCharacter::FinishReloading, reloadTime, false);
+				UGameplayStatics::PlaySoundAtLocation(this, reloadSFX, GetActorLocation());
+			}
+			else if (shotgunAmmo <= 0)
+			{
+				isReloading = false;
+				UE_LOG(LogTemp, Warning, TEXT("Can't reload, no more ammo (Shotgun)"));
+				AmmoCounterFlashRed();
+				UGameplayStatics::PlaySoundAtLocation(this, outOfAmmoSound, GetActorLocation());
+				ableToSwitchWeapon = true;
+			}
+			break;
+	}
+}
+
+void AFPSGameCharacter::ReloadWeaponAmmoAdded(EWeaponType _weaponType)
+{
+	switch (_weaponType)
+	{
+		case EWeaponType::E_AssaultRifle:
+			assaultRifleAmmo = CalculateAmmo(assaultRifleAmmo);
+			break;
+		case EWeaponType::E_Pistol:
+			pistolAmmo = CalculateAmmo(pistolAmmo);
+			break;
+		case EWeaponType::E_SniperRifle:
+			sniperRifleAmmo = CalculateAmmo(sniperRifleAmmo);
+			break;
+		case EWeaponType::E_Shotgun:
+			shotgunAmmo = CalculateAmmo(shotgunAmmo);
+			break;
+		default:
+			break;
 	}
 }
 
 int AFPSGameCharacter::CalculateAmmo(int _ammoAmount)
 {
+	ableToSwitchWeapon = true;
+
 	if (_ammoAmount > 0)
 	{
 		if (weapons[weaponIndex]->clipAmmo != weapons[weaponIndex]->maxClipAmmo)
@@ -681,103 +776,112 @@ void AFPSGameCharacter::SetNewSpawnLoc(FVector newLoc, FRotator newRot)
 
 void AFPSGameCharacter::SwitchToNextPrimaryWeapon()
 {
-	// Use this code if I want weapons to be obtained in any order 
-	#pragma region Any Order System
-	bool success = false; 
-
-	for (int i = 0; i < weapons.Num(); i++)
+	if (ableToSwitchWeapon)
 	{
-		if (i > weaponIndex)
+
+		fireTimerHandle.Invalidate();
+		weaponSwitched = true;
+
+		// Use this code if I want weapons to be obtained in any order 
+		#pragma region Any Order System
+		bool success = false;
+		readyToFire = true;
+
+		for (int i = 0; i < weapons.Num(); i++)
 		{
-			if (weapons[i]->isObtained)
+			if (i > weaponIndex)
 			{
-				success = true; 
-				weaponIndex = i; 
-				SwitchWeaponMesh(weapons[i]->index); 
-				break; 
+				if (weapons[i]->isObtained)
+				{
+					success = true;
+					weaponIndex = i;
+					SwitchWeaponMesh(weapons[i]->index);
+					break;
+				}
 			}
 		}
+
+		if (!success)
+		{
+			weaponIndex = 0;
+			SwitchWeaponMesh(weaponIndex);
+		}
+		#pragma endregion Any Order System
+
+		// Use the following code if I want all weapons to be obtained in a certain order (Like Doom) 
+		#pragma region Doom-Like System
+		//switch (weaponIndex)
+		//{
+		//	case 0: // if we're weaponless, switch to AR 
+		//		if (weapons.Num() > 1)
+		//		{
+		//			weaponIndex = 1; 
+		//			SwitchWeaponMesh(weaponIndex); 
+		//		}
+		//		else
+		//		{
+		//			weaponIndex = 0; 
+		//			SwitchWeaponMesh(weaponIndex); 
+		//		}
+		//		break; 
+
+		//	case 1: // if we're holding the AR, switch to Pistol 
+		//		if (weapons.Num() > 2)
+		//		{
+		//			weaponIndex = 2;
+		//			SwitchWeaponMesh(weaponIndex);
+		//		}
+		//		else
+		//		{
+		//			weaponIndex = 0;
+		//			SwitchWeaponMesh(weaponIndex);
+		//		}
+		//		break;
+
+		//	case 2: // if we're holding the Pistol, switch to Sniper 
+		//		if (weapons.Num() > 3)
+		//		{
+		//			weaponIndex = 3;
+		//			SwitchWeaponMesh(weaponIndex);
+		//		}
+		//		else
+		//		{
+		//			weaponIndex = 0;
+		//			SwitchWeaponMesh(weaponIndex);
+		//		}
+		//		break;
+
+		//	case 3: // If we're holding the Sniper, switch to Shotgun 
+		//		if (weapons.Num() > 4)
+		//		{
+		//			weaponIndex = 4;
+		//			SwitchWeaponMesh(weaponIndex);
+		//		}
+		//		else
+		//		{
+		//			weaponIndex = 0;
+		//			SwitchWeaponMesh(weaponIndex);
+		//		}
+		//		break;
+
+		//	case 4: // If we're holding the Sniper, switch to Shotgun 
+		//		if (weapons.Num() > 5)
+		//		{
+		//			weaponIndex = 0;
+		//			SwitchWeaponMesh(weaponIndex);
+		//		}
+		//		else
+		//		{
+		//			weaponIndex = 0;
+		//			SwitchWeaponMesh(weaponIndex);
+		//		}
+		//		break;
+		//	
+		//	default: break; 
+		//}
+		#pragma endregion Doom-Like System
+
 	}
-
-	if (!success)
-	{
-		weaponIndex = 0; 
-		SwitchWeaponMesh(weaponIndex); 
-	}
-	#pragma endregion Any Order System
-
-	// Use the following code if I want all weapons to be obtained in a certain order (Like Doom) 
-	#pragma region Doom-Like System
-	//switch (weaponIndex)
-	//{
-	//	case 0: // if we're weaponless, switch to AR 
-	//		if (weapons.Num() > 1)
-	//		{
-	//			weaponIndex = 1; 
-	//			SwitchWeaponMesh(weaponIndex); 
-	//		}
-	//		else
-	//		{
-	//			weaponIndex = 0; 
-	//			SwitchWeaponMesh(weaponIndex); 
-	//		}
-	//		break; 
-
-	//	case 1: // if we're holding the AR, switch to Pistol 
-	//		if (weapons.Num() > 2)
-	//		{
-	//			weaponIndex = 2;
-	//			SwitchWeaponMesh(weaponIndex);
-	//		}
-	//		else
-	//		{
-	//			weaponIndex = 0;
-	//			SwitchWeaponMesh(weaponIndex);
-	//		}
-	//		break;
-
-	//	case 2: // if we're holding the Pistol, switch to Sniper 
-	//		if (weapons.Num() > 3)
-	//		{
-	//			weaponIndex = 3;
-	//			SwitchWeaponMesh(weaponIndex);
-	//		}
-	//		else
-	//		{
-	//			weaponIndex = 0;
-	//			SwitchWeaponMesh(weaponIndex);
-	//		}
-	//		break;
-
-	//	case 3: // If we're holding the Sniper, switch to Shotgun 
-	//		if (weapons.Num() > 4)
-	//		{
-	//			weaponIndex = 4;
-	//			SwitchWeaponMesh(weaponIndex);
-	//		}
-	//		else
-	//		{
-	//			weaponIndex = 0;
-	//			SwitchWeaponMesh(weaponIndex);
-	//		}
-	//		break;
-
-	//	case 4: // If we're holding the Sniper, switch to Shotgun 
-	//		if (weapons.Num() > 5)
-	//		{
-	//			weaponIndex = 0;
-	//			SwitchWeaponMesh(weaponIndex);
-	//		}
-	//		else
-	//		{
-	//			weaponIndex = 0;
-	//			SwitchWeaponMesh(weaponIndex);
-	//		}
-	//		break;
-	//	
-	//	default: break; 
-	//}
-	#pragma endregion Doom-Like System
 }
 
 void AFPSGameCharacter::StartFiring()
@@ -790,6 +894,12 @@ void AFPSGameCharacter::StopFiring()
 {
 	isShooting = false; 
 	fireTimerHandle.Invalidate(); 
+}
+
+void AFPSGameCharacter::ResetReadyToFire()
+{
+	readyToFire = true; 
+	fireTimerHandle.Invalidate();
 }
 
 #pragma endregion MyCode 

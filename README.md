@@ -56,11 +56,39 @@ https://trello.com/b/ABDPFNxA/project-holy-shot
 **Animation**
 - [mixamo](https://www.mixamo.com/#/2)
 
+**SFX**
+- [Hunter Goodin](https://huntergoodin.com/)
+- [Komposite Sound](https://assetstore.unity.com/publishers/32329)
+
 **Special Thanks**
 - [Gerardo Bonnet](https://screams-from-the-cellar.itch.io/) 
 - [Shawn the Bro](https://www.youtube.com/c/Shawnthebro/) 
 
 ## Changelist 
+
+<details>
+  <summary>CL-000024</summary>
+
+  - Made the following changes: 
+    - Added a fire rate for non-automatic weapons so not everything feels like a semi-auto
+    - Finished the Pistol weapon 
+      - When shooting, the projectiles spawn at slightly random velocities 
+      - Feels like a semi auto with the fire rate set to pretty low  
+    - Fixed bug where reload animation would trigger even if out of ammo 
+    - Fixed bug where reload animation would continue even if the player switches guns while reloading 
+    - Fixed bug where the player could start to reload during the reload animation 
+    - Fixed bug where the reload animation wouldn't play while weaponSwitched was true 
+    - Fixed bug where the shooting sound would play when reloading 
+    - Fixed bug where the shooting sound would play when out of ammo 
+    - Added SFX for when you are out of ammo 
+    - Added SFX for reloading 
+    - When reloading, the reloading sfx plays 
+    - Added a red flashing animation for the ammo counter called RedFlashAnim
+    - When attempting to reload while out of ammo, RedFlashAnim plays and the "out of ammo" SFX plays 
+    - Added an SFX section in the credits and credited myself and Komposite Sound 
+    - Edited the README to reflect the above changes. 
+
+</details>
 
 <details>
   <summary>CL-000023</summary>
