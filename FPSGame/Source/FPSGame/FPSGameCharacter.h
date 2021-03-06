@@ -217,6 +217,9 @@ class AFPSGameCharacter : public ACharacter
 		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Gameplay)
 			class USoundBase* reloadSFX;
 
+		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Gameplay)
+			int curZoom; 
+
 	protected:
 		void OnFire();					// Fires a projectile 
 

@@ -123,6 +123,7 @@ AFPSGameCharacter::AFPSGameCharacter() // Constructor
 	reloadTime = 1.96f; 
 	isReloading = false; 
 	ableToSwitchWeapon = true; 
+	curZoom = 0; // 0 is unzoomed (90), 1 is zoomed (45), 2 is zoomed (22.5) 
 }
 
 void AFPSGameCharacter::BeginPlay()
@@ -172,7 +173,7 @@ void AFPSGameCharacter::SetupPlayerInputComponent(class UInputComponent* PlayerI
 	PlayerInputComponent->BindAction("Sprint", IE_Pressed, this, &AFPSGameCharacter::Sprint); 
 	PlayerInputComponent->BindAction("StopSprinting", IE_Released, this, &AFPSGameCharacter::StopSprinting); 
 	PlayerInputComponent->BindAction("ZoomIn", IE_Pressed, this, &AFPSGameCharacter::ZoomIn); 
-	PlayerInputComponent->BindAction("ZoomIn", IE_Released, this, &AFPSGameCharacter::StopZoom);
+	//PlayerInputComponent->BindAction("ZoomIn", IE_Released, this, &AFPSGameCharacter::StopZoom);
 	PlayerInputComponent->BindAction("Reload", IE_Pressed, this, &AFPSGameCharacter::ManualReload);
 	PlayerInputComponent->BindAction("ActivateAbility1", IE_Pressed, this, &AFPSGameCharacter::UseAbility1);
 	PlayerInputComponent->BindAction("ActivateAbility2", IE_Pressed, this, &AFPSGameCharacter::UseAbility2);
@@ -432,23 +433,47 @@ void AFPSGameCharacter::StopSprinting()
 
 void AFPSGameCharacter::ZoomIn()
 {
-	if (auto firstPersonCamera = GetFirstPersonCameraComponent())
+	if (weapons[weaponIndex]->index == 3)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("We are now zooming in. "));
-		firstPersonCamera->SetFieldOfView(65.0f);
-		isZoomedIn = true;
-		GetCharacterMovement()->MaxWalkSpeed = 300.0f;
+		if (auto firstPersonCamera = GetFirstPersonCameraComponent())
+		{
+			if (curZoom == 0)
+			{
+				UE_LOG(LogTemp, Warning, TEXT("We are now zooming in (x2) "));
+				firstPersonCamera->SetFieldOfView(45.0f); 
+				isZoomedIn = true;
+				GetCharacterMovement()->MaxWalkSpeed = 300.0f;
+				curZoom = 1; 
+			}
+			else if (curZoom == 1)
+			{
+				UE_LOG(LogTemp, Warning, TEXT("We are now zooming in (x4)"));
+				firstPersonCamera->SetFieldOfView(22.5f);
+				isZoomedIn = true;
+				GetCharacterMovement()->MaxWalkSpeed = 300.0f;
+				curZoom = 2;
+			}
+			else if (curZoom == 2)
+			{
+				StopZoom(); 
+				curZoom = 0;
+			}
+		}
 	}
 }
 
 void AFPSGameCharacter::StopZoom()
 {
-	if (auto firstPersonCamera = GetFirstPersonCameraComponent())
+	if (weapons[weaponIndex]->index == 3)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("We have stopped zooming. "));
-		firstPersonCamera->SetFieldOfView(90.0f);
-		isZoomedIn = false;
-		GetCharacterMovement()->MaxWalkSpeed = 600.0f;
+		if (auto firstPersonCamera = GetFirstPersonCameraComponent())
+		{
+			UE_LOG(LogTemp, Warning, TEXT("We have stopped zooming. "));
+			firstPersonCamera->SetFieldOfView(90.0f);
+			isZoomedIn = false;
+			GetCharacterMovement()->MaxWalkSpeed = 600.0f;
+			curZoom = 0;
+		}
 	}
 }
 
@@ -470,6 +495,7 @@ void AFPSGameCharacter::ReloadWeapon(EWeaponType _weaponType)
 	UE_LOG(LogTemp, Warning, TEXT("Attempting to reload... "));
 	isReloading = true; 
 	ableToSwitchWeapon = false; 
+	StopZoom(); 
 
 	switch (weapons[weaponIndex]->index)
 	{
@@ -778,7 +804,6 @@ void AFPSGameCharacter::SwitchToNextPrimaryWeapon()
 {
 	if (ableToSwitchWeapon)
 	{
-
 		fireTimerHandle.Invalidate();
 		weaponSwitched = true;
 
@@ -786,6 +811,7 @@ void AFPSGameCharacter::SwitchToNextPrimaryWeapon()
 		#pragma region Any Order System
 		bool success = false;
 		readyToFire = true;
+		StopZoom(); 
 
 		for (int i = 0; i < weapons.Num(); i++)
 		{
