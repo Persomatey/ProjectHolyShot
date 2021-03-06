@@ -67,6 +67,23 @@ https://trello.com/b/ABDPFNxA/project-holy-shot
 ## Changelist 
 
 <details>
+  <summary>CL-000025</summary>
+
+  - Made the following changes: 
+    - Finished the Sniper weapon
+      - When firing a shot, the projectiles spawn to fire right at the middle of the reticle 
+      - Fires really slow, but does .80 damage to a target 
+      - Right click once to zoom 2x, then click again to zoom 4x, then click again to unzoom. 
+      - Reloading or switching weapons will unzoom 
+      - Created a separate HUD for the sniper when zoomed. While zoomed, the standard HUD will be hidden and the Sniper's HUD will be visable. Vice versa while unzoomed. 
+    - Made it so that the player can only ADS while holding the Sniper 
+    - Moved all the reticles to the middle of the HUD so that the Sniper's HUD doesn't have the reticle a little off. 
+    - Changed the velocities of all the weapons' projectiles because of the reticle changes. 
+    - Edited the README to reflect the above changes. 
+
+</details>
+
+<details>
   <summary>CL-000024</summary>
 
   - Made the following changes: 
