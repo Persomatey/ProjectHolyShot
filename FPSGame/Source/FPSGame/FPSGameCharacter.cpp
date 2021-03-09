@@ -461,7 +461,7 @@ void AFPSGameCharacter::ZoomIn()
 			if (curZoom == 0)
 			{
 				UE_LOG(LogTemp, Warning, TEXT("We are now zooming in (x2) "));
-				firstPersonCamera->SetFieldOfView(45.0f); 
+				firstPersonCamera->SetFieldOfView(18.0f); 
 				isZoomedIn = true;
 				GetCharacterMovement()->MaxWalkSpeed = 300.0f;
 				curZoom = 1; 
@@ -469,7 +469,7 @@ void AFPSGameCharacter::ZoomIn()
 			else if (curZoom == 1)
 			{
 				UE_LOG(LogTemp, Warning, TEXT("We are now zooming in (x4)"));
-				firstPersonCamera->SetFieldOfView(22.5f);
+				firstPersonCamera->SetFieldOfView(9.0f);
 				isZoomedIn = true;
 				GetCharacterMovement()->MaxWalkSpeed = 300.0f;
 				curZoom = 2;

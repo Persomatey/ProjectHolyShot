@@ -69,6 +69,21 @@ https://trello.com/b/ABDPFNxA/project-holy-shot
 ## Changelist 
 
 <details>
+  <summary>CL-000027</summary>
+
+  - Made the following changes: 
+    - Changed the FOV's for zooming with the Sniper 
+      - Changed the FOV for the first zoom from 45.0f to 18.0f 
+      - Changed the FOV for the second zoom from 22.5f to 9.0f 
+    - Added a textbox for the Sniper zoom 
+      - When the Sniper is zoomed in at 5X, the textbox will display '5X' 
+      - When the Sniper is zoomed in at 10X, the textbox will display '10X' 
+      - When the Sniper is unzoomed, the textbox will be blank 
+    - Edited the README to reflect the above changes. 
+
+</details>
+
+<details>
   <summary>CL-000026</summary>
 
   - Made the following changes: 
@@ -77,8 +92,8 @@ https://trello.com/b/ABDPFNxA/project-holy-shot
       - Projectiles lose damage the longer they last 
     - Added more SFX for the weapon sounds so each weapon now has it's own SFX when fired 
     - Added a "switch weapons" SFX 
-  - Fixed bug where picking up a new weapon while the latest weapon equipped is not the last in the array will switch to the next weapon instead of the one recently picked up 
-  - Added an animation for when you switch the weapons. While the animation is playing, the player can not fire the weapon. 
+    - Fixed bug where picking up a new weapon while the latest weapon equipped is not the last in the array will switch to the next weapon instead of the one recently picked up 
+    - Added an animation for when you switch the weapons. While the animation is playing, the player can not fire the weapon. 
     - Added Olivier Girardot and Sound Earth Game Audio to the Audio section of the README 
     - Edited the README to reflect the above changes. 
 
