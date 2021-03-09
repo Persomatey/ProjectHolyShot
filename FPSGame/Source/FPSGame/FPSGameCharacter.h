@@ -62,10 +62,22 @@ class AFPSGameCharacter : public ACharacter
 			TSubclassOf<class AFPSGameProjectile> ProjectileClass;	// Projectile class to spawn 
 
 		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category=Gameplay)
-			class USoundBase* FireSound;	// Sound to play each time we fire 
+			class USoundBase* pistolSFX;	// Sound to play each time we fire a Pistol
+
+		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Gameplay)
+			class USoundBase* assaultSFX;	// Sound to play each time we fire an AR
+
+		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Gameplay)
+			class USoundBase* sniperSFX;	// Sound to play each time we fire a Sniper 
+
+		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Gameplay)
+			class USoundBase* shotgunSFX;	// Sound to play each time we fire a Shotgun
 
 		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Gameplay)
 			class UAnimMontage* FireAnimation;	// AnimMontage to play each time we fire 
+
+		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Gameplay)
+			class USoundBase* switchWeaponSFX;	// Sound to play each time we switch the weapon
 
 		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Gameplay)
 			uint32 bUsingMotionControllers : 1; 	// Whether to use motion controller location for aiming. 
@@ -191,6 +203,9 @@ class AFPSGameCharacter : public ACharacter
 		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = State)
 			float reloadTime;
 
+		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Weapon)
+			int weaponsSize; 
+
 		FTimerHandle fireTimerHandle; 
 
 		const int maxAssaultAmmo = 320; 
@@ -212,7 +227,7 @@ class AFPSGameCharacter : public ACharacter
 			bool weaponSwitched; 
 
 		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Gameplay)
-			class USoundBase* outOfAmmoSound; 
+			class USoundBase* outOfAmmoSFX; 
 
 		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Gameplay)
 			class USoundBase* reloadSFX;
@@ -272,6 +287,9 @@ class AFPSGameCharacter : public ACharacter
 
 		UFUNCTION(BlueprintCallable, Category = "weapon")
 			void SwitchToNextPrimaryWeapon(); 
+
+		UFUNCTION(BlueprintCallable, Category = "weapon")
+			void SwitchToNewPrimaryWeapon();
 
 		UFUNCTION(BlueprintImplementableEvent, Category = "HUD")
 			void SwitchWeaponMesh(int _index); 

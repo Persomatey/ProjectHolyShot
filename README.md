@@ -59,12 +59,30 @@ https://trello.com/b/ABDPFNxA/project-holy-shot
 **SFX**
 - [Hunter Goodin](https://huntergoodin.com/)
 - [Komposite Sound](https://assetstore.unity.com/publishers/32329)
+- [Olivier Girardot](https://assetstore.unity.com/publishers/39771)
+- [Sound Earth Game Audio](https://assetstore.unity.com/publishers/12036)
 
 **Special Thanks**
 - [Gerardo Bonnet](https://screams-from-the-cellar.itch.io/) 
 - [Shawn the Bro](https://www.youtube.com/c/Shawnthebro/) 
 
 ## Changelist 
+
+<details>
+  <summary>CL-000026</summary>
+
+  - Made the following changes: 
+    - Finished the Shotgun weapon 
+      - When firing, 10 projectiles spawn instead of 1 
+      - Projectiles lose damage the longer they last 
+    - Added more SFX for the weapon sounds so each weapon now has it's own SFX when fired 
+    - Added a "switch weapons" SFX 
+  - Fixed bug where picking up a new weapon while the latest weapon equipped is not the last in the array will switch to the next weapon instead of the one recently picked up 
+  - Added an animation for when you switch the weapons. While the animation is playing, the player can not fire the weapon. 
+    - Added Olivier Girardot and Sound Earth Game Audio to the Audio section of the README 
+    - Edited the README to reflect the above changes. 
+
+</details>
 
 <details>
   <summary>CL-000025</summary>
