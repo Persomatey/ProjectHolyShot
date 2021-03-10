@@ -126,6 +126,10 @@ AFPSGameCharacter::AFPSGameCharacter() // Constructor
 	ableToSwitchWeapon = true; 
 	curZoom = 0; // 0 is unzoomed (90), 1 is zoomed (45), 2 is zoomed (22.5) 
 	weaponsSize = 0; 
+	ableToReload = true; 
+	ableToFire = true; 
+	ableToZoom = true; 
+	isMeleeing = false; 
 }
 
 void AFPSGameCharacter::BeginPlay()
@@ -180,40 +184,43 @@ void AFPSGameCharacter::SetupPlayerInputComponent(class UInputComponent* PlayerI
 	PlayerInputComponent->BindAction("ActivateAbility1", IE_Pressed, this, &AFPSGameCharacter::UseAbility1);
 	PlayerInputComponent->BindAction("ActivateAbility2", IE_Pressed, this, &AFPSGameCharacter::UseAbility2);
 	PlayerInputComponent->BindAction("SwitchWeapon", IE_Pressed, this, &AFPSGameCharacter::SwitchToNextPrimaryWeapon);
+	PlayerInputComponent->BindAction("Melee", IE_Pressed, this, &AFPSGameCharacter::MeleeAttack);
+	//PlayerInputComponent->BindAction("Grenade", IE_Pressed, this, &AFPSGameCharacter::ThrowGrenade);
 }
 
 void AFPSGameCharacter::OnFire()
 {
 	weaponSwitched = false; 
 
-	// try and fire a projectile
-	if (ProjectileClass != NULL && weapons[weaponIndex]->index != 0 && !isReloading)
+	if (ableToFire)
 	{
-		UWorld* const World = GetWorld();
-		if (World != NULL)
+		if (ProjectileClass != NULL && weapons[weaponIndex]->index != 0 && !isReloading)
 		{
-			if (weapons[weaponIndex])
+			UWorld* const World = GetWorld();
+			if (World != NULL)
 			{
-				if (weapons[weaponIndex]->clipAmmo > 0)
+				if (weapons[weaponIndex])
 				{
-					if (bUsingMotionControllers)
+					if (weapons[weaponIndex]->clipAmmo > 0)
 					{
-						const FRotator SpawnRotation = VR_MuzzleLocation->GetComponentRotation();
-						const FVector SpawnLocation = VR_MuzzleLocation->GetComponentLocation();
-						World->SpawnActor<AFPSGameProjectile>(ProjectileClass, SpawnLocation, SpawnRotation);
-					}
-					else if (!bUsingMotionControllers && readyToFire)
-					{
-						const FRotator SpawnRotation = GetControlRotation();
-						// MuzzleOffset is in camera space, so transform it to world space before offsetting from the character location to find the final muzzle position
-						FVector SpawnLocation = GetActorLocation() + SpawnRotation.RotateVector(GunOffset);
-
-						//Set Spawn Collision Handling Override
-						FActorSpawnParameters ActorSpawnParams;
-						ActorSpawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AdjustIfPossibleButDontSpawnIfColliding;
-
-						switch (weapons[weaponIndex]->index)
+						if (bUsingMotionControllers)
 						{
+							const FRotator SpawnRotation = VR_MuzzleLocation->GetComponentRotation();
+							const FVector SpawnLocation = VR_MuzzleLocation->GetComponentLocation();
+							World->SpawnActor<AFPSGameProjectile>(ProjectileClass, SpawnLocation, SpawnRotation);
+						}
+						else if (!bUsingMotionControllers && readyToFire)
+						{
+							const FRotator SpawnRotation = GetControlRotation();
+							// MuzzleOffset is in camera space, so transform it to world space before offsetting from the character location to find the final muzzle position
+							FVector SpawnLocation = GetActorLocation() + SpawnRotation.RotateVector(GunOffset);
+
+							//Set Spawn Collision Handling Override
+							FActorSpawnParameters ActorSpawnParams;
+							ActorSpawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AdjustIfPossibleButDontSpawnIfColliding;
+
+							switch (weapons[weaponIndex]->index)
+							{
 							case 0: // spawn projectile for the Default Weapon... 
 								GunOffset = FVector(100.0f, 10.0f, 40.0f); // X = Depth , Y = Side , Z = Height 
 								SpawnLocation = GetActorLocation() + SpawnRotation.RotateVector(GunOffset);
@@ -248,23 +255,23 @@ void AFPSGameCharacter::OnFire()
 								World->SpawnActor<AFPSGameProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams);
 								World->SpawnActor<AFPSGameProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams);
 								break;
-						}
+							}
 
-						if (weapons[weaponIndex]->isAutomatic && isShooting)
-						{
-							GetWorld()->GetTimerManager().SetTimer(fireTimerHandle, this, &AFPSGameCharacter::OnFire, weapons[weaponIndex]->fireRate, false);
-						}
-						else if (weapons[weaponIndex]->isAutomatic == false)
-						{
-							readyToFire = false;
-							GetWorld()->GetTimerManager().SetTimer(fireTimerHandle, this, &AFPSGameCharacter::ResetReadyToFire, weapons[weaponIndex]->fireRate, false);
-						}
+							if (weapons[weaponIndex]->isAutomatic && isShooting)
+							{
+								GetWorld()->GetTimerManager().SetTimer(fireTimerHandle, this, &AFPSGameCharacter::OnFire, weapons[weaponIndex]->fireRate, false);
+							}
+							else if (weapons[weaponIndex]->isAutomatic == false)
+							{
+								readyToFire = false;
+								GetWorld()->GetTimerManager().SetTimer(fireTimerHandle, this, &AFPSGameCharacter::ResetReadyToFire, weapons[weaponIndex]->fireRate, false);
+							}
 
-						switch (weapons[weaponIndex]->index)
-						{
-							case 1: 
+							switch (weapons[weaponIndex]->index)
+							{
+							case 1:
 								UGameplayStatics::PlaySoundAtLocation(this, assaultSFX, GetActorLocation());
-								break; 
+								break;
 							case 2:
 								UGameplayStatics::PlaySoundAtLocation(this, pistolSFX, GetActorLocation());
 								break;
@@ -274,20 +281,20 @@ void AFPSGameCharacter::OnFire()
 							case 4:
 								UGameplayStatics::PlaySoundAtLocation(this, shotgunSFX, GetActorLocation());
 								break;
-						}
+							}
 
-						// try and play a firing animation if specified
-						if (FireAnimation != NULL)
-						{
-							// Get the animation object for the arms mesh
-							UAnimInstance* AnimInstance = Mesh1P->GetAnimInstance();
-							if (AnimInstance != NULL)
+							// try and play a firing animation if specified
+							if (FireAnimation != NULL)
 							{
-								switch(weapons[weaponIndex]->index)
+								// Get the animation object for the arms mesh
+								UAnimInstance* AnimInstance = Mesh1P->GetAnimInstance();
+								if (AnimInstance != NULL)
 								{
-									//case 0: // Default Weapon animation 
-									//	AnimInstance->Montage_Play(FireAnimation, 1.0f);
-									//	break; 
+									switch (weapons[weaponIndex]->index)
+									{
+										//case 0: // Default Weapon animation 
+										//	AnimInstance->Montage_Play(FireAnimation, 1.0f);
+										//	break; 
 									case 1: // AR animation 
 										AnimInstance->Montage_Play(FireAnimation, 1.0f);
 										break;
@@ -300,16 +307,17 @@ void AFPSGameCharacter::OnFire()
 									case 4: // Shotgun animation 
 										AnimInstance->Montage_Play(FireAnimation, 0.8f);
 										break;
+									}
 								}
 							}
-						}
 
-						weapons[weaponIndex]->clipAmmo -= 1;
+							weapons[weaponIndex]->clipAmmo -= 1;
+						}
 					}
-				}
-				else
-				{
-					ReloadWeapon(weapons[weaponIndex]->weaponType); 
+					else
+					{
+						ReloadWeapon(weapons[weaponIndex]->weaponType);
+					}
 				}
 			}
 		}
@@ -454,30 +462,33 @@ void AFPSGameCharacter::StopSprinting()
 
 void AFPSGameCharacter::ZoomIn()
 {
-	if (weapons[weaponIndex]->index == 3)
+	if (ableToZoom)
 	{
-		if (auto firstPersonCamera = GetFirstPersonCameraComponent())
+		if (weapons[weaponIndex]->index == 3)
 		{
-			if (curZoom == 0)
+			if (auto firstPersonCamera = GetFirstPersonCameraComponent())
 			{
-				UE_LOG(LogTemp, Warning, TEXT("We are now zooming in (x2) "));
-				firstPersonCamera->SetFieldOfView(18.0f); 
-				isZoomedIn = true;
-				GetCharacterMovement()->MaxWalkSpeed = 300.0f;
-				curZoom = 1; 
-			}
-			else if (curZoom == 1)
-			{
-				UE_LOG(LogTemp, Warning, TEXT("We are now zooming in (x4)"));
-				firstPersonCamera->SetFieldOfView(9.0f);
-				isZoomedIn = true;
-				GetCharacterMovement()->MaxWalkSpeed = 300.0f;
-				curZoom = 2;
-			}
-			else if (curZoom == 2)
-			{
-				StopZoom(); 
-				curZoom = 0;
+				if (curZoom == 0)
+				{
+					UE_LOG(LogTemp, Warning, TEXT("We are now zooming in (x2) "));
+					firstPersonCamera->SetFieldOfView(18.0f);
+					isZoomedIn = true;
+					GetCharacterMovement()->MaxWalkSpeed = 300.0f;
+					curZoom = 1;
+				}
+				else if (curZoom == 1)
+				{
+					UE_LOG(LogTemp, Warning, TEXT("We are now zooming in (x4)"));
+					firstPersonCamera->SetFieldOfView(9.0f);
+					isZoomedIn = true;
+					GetCharacterMovement()->MaxWalkSpeed = 300.0f;
+					curZoom = 2;
+				}
+				else if (curZoom == 2)
+				{
+					StopZoom();
+					curZoom = 0;
+				}
 			}
 		}
 	}
@@ -513,81 +524,84 @@ void AFPSGameCharacter::FinishReloading()
 
 void AFPSGameCharacter::ReloadWeapon(EWeaponType _weaponType)
 {
-	UE_LOG(LogTemp, Warning, TEXT("Attempting to reload... "));
-	isReloading = true; 
-	ableToSwitchWeapon = false; 
-	StopZoom(); 
-
-	switch (weapons[weaponIndex]->index)
+	if (ableToReload)
 	{
-		case 1: // Assault Rifle 
-			if (assaultRifleAmmo > 0)
-			{
-				UE_LOG(LogTemp, Warning, TEXT("Reloading (AR)"));
-				ReloadAnim();
-				GetWorld()->GetTimerManager().SetTimer(fireTimerHandle, this, &AFPSGameCharacter::FinishReloading, reloadTime, false);
-				UGameplayStatics::PlaySoundAtLocation(this, reloadSFX, GetActorLocation());
-			}
-			else if (assaultRifleAmmo <= 0)
-			{
-				isReloading = false; 
-				UE_LOG(LogTemp, Warning, TEXT("Can't reload, no more ammo (AR)"));
-				AmmoCounterFlashRed(); 
-				UGameplayStatics::PlaySoundAtLocation(this, outOfAmmoSFX, GetActorLocation());
-				ableToSwitchWeapon = true;
-			}
-			break; 
-		case 2: // Pistol 
-			if (pistolAmmo > 0)
-			{
-				UE_LOG(LogTemp, Warning, TEXT("Reloading (Pistol)"));
-				ReloadAnim();
-				GetWorld()->GetTimerManager().SetTimer(fireTimerHandle, this, &AFPSGameCharacter::FinishReloading, reloadTime, false);
-				UGameplayStatics::PlaySoundAtLocation(this, reloadSFX, GetActorLocation());
-			}
-			else if (pistolAmmo <= 0)
-			{
-				isReloading = false;
-				UE_LOG(LogTemp, Warning, TEXT("Can't reload, no more ammo (Pistol)"));
-				AmmoCounterFlashRed();
-				UGameplayStatics::PlaySoundAtLocation(this, outOfAmmoSFX, GetActorLocation());
-				ableToSwitchWeapon = true;
-			}
-			break;
-		case 3: // Sniper 
-			if (sniperRifleAmmo > 0)
-			{
-				UE_LOG(LogTemp, Warning, TEXT("Reloading (Sniper)"));
-				ReloadAnim();
-				GetWorld()->GetTimerManager().SetTimer(fireTimerHandle, this, &AFPSGameCharacter::FinishReloading, reloadTime, false);
-				UGameplayStatics::PlaySoundAtLocation(this, reloadSFX, GetActorLocation());
-			}
-			else if (sniperRifleAmmo <= 0)
-			{
-				isReloading = false;
-				UE_LOG(LogTemp, Warning, TEXT("Can't reload, no more ammo (Sniper)"));
-				AmmoCounterFlashRed();
-				UGameplayStatics::PlaySoundAtLocation(this, outOfAmmoSFX, GetActorLocation());
-				ableToSwitchWeapon = true;
-			}
-			break;
-		case 4: // Shotgun 
-			if (shotgunAmmo > 0)
-			{
-				UE_LOG(LogTemp, Warning, TEXT("Reloading (Shotgun)"));
-				ReloadAnim();
-				GetWorld()->GetTimerManager().SetTimer(fireTimerHandle, this, &AFPSGameCharacter::FinishReloading, reloadTime, false);
-				UGameplayStatics::PlaySoundAtLocation(this, reloadSFX, GetActorLocation());
-			}
-			else if (shotgunAmmo <= 0)
-			{
-				isReloading = false;
-				UE_LOG(LogTemp, Warning, TEXT("Can't reload, no more ammo (Shotgun)"));
-				AmmoCounterFlashRed();
-				UGameplayStatics::PlaySoundAtLocation(this, outOfAmmoSFX, GetActorLocation());
-				ableToSwitchWeapon = true;
-			}
-			break;
+		UE_LOG(LogTemp, Warning, TEXT("Attempting to reload... "));
+		isReloading = true;
+		ableToSwitchWeapon = false;
+		StopZoom();
+
+		switch (weapons[weaponIndex]->index)
+		{
+			case 1: // Assault Rifle 
+				if (assaultRifleAmmo > 0)
+				{
+					UE_LOG(LogTemp, Warning, TEXT("Reloading (AR)"));
+					ReloadAnim();
+					GetWorld()->GetTimerManager().SetTimer(fireTimerHandle, this, &AFPSGameCharacter::FinishReloading, reloadTime, false);
+					UGameplayStatics::PlaySoundAtLocation(this, reloadSFX, GetActorLocation());
+				}
+				else if (assaultRifleAmmo <= 0)
+				{
+					isReloading = false;
+					UE_LOG(LogTemp, Warning, TEXT("Can't reload, no more ammo (AR)"));
+					AmmoCounterFlashRed();
+					UGameplayStatics::PlaySoundAtLocation(this, outOfAmmoSFX, GetActorLocation());
+					ableToSwitchWeapon = true;
+				}
+				break;
+			case 2: // Pistol 
+				if (pistolAmmo > 0)
+				{
+					UE_LOG(LogTemp, Warning, TEXT("Reloading (Pistol)"));
+					ReloadAnim();
+					GetWorld()->GetTimerManager().SetTimer(fireTimerHandle, this, &AFPSGameCharacter::FinishReloading, reloadTime, false);
+					UGameplayStatics::PlaySoundAtLocation(this, reloadSFX, GetActorLocation());
+				}
+				else if (pistolAmmo <= 0)
+				{
+					isReloading = false;
+					UE_LOG(LogTemp, Warning, TEXT("Can't reload, no more ammo (Pistol)"));
+					AmmoCounterFlashRed();
+					UGameplayStatics::PlaySoundAtLocation(this, outOfAmmoSFX, GetActorLocation());
+					ableToSwitchWeapon = true;
+				}
+				break;
+			case 3: // Sniper 
+				if (sniperRifleAmmo > 0)
+				{
+					UE_LOG(LogTemp, Warning, TEXT("Reloading (Sniper)"));
+					ReloadAnim();
+					GetWorld()->GetTimerManager().SetTimer(fireTimerHandle, this, &AFPSGameCharacter::FinishReloading, reloadTime, false);
+					UGameplayStatics::PlaySoundAtLocation(this, reloadSFX, GetActorLocation());
+				}
+				else if (sniperRifleAmmo <= 0)
+				{
+					isReloading = false;
+					UE_LOG(LogTemp, Warning, TEXT("Can't reload, no more ammo (Sniper)"));
+					AmmoCounterFlashRed();
+					UGameplayStatics::PlaySoundAtLocation(this, outOfAmmoSFX, GetActorLocation());
+					ableToSwitchWeapon = true;
+				}
+				break;
+			case 4: // Shotgun 
+				if (shotgunAmmo > 0)
+				{
+					UE_LOG(LogTemp, Warning, TEXT("Reloading (Shotgun)"));
+					ReloadAnim();
+					GetWorld()->GetTimerManager().SetTimer(fireTimerHandle, this, &AFPSGameCharacter::FinishReloading, reloadTime, false);
+					UGameplayStatics::PlaySoundAtLocation(this, reloadSFX, GetActorLocation());
+				}
+				else if (shotgunAmmo <= 0)
+				{
+					isReloading = false;
+					UE_LOG(LogTemp, Warning, TEXT("Can't reload, no more ammo (Shotgun)"));
+					AmmoCounterFlashRed();
+					UGameplayStatics::PlaySoundAtLocation(this, outOfAmmoSFX, GetActorLocation());
+					ableToSwitchWeapon = true;
+				}
+				break;
+		}
 	}
 }
 
@@ -977,6 +991,31 @@ void AFPSGameCharacter::ResetReadyToFire()
 {
 	readyToFire = true; 
 	fireTimerHandle.Invalidate();
+}
+
+//void AFPSGameCharacter::MeleeAttack()
+//{
+//	UWorld* const World = GetWorld();
+//	if (World != NULL)
+//	{
+//		const FRotator SpawnRotation = VR_MuzzleLocation->GetComponentRotation();
+//		const FVector SpawnLocation = VR_MuzzleLocation->GetComponentLocation();
+//		World->SpawnActor<AFPSGameProjectile>(MeleeClass, SpawnLocation, SpawnRotation);
+//	}
+//}
+
+void AFPSGameCharacter::MeleeSpawn(TSubclassOf<class AFPSGameProjectile> meleeProj)
+{
+	UWorld* const World = GetWorld(); 
+		if (World != NULL)
+		{
+			const FRotator SpawnRotation = VR_MuzzleLocation->GetComponentRotation();
+			//const FVector SpawnLocation = VR_MuzzleLocation->GetComponentLocation();
+			GunOffset = FVector(100.0f, 0, 50.0f); // X = Depth , Y = Side , Z = Height 
+			FVector SpawnLocation = GetActorLocation() + SpawnRotation.RotateVector(GunOffset);
+			World->SpawnActor<AFPSGameProjectile>(meleeProj, SpawnLocation, SpawnRotation);
+			UGameplayStatics::PlaySoundAtLocation(this, meleeSound, GetActorLocation());
+		}
 }
 
 #pragma endregion MyCode 

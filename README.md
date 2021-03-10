@@ -61,12 +61,36 @@ https://trello.com/b/ABDPFNxA/project-holy-shot
 - [Komposite Sound](https://assetstore.unity.com/publishers/32329)
 - [Olivier Girardot](https://assetstore.unity.com/publishers/39771)
 - [Sound Earth Game Audio](https://assetstore.unity.com/publishers/12036)
+- [Shapeforms](https://assetstore.unity.com/publishers/40210)
 
 **Special Thanks**
 - [Gerardo Bonnet](https://screams-from-the-cellar.itch.io/) 
 - [Shawn the Bro](https://www.youtube.com/c/Shawnthebro/) 
 
 ## Changelist 
+
+<details>
+  <summary>CL-000028</summary>
+
+  - Made the following changes: 
+    - Changed the key for changing weapons to the 'Tab' key. 
+    - Added SFX for the melee attack. 
+    - Added some potential menu SFX to use later. 
+    - Added a Melee attack 
+      - When the player presses the 'Q' key, the player will do a melee. 
+      - When the player does a melee, a prefab will instantiate that is a child of the FirstPersonProjectile class that does not move, is mapped to be exactly in front of the player character, and despawns in 0.2f seconds. 
+      - When the player does a melee, an SFX will play. 
+      - When the player's melee connects with an enemy, a different SFX will play. 
+      - When the player does a melee, the player's arms rig will move forward slightly as an attack animation. It's not great, might change it later, but it's good for now. 
+      - When the player does a melee, the player can not switch weapons. 
+      - The player can not melee while already meleeing. 
+      - The player can not zoom while meleeing. 
+      - The player can not shoot while meleeing. 
+      - The player can not reload while meleeing. 
+    - Added Shapeform to the Audio section of the README. 
+    - Edited the README to reflect the above changes. 
+
+</details>
 
 <details>
   <summary>CL-000027</summary>

@@ -49,19 +49,22 @@ class AFPSGameCharacter : public ACharacter
 
 	#pragma region TemplateHeaderCode
 
-		UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category=Camera)
+		UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera)
 			float BaseTurnRate;	// Base turn rate, in deg/sec. Other scaling may affect final turn rate. 
 
-		UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category=Camera)
+		UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera)
 			float BaseLookUpRate;	// Base look up/down rate, in deg/sec. Other scaling may affect final rate. 
 
-		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category=Gameplay)
+		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Gameplay)
 			FVector GunOffset;	// Gun muzzle's offset from the characters location 
 
-		UPROPERTY(BlueprintReadWrite, Category=Projectile)
+		UPROPERTY(BlueprintReadWrite, Category = Projectile)
 			TSubclassOf<class AFPSGameProjectile> ProjectileClass;	// Projectile class to spawn 
 
-		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category=Gameplay)
+		//UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Weapon)																// right here 
+		//	GameObject MeleeClass;
+
+		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Gameplay)
 			class USoundBase* pistolSFX;	// Sound to play each time we fire a Pistol
 
 		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Gameplay)
@@ -90,7 +93,7 @@ class AFPSGameCharacter : public ACharacter
 		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Gameplay)
 			bool isZoomedIn; 
 
-		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Weapon)
+		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Weapon)														// right here
 			ABaseWeapon* weapon; 
 
 		// Ability Stuff 
@@ -235,6 +238,23 @@ class AFPSGameCharacter : public ACharacter
 		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Gameplay)
 			int curZoom; 
 
+		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Gameplay)
+			bool ableToReload;
+
+		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Gameplay)
+			bool ableToFire;
+
+		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Gameplay)
+			bool ableToZoom; 
+
+		// Melee Stuff 
+
+		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Gameplay)
+			class USoundBase* meleeSound;
+
+		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Gameplay)
+			bool isMeleeing; 
+
 	protected:
 		void OnFire();					// Fires a projectile 
 
@@ -262,7 +282,8 @@ class AFPSGameCharacter : public ACharacter
 
 		void ZoomIn(); 
 
-		void StopZoom(); 
+		UFUNCTION(BlueprintCallable)
+			void StopZoom(); 
 
 		void ManualReload();
 
@@ -326,6 +347,12 @@ class AFPSGameCharacter : public ACharacter
 
 		UFUNCTION(BlueprintImplementableEvent)
 			void AmmoCounterFlashRed();
+
+		UFUNCTION(BlueprintImplementableEvent)
+			void MeleeAttack(); 
+
+		UFUNCTION(BlueprintCallable)
+			void MeleeSpawn(TSubclassOf<class AFPSGameProjectile> meleeProj);
 
 		struct TouchData
 		{
