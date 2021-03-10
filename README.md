@@ -70,6 +70,16 @@ https://trello.com/b/ABDPFNxA/project-holy-shot
 ## Changelist 
 
 <details>
+  <summary>CL-000029</summary>
+
+  - Made the following changes: 
+    - Added a red vignette that gets more intense the more damage the player takes. 
+    - Added some slight screen shake when the player takes damage. 
+    - Edited the README to reflect the above changes. 
+
+</details>
+
+<details>
   <summary>CL-000028</summary>
 
   - Made the following changes: 

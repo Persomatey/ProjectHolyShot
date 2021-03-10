@@ -185,7 +185,7 @@ void AFPSGameCharacter::SetupPlayerInputComponent(class UInputComponent* PlayerI
 	PlayerInputComponent->BindAction("ActivateAbility2", IE_Pressed, this, &AFPSGameCharacter::UseAbility2);
 	PlayerInputComponent->BindAction("SwitchWeapon", IE_Pressed, this, &AFPSGameCharacter::SwitchToNextPrimaryWeapon);
 	PlayerInputComponent->BindAction("Melee", IE_Pressed, this, &AFPSGameCharacter::MeleeAttack);
-	//PlayerInputComponent->BindAction("Grenade", IE_Pressed, this, &AFPSGameCharacter::ThrowGrenade);
+	//PlayerInputComponent->BindAction("Grenade", IE_Pressed, this, &AFPSGameCharacter::DamageShake);
 }
 
 void AFPSGameCharacter::OnFire()
@@ -234,7 +234,7 @@ void AFPSGameCharacter::OnFire()
 							case 2: // spawn projectile for the Pistol... 
 								GunOffset = FVector(100.0f, 8.0f, 40.0f); // X = Depth , Y = Side , Z = Height 
 								SpawnLocation = GetActorLocation() + SpawnRotation.RotateVector(GunOffset);
-								World->SpawnActor<AFPSGameProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams);
+								World->SpawnActor<AFPSGameProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams); 
 								break;
 							case 3: // spawn projectile for the Sniper... 
 								GunOffset = FVector(100.0f, 8.0f, 40.0f); // X = Depth , Y = Side , Z = Height 
@@ -750,7 +750,8 @@ void AFPSGameCharacter::TakeDamage(float damageAmount)
 {
 	health -= damageAmount; 
 	UE_LOG(LogTemp, Warning, TEXT("Damage taken! "));
-	
+	DamageShake(); 
+
 	if (health <= 0.0f)
 	{
 		UE_LOG(LogTemp, Warning, TEXT("Player is at 0 health! "));

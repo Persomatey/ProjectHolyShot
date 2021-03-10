@@ -306,6 +306,8 @@ class AFPSGameCharacter : public ACharacter
 
 		void Ability2CooldownComplete(); 
 
+		void DoTheShake(); 
+
 		UFUNCTION(BlueprintCallable, Category = "weapon")
 			void SwitchToNextPrimaryWeapon(); 
 
@@ -353,6 +355,9 @@ class AFPSGameCharacter : public ACharacter
 
 		UFUNCTION(BlueprintCallable)
 			void MeleeSpawn(TSubclassOf<class AFPSGameProjectile> meleeProj);
+
+		UFUNCTION(BlueprintImplementableEvent)
+			void DamageShake();
 
 		struct TouchData
 		{
