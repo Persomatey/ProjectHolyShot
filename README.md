@@ -70,6 +70,32 @@ https://trello.com/b/ABDPFNxA/project-holy-shot
 ## Changelist 
 
 <details>
+  <summary>CL-000030 (The Grenade Update)</summary>
+
+  - Made the following changes: 
+    - Added a model for a grenade 
+    - Altered the grenade texture to make it look more like the guns 
+    - Added a single hand model for the gun that was useful for changing the melee animation for it 
+    - Added silhouette art for the grenade 
+    - Added Grenades to the game 
+      - Pressing 'F' will throw a grenade in front of the player 
+      - The grenade will bounce on the ground for 2 seconds before blowing up 
+      - The damage trigger mesh inside the grenade will expand when blowing up 
+      - The damage mesh will deal less damage the longer it's expanding 
+      - When the damage mesh in the grenade starts expanding, an explosion FX will occur
+      - Added 4 grenade silhouettes to the HUD that will be enabled based on how many grenades the player has 
+    - Added a pickup for the grenades 
+      - Whent the player walks over the grenade pickup, 1 grenade will be added to the player's grenade count 
+      - When the player has the max amount of grenades, the pickup will not function 
+    - Changed the way that the ammo pickus work slightly 
+      - When the player has the max amount of that specific ammo, the pickup will not function 
+    - Changed the positioning for the melee attack animations 
+      - They now all snap up and vertical, like in Halo 
+    - Edited the README to reflect the above changes. 
+
+</details>
+
+<details>
   <summary>CL-000029</summary>
 
   - Made the following changes: 
@@ -80,7 +106,7 @@ https://trello.com/b/ABDPFNxA/project-holy-shot
 </details>
 
 <details>
-  <summary>CL-000028</summary>
+  <summary>CL-000028 (The Melee Update)</summary>
 
   - Made the following changes: 
     - Changed the key for changing weapons to the 'Tab' key. 
@@ -118,7 +144,7 @@ https://trello.com/b/ABDPFNxA/project-holy-shot
 </details>
 
 <details>
-  <summary>CL-000026</summary>
+  <summary>CL-000026 (The Shotgun Update)</summary>
 
   - Made the following changes: 
     - Finished the Shotgun weapon 
@@ -134,7 +160,7 @@ https://trello.com/b/ABDPFNxA/project-holy-shot
 </details>
 
 <details>
-  <summary>CL-000025</summary>
+  <summary>CL-000025 (The Sniper Update)</summary>
 
   - Made the following changes: 
     - Finished the Sniper weapon
@@ -151,7 +177,7 @@ https://trello.com/b/ABDPFNxA/project-holy-shot
 </details>
 
 <details>
-  <summary>CL-000024</summary>
+  <summary>CL-000024 (The Pistol Update)</summary>
 
   - Made the following changes: 
     - Added a fire rate for non-automatic weapons so not everything feels like a semi-auto
@@ -175,7 +201,7 @@ https://trello.com/b/ABDPFNxA/project-holy-shot
 </details>
 
 <details>
-  <summary>CL-000023</summary>
+  <summary>CL-000023 (The Assault Rifle Update)</summary>
 
   - Made the following changes: 
     - Added different projectiles based on the different weapons. 
@@ -272,7 +298,7 @@ https://trello.com/b/ABDPFNxA/project-holy-shot
 </details>
 
 <details>
-  <summary>CL-000015</summary>
+  <summary>CL-000015 (The Interaction Update)</summary>
 
   - Made the following changes: 
     - Added "Press E To Interact" functionality to each weapon. Now when walking up to a weapon, the player doesn't automatically pick it up. Instead the player message area will say "Press 'E' To Equip [weapon name]" and it will remove that message when the player walks away from it. When the player presses 'E' when right to the weapon, the player will equip that weapon. 

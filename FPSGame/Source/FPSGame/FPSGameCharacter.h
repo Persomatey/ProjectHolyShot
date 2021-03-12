@@ -211,13 +211,17 @@ class AFPSGameCharacter : public ACharacter
 
 		FTimerHandle fireTimerHandle; 
 
-		const int maxAssaultAmmo = 320; 
+		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Weapon)
+		int maxAssaultAmmo = 320; 
 
-		const int maxPistolAmmo = 32;
+		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Weapon)
+		int maxPistolAmmo = 32;
 
-		const int maxSniperAmmo = 20;
+		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Weapon)
+		int maxSniperAmmo = 20;
 
-		const int maxShotgunAmmo = 30;
+		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Weapon)
+		int maxShotgunAmmo = 30;
 
 		FRotator rotOffset;
 
@@ -247,6 +251,12 @@ class AFPSGameCharacter : public ACharacter
 		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Gameplay)
 			bool ableToZoom; 
 
+		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Gameplay)
+			bool ableToMelee; 
+
+		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Gameplay)
+			bool ableToGrenade; 
+
 		// Melee Stuff 
 
 		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Gameplay)
@@ -254,6 +264,20 @@ class AFPSGameCharacter : public ACharacter
 
 		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Gameplay)
 			bool isMeleeing; 
+
+		// Grenade Stuff 
+
+		UPROPERTY(EditAnywhere, BlueprintReadWrite)
+			TSubclassOf<AActor> grenade; 
+
+		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Grenades)
+			bool isTossingGrenade; 
+
+		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Grenades)
+			int maxGrenades = 4; 
+
+		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Grenades)
+			int grenadeStash; 
 
 	protected:
 		void OnFire();					// Fires a projectile 
@@ -357,7 +381,18 @@ class AFPSGameCharacter : public ACharacter
 			void MeleeSpawn(TSubclassOf<class AFPSGameProjectile> meleeProj);
 
 		UFUNCTION(BlueprintImplementableEvent)
+			void GrenadeAttack(); 
+
+		UFUNCTION(BlueprintCallable)
+			void GrenadeSpawn(TSubclassOf<AActor> nade); 
+
+		UFUNCTION(BlueprintCallable)
+			void AddGrenades(); 
+
+		UFUNCTION(BlueprintImplementableEvent)
 			void DamageShake();
+
+		UWorld* gtW(TSubclassOf<AActor> actor);
 
 		struct TouchData
 		{
@@ -365,7 +400,7 @@ class AFPSGameCharacter : public ACharacter
 			bool bIsPressed;
 			ETouchIndex::Type FingerIndex;
 			FVector Location;
-			bool bMoved;
+			bool bMoved; 
 		};
 
 		void BeginTouch(const ETouchIndex::Type FingerIndex, const FVector Location);

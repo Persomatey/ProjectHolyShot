@@ -130,6 +130,10 @@ AFPSGameCharacter::AFPSGameCharacter() // Constructor
 	ableToFire = true; 
 	ableToZoom = true; 
 	isMeleeing = false; 
+	isTossingGrenade = false; 
+	ableToMelee = true; 
+	ableToGrenade = true; 
+	grenadeStash = 0; 
 }
 
 void AFPSGameCharacter::BeginPlay()
@@ -185,7 +189,7 @@ void AFPSGameCharacter::SetupPlayerInputComponent(class UInputComponent* PlayerI
 	PlayerInputComponent->BindAction("ActivateAbility2", IE_Pressed, this, &AFPSGameCharacter::UseAbility2);
 	PlayerInputComponent->BindAction("SwitchWeapon", IE_Pressed, this, &AFPSGameCharacter::SwitchToNextPrimaryWeapon);
 	PlayerInputComponent->BindAction("Melee", IE_Pressed, this, &AFPSGameCharacter::MeleeAttack);
-	//PlayerInputComponent->BindAction("Grenade", IE_Pressed, this, &AFPSGameCharacter::DamageShake);
+	PlayerInputComponent->BindAction("Grenade", IE_Pressed, this, &AFPSGameCharacter::GrenadeAttack);
 }
 
 void AFPSGameCharacter::OnFire()
@@ -222,27 +226,27 @@ void AFPSGameCharacter::OnFire()
 							switch (weapons[weaponIndex]->index)
 							{
 							case 0: // spawn projectile for the Default Weapon... 
-								GunOffset = FVector(100.0f, 10.0f, 40.0f); // X = Depth , Y = Side , Z = Height 
+								GunOffset = FVector(200.0f, 10.0f, 40.0f); // X = Depth , Y = Side , Z = Height 
 								SpawnLocation = GetActorLocation() + SpawnRotation.RotateVector(GunOffset);
 								World->SpawnActor<AFPSGameProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams);
 								break;
 							case 1: // spawn projectile for the AR... 
-								GunOffset = FVector(100.0f, 8.0f, 40.0f); // X = Depth , Y = Side , Z = Height 
+								GunOffset = FVector(200.0f, 8.0f, 40.0f); // X = Depth , Y = Side , Z = Height 
 								SpawnLocation = GetActorLocation() + SpawnRotation.RotateVector(GunOffset);
 								World->SpawnActor<AFPSGameProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams);
 								break;
 							case 2: // spawn projectile for the Pistol... 
-								GunOffset = FVector(100.0f, 8.0f, 40.0f); // X = Depth , Y = Side , Z = Height 
+								GunOffset = FVector(200.0f, 8.0f, 40.0f); // X = Depth , Y = Side , Z = Height 
 								SpawnLocation = GetActorLocation() + SpawnRotation.RotateVector(GunOffset);
 								World->SpawnActor<AFPSGameProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams); 
 								break;
 							case 3: // spawn projectile for the Sniper... 
-								GunOffset = FVector(100.0f, 8.0f, 40.0f); // X = Depth , Y = Side , Z = Height 
+								GunOffset = FVector(200.0f, 8.0f, 40.0f); // X = Depth , Y = Side , Z = Height 
 								SpawnLocation = GetActorLocation() + SpawnRotation.RotateVector(GunOffset);
 								World->SpawnActor<AFPSGameProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams);
 								break;
 							case 4: // spawn projectile for the Shotgun... 
-								GunOffset = FVector(100.0f, 8.0f, 40.0f); // X = Depth , Y = Side , Z = Height 
+								GunOffset = FVector(200.0f, 8.0f, 40.0f); // X = Depth , Y = Side , Z = Height 
 								SpawnLocation = GetActorLocation() + SpawnRotation.RotateVector(GunOffset);
 								World->SpawnActor<AFPSGameProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams);
 								World->SpawnActor<AFPSGameProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams);
@@ -994,29 +998,47 @@ void AFPSGameCharacter::ResetReadyToFire()
 	fireTimerHandle.Invalidate();
 }
 
-//void AFPSGameCharacter::MeleeAttack()
-//{
-//	UWorld* const World = GetWorld();
-//	if (World != NULL)
-//	{
-//		const FRotator SpawnRotation = VR_MuzzleLocation->GetComponentRotation();
-//		const FVector SpawnLocation = VR_MuzzleLocation->GetComponentLocation();
-//		World->SpawnActor<AFPSGameProjectile>(MeleeClass, SpawnLocation, SpawnRotation);
-//	}
-//}
-
 void AFPSGameCharacter::MeleeSpawn(TSubclassOf<class AFPSGameProjectile> meleeProj)
 {
+	UE_LOG(LogTemp, Warning, TEXT("Hitting a fool!"));
 	UWorld* const World = GetWorld(); 
+
+	if (World != NULL)
+	{
+		const FRotator SpawnRotation = VR_MuzzleLocation->GetComponentRotation();
+		GunOffset = FVector(100.0f, 0, 50.0f); // X = Depth , Y = Side , Z = Height 
+		FVector SpawnLocation = GetActorLocation() + SpawnRotation.RotateVector(GunOffset);
+		World->SpawnActor<AFPSGameProjectile>(meleeProj, SpawnLocation, SpawnRotation);
+		UGameplayStatics::PlaySoundAtLocation(this, meleeSound, GetActorLocation());
+	}
+}
+
+void AFPSGameCharacter::GrenadeSpawn(TSubclassOf<AActor> nade)
+{
+	if (grenadeStash > 0)
+	{
+		grenadeStash--; 
+
+		UE_LOG(LogTemp, Warning, TEXT("Throwing a nade!"));
+		UWorld* const World = GetWorld();
+
 		if (World != NULL)
 		{
-			const FRotator SpawnRotation = VR_MuzzleLocation->GetComponentRotation();
-			//const FVector SpawnLocation = VR_MuzzleLocation->GetComponentLocation();
+			const FRotator SpawnRotation = GetControlRotation();
 			GunOffset = FVector(100.0f, 0, 50.0f); // X = Depth , Y = Side , Z = Height 
 			FVector SpawnLocation = GetActorLocation() + SpawnRotation.RotateVector(GunOffset);
-			World->SpawnActor<AFPSGameProjectile>(meleeProj, SpawnLocation, SpawnRotation);
-			UGameplayStatics::PlaySoundAtLocation(this, meleeSound, GetActorLocation());
+
+			World->SpawnActor<AActor>(nade, SpawnLocation, SpawnRotation);
 		}
+	}
+}
+
+void AFPSGameCharacter::AddGrenades()
+{
+	if (grenadeStash < maxGrenades)
+	{
+		grenadeStash++; 
+	}
 }
 
 #pragma endregion MyCode 
