@@ -392,6 +392,24 @@ class AFPSGameCharacter : public ACharacter
 		UFUNCTION(BlueprintImplementableEvent)
 			void DamageShake();
 
+		UFUNCTION(BlueprintImplementableEvent)
+			void ControlTheMouse(); 
+
+		UFUNCTION(BlueprintImplementableEvent)
+			void UnControlTheMouse();
+
+		UFUNCTION(BlueprintCallable)
+			void DoUnControlTheMouse(); 
+
+		UFUNCTION(BlueprintCallable)
+			void SwitchToSpecificWeapon(int passedIndex); 
+
+		UFUNCTION(BlueprintImplementableEvent)
+			void AddAllWeapons(); 
+
+		UFUNCTION(BlueprintCallable)
+			void DoAddAllWeapons(); 
+
 		UWorld* gtW(TSubclassOf<AActor> actor);
 
 		struct TouchData

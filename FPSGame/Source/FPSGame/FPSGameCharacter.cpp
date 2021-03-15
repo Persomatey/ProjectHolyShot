@@ -190,6 +190,8 @@ void AFPSGameCharacter::SetupPlayerInputComponent(class UInputComponent* PlayerI
 	PlayerInputComponent->BindAction("SwitchWeapon", IE_Pressed, this, &AFPSGameCharacter::SwitchToNextPrimaryWeapon);
 	PlayerInputComponent->BindAction("Melee", IE_Pressed, this, &AFPSGameCharacter::MeleeAttack);
 	PlayerInputComponent->BindAction("Grenade", IE_Pressed, this, &AFPSGameCharacter::GrenadeAttack);
+	PlayerInputComponent->BindAction("ControlTheMouse", IE_Pressed, this, &AFPSGameCharacter::ControlTheMouse); 
+	PlayerInputComponent->BindAction("AddAllWeapons", IE_Pressed, this, &AFPSGameCharacter::AddAllWeapons);
 }
 
 void AFPSGameCharacter::OnFire()
@@ -316,6 +318,11 @@ void AFPSGameCharacter::OnFire()
 							}
 
 							weapons[weaponIndex]->clipAmmo -= 1;
+
+							if (weapons[weaponIndex]->clipAmmo <= 0)
+							{
+								ReloadWeapon(weapons[weaponIndex]->weaponType);
+							}
 						}
 					}
 					else
@@ -357,41 +364,6 @@ void AFPSGameCharacter::EndTouch(const ETouchIndex::Type FingerIndex, const FVec
 	}
 	TouchItem.bIsPressed = false;
 }
-
-//void AFPSGameCharacter::TouchUpdate(const ETouchIndex::Type FingerIndex, const FVector Location)
-//{
-//	if ((TouchItem.bIsPressed == true) && (TouchItem.FingerIndex == FingerIndex))
-//	{
-//		if (TouchItem.bIsPressed)
-//		{
-//			if (GetWorld() != nullptr)
-//			{
-//				UGameViewportClient* ViewportClient = GetWorld()->GetGameViewport();
-//				if (ViewportClient != nullptr)
-//				{
-//					FVector MoveDelta = Location - TouchItem.Location;
-//					FVector2D ScreenSize;
-//					ViewportClient->GetViewportSize(ScreenSize);
-//					FVector2D ScaledDelta = FVector2D(MoveDelta.X, MoveDelta.Y) / ScreenSize;
-//					if (FMath::Abs(ScaledDelta.X) >= 4.0 / ScreenSize.X)
-//					{
-//						TouchItem.bMoved = true;
-//						float Value = ScaledDelta.X * BaseTurnRate;
-//						AddControllerYawInput(Value);
-//					}
-//					if (FMath::Abs(ScaledDelta.Y) >= 4.0 / ScreenSize.Y)
-//					{
-//						TouchItem.bMoved = true;
-//						float Value = ScaledDelta.Y * BaseTurnRate;
-//						AddControllerPitchInput(Value);
-//					}
-//					TouchItem.Location = Location;
-//				}
-//				TouchItem.Location = Location;
-//			}
-//		}
-//	}
-//}
 
 void AFPSGameCharacter::MoveForward(float Value)
 {
@@ -544,6 +516,7 @@ void AFPSGameCharacter::ReloadWeapon(EWeaponType _weaponType)
 					ReloadAnim();
 					GetWorld()->GetTimerManager().SetTimer(fireTimerHandle, this, &AFPSGameCharacter::FinishReloading, reloadTime, false);
 					UGameplayStatics::PlaySoundAtLocation(this, reloadSFX, GetActorLocation());
+					readyToFire = true; 
 				}
 				else if (assaultRifleAmmo <= 0)
 				{
@@ -561,6 +534,7 @@ void AFPSGameCharacter::ReloadWeapon(EWeaponType _weaponType)
 					ReloadAnim();
 					GetWorld()->GetTimerManager().SetTimer(fireTimerHandle, this, &AFPSGameCharacter::FinishReloading, reloadTime, false);
 					UGameplayStatics::PlaySoundAtLocation(this, reloadSFX, GetActorLocation());
+					readyToFire = true;
 				}
 				else if (pistolAmmo <= 0)
 				{
@@ -578,6 +552,7 @@ void AFPSGameCharacter::ReloadWeapon(EWeaponType _weaponType)
 					ReloadAnim();
 					GetWorld()->GetTimerManager().SetTimer(fireTimerHandle, this, &AFPSGameCharacter::FinishReloading, reloadTime, false);
 					UGameplayStatics::PlaySoundAtLocation(this, reloadSFX, GetActorLocation());
+					readyToFire = true;
 				}
 				else if (sniperRifleAmmo <= 0)
 				{
@@ -595,6 +570,7 @@ void AFPSGameCharacter::ReloadWeapon(EWeaponType _weaponType)
 					ReloadAnim();
 					GetWorld()->GetTimerManager().SetTimer(fireTimerHandle, this, &AFPSGameCharacter::FinishReloading, reloadTime, false);
 					UGameplayStatics::PlaySoundAtLocation(this, reloadSFX, GetActorLocation());
+					readyToFire = true;
 				}
 				else if (shotgunAmmo <= 0)
 				{
@@ -978,6 +954,35 @@ void AFPSGameCharacter::SwitchToNewPrimaryWeapon()
 		SwitchWeaponMesh(weaponIndex); 
 		UGameplayStatics::PlaySoundAtLocation(this, switchWeaponSFX, GetActorLocation());
 	}
+}
+
+void AFPSGameCharacter::SwitchToSpecificWeapon(int passedIndex)
+{
+	if (ableToSwitchWeapon)
+	{
+		fireTimerHandle.Invalidate(); 
+		weaponSwitched = true; 
+		bool success = false;
+		readyToFire = true;
+		StopZoom(); 
+
+		UE_LOG(LogTemp, Warning, TEXT("Switching weapon to = %d"), passedIndex);
+
+		weaponIndex = passedIndex; 
+
+		SwitchWeaponMesh(weaponIndex);
+		UGameplayStatics::PlaySoundAtLocation(this, switchWeaponSFX, GetActorLocation());
+	}
+}
+
+void AFPSGameCharacter::DoAddAllWeapons()
+{
+	AddAllWeapons(); 
+}
+
+void AFPSGameCharacter::DoUnControlTheMouse()
+{
+	UnControlTheMouse();
 }
 
 void AFPSGameCharacter::StartFiring()

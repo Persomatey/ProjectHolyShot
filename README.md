@@ -70,6 +70,26 @@ https://trello.com/b/ABDPFNxA/project-holy-shot
 ## Changelist 
 
 <details>
+  <summary>CL-000031 (The Weapon Wheel Update)</summary>
+
+  - Made the following changes: 
+    - Made the art assets for the weapon wheel 
+      - The assets are split up between four sides, Top, Left, Right, Bottom 
+    - Made some more silhouette art assets for the weapon wheel that are similar to the regular ones but have a slight outer glow 
+    - Made a simple boolean to toggle if I want the player to start out with all the weapons right away or not 
+      - This will be useful for when I do the campaign mode 
+    - Added the weapon wheel 
+      - When the player presses 'Tab', a weapon wheel will show up and the time dilation will be lowered to 0.2f 
+      - When clicking on one of the options on the weapon wheel, the player will switch to that weapon, the weapon wheel will disappear, and the time dilation will be raised back to 1.0f 
+        - If the player already has that weapon equipped, the weapon wheel will disappear and the time dilation will be raised back to 1.0f 
+      - When hovering over an option on the weapon wheel, that bottom will slight up slightly 
+    - Made it so that as soon as the player runs out of ammo in the clip, the weapon will automatically reload. You do not need to click again or press 'R' 
+    - The "SwitchWeapon" key is now currently blank 
+    - Edited the README to reflect the above changes 
+
+</details>
+
+<details>
   <summary>CL-000030 (The Grenade Update)</summary>
 
   - Made the following changes: 
