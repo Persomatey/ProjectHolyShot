@@ -70,6 +70,13 @@ https://trello.com/b/ABDPFNxA/project-holy-shot
 ## Changelist 
 
 <details>
+  <summary>CL-000032 (The Pause Menu Update)</summary>
+
+
+
+</details>
+
+<details>
   <summary>CL-000031 (The Weapon Wheel Update)</summary>
 
   - Made the following changes: 
