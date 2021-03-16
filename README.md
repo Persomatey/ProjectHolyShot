@@ -70,9 +70,75 @@ https://trello.com/b/ABDPFNxA/project-holy-shot
 ## Changelist 
 
 <details>
-  <summary>CL-000032 (The Pause Menu Update)</summary>
+  <summary>CL-000032 (The Menus Update)</summary>
 
-
+  - Made the following changes: 
+    - Added some blur to the Weapon Wheel selection 
+    - Added art for all of the keys and mouse 
+    - Added some temp background art 
+      - <img src="https://image.freepik.com/free-vector/dark-hexagonal-background-with-gradient-color_79603-1410.jpg" alt="" data-canonical-src="https://image.freepik.com/free-vector/dark-hexagonal-background-with-gradient-color_79603-1410.jpg" width="75" height="50" /> by [coolvector](https://www.freepik.com/free-vector/dark-hexagonal-background-with-gradient-color_12804210.htm#page=1&position=1) 
+      - <img src="https://image.freepik.com/free-vector/digital-technology-background-with-blue-orange-light-effect_1017-27423.jpg" alt="" data-canonical-src="https://image.freepik.com/free-vector/digital-technology-background-with-blue-orange-light-effect_1017-27423.jpg" width="75" height="50" /> by [starline](https://www.freepik.com/free-vector/digital-technology-background-with-blue-orange-light-effect_10136759.htm#page=1&query=gaming%20background&position=12)
+      - Will replace these with better custom art later on 
+    - Made the Main Menu 
+      - The Main Menu has 5 options
+        - Campaign 
+          - Currently opens up the test level 
+        - Options
+          - Opens up the Options Menu widget 
+        - Controls
+          - Opens up the Controls Menu widget 
+        - Credits 
+          - Opens up hte Credits Menu widget
+        - Quit
+          - Will close the app 
+    - Made the Options Menu 
+      - The player can change the following settings: 
+        - Screen Resolution 
+          - 720x480
+          - 1280x720
+          - 1920x1080
+          - 2560x1440
+          - 3840x2160
+        - View Distance 
+          - Near
+          - Intermediate
+          - Far 
+        - Anti-Aliasing
+          - Low
+          - Medium
+          - High 
+          - Ultra
+        - Shadow Quality 
+          - Low 
+          - Medium 
+          - High 
+          - Ultra
+        - Texture Quality 
+          - Low 
+          - Medium 
+          - High 
+          - Ultra 
+    - Made the Pause functionality 
+      - While in game, the player can press 'Esc' or 'P' and the game will freeze and open up the Pause Menu 
+    - Made the Pause Menu 
+      - The Pause Menu has the following options: 
+        - Resume 
+          - Will close the Pause Menu and unfreeze the game 
+        - Options 
+          - Will open the Options Menu widget 
+        - Quit 
+          - Quit will open up two more buttons 
+            - To Main Menu 
+              - Will go to the main menu 
+            - To Desktop 
+              - Will close the app 
+    - Made the Controls Menu 
+      - Shows the player controls for playing on Keyboard and Mouse 
+      - Will likely add controller support later and will figure out the controls menu for that then 
+    - Made the Credits Menu 
+      - Just displays the names of the people who have worked on the game 
+      - Probably not going to be the final list so I may change it later 
+    - Edited the README to reflect the above changes 
 
 </details>
 
