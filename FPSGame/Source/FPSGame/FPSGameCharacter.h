@@ -279,6 +279,11 @@ class AFPSGameCharacter : public ACharacter
 		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Grenades)
 			int grenadeStash; 
 
+		// Miscellaneous 
+
+		UPROPERTY(EditAnywhere, BlueprintReadWrite)
+			bool isCrouching; 
+
 	protected:
 		void OnFire();					// Fires a projectile 
 
@@ -331,6 +336,11 @@ class AFPSGameCharacter : public ACharacter
 		void Ability2CooldownComplete(); 
 
 		void DoTheShake(); 
+
+		void StartCrouch(); 
+
+		UFUNCTION(BlueprintCallable)
+			void EndCrouch(); 
 
 		UFUNCTION(BlueprintCallable, Category = "weapon")
 			void SwitchToNextPrimaryWeapon(); 

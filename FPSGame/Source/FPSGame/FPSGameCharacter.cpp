@@ -82,6 +82,7 @@ AFPSGameCharacter::AFPSGameCharacter() // Constructor
 	// Core Gameplay Stuff 
 	isSprinting = false; 
 	isZoomedIn = false; 
+	isCrouching = false; 
 
 	// Ability Stuff 
 	hasUsedAbility1 = false; 
@@ -180,18 +181,20 @@ void AFPSGameCharacter::SetupPlayerInputComponent(class UInputComponent* PlayerI
 	PlayerInputComponent->BindAxis("LookUpRate", this, &AFPSGameCharacter::LookUpAtRate);
 
 	// My Actions & Axises 
-	PlayerInputComponent->BindAction("Sprint", IE_Pressed, this, &AFPSGameCharacter::Sprint); 
-	PlayerInputComponent->BindAction("StopSprinting", IE_Released, this, &AFPSGameCharacter::StopSprinting); 
+	//PlayerInputComponent->BindAction("Sprint", IE_Pressed, this, &AFPSGameCharacter::Sprint); 
+	//PlayerInputComponent->BindAction("StopSprinting", IE_Released, this, &AFPSGameCharacter::StopSprinting); 
 	PlayerInputComponent->BindAction("ZoomIn", IE_Pressed, this, &AFPSGameCharacter::ZoomIn); 
 	//PlayerInputComponent->BindAction("ZoomIn", IE_Released, this, &AFPSGameCharacter::StopZoom);
 	PlayerInputComponent->BindAction("Reload", IE_Pressed, this, &AFPSGameCharacter::ManualReload);
-	PlayerInputComponent->BindAction("ActivateAbility1", IE_Pressed, this, &AFPSGameCharacter::UseAbility1);
-	PlayerInputComponent->BindAction("ActivateAbility2", IE_Pressed, this, &AFPSGameCharacter::UseAbility2);
+	//PlayerInputComponent->BindAction("ActivateAbility1", IE_Pressed, this, &AFPSGameCharacter::UseAbility1);
+	//PlayerInputComponent->BindAction("ActivateAbility2", IE_Pressed, this, &AFPSGameCharacter::UseAbility2);
 	PlayerInputComponent->BindAction("SwitchWeapon", IE_Pressed, this, &AFPSGameCharacter::SwitchToNextPrimaryWeapon);
 	PlayerInputComponent->BindAction("Melee", IE_Pressed, this, &AFPSGameCharacter::MeleeAttack);
 	PlayerInputComponent->BindAction("Grenade", IE_Pressed, this, &AFPSGameCharacter::GrenadeAttack);
 	PlayerInputComponent->BindAction("ControlTheMouse", IE_Pressed, this, &AFPSGameCharacter::ControlTheMouse); 
 	PlayerInputComponent->BindAction("AddAllWeapons", IE_Pressed, this, &AFPSGameCharacter::AddAllWeapons);
+	PlayerInputComponent->BindAction("Crouch", IE_Pressed, this, & AFPSGameCharacter::StartCrouch); 
+	PlayerInputComponent->BindAction("Crouch", IE_Released, this, & AFPSGameCharacter::EndCrouch);
 }
 
 void AFPSGameCharacter::OnFire()
@@ -227,40 +230,75 @@ void AFPSGameCharacter::OnFire()
 
 							switch (weapons[weaponIndex]->index)
 							{
-							case 0: // spawn projectile for the Default Weapon... 
-								GunOffset = FVector(200.0f, 10.0f, 40.0f); // X = Depth , Y = Side , Z = Height 
-								SpawnLocation = GetActorLocation() + SpawnRotation.RotateVector(GunOffset);
-								World->SpawnActor<AFPSGameProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams);
-								break;
-							case 1: // spawn projectile for the AR... 
-								GunOffset = FVector(200.0f, 8.0f, 40.0f); // X = Depth , Y = Side , Z = Height 
-								SpawnLocation = GetActorLocation() + SpawnRotation.RotateVector(GunOffset);
-								World->SpawnActor<AFPSGameProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams);
-								break;
-							case 2: // spawn projectile for the Pistol... 
-								GunOffset = FVector(200.0f, 8.0f, 40.0f); // X = Depth , Y = Side , Z = Height 
-								SpawnLocation = GetActorLocation() + SpawnRotation.RotateVector(GunOffset);
-								World->SpawnActor<AFPSGameProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams); 
-								break;
-							case 3: // spawn projectile for the Sniper... 
-								GunOffset = FVector(200.0f, 8.0f, 40.0f); // X = Depth , Y = Side , Z = Height 
-								SpawnLocation = GetActorLocation() + SpawnRotation.RotateVector(GunOffset);
-								World->SpawnActor<AFPSGameProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams);
-								break;
-							case 4: // spawn projectile for the Shotgun... 
-								GunOffset = FVector(200.0f, 8.0f, 40.0f); // X = Depth , Y = Side , Z = Height 
-								SpawnLocation = GetActorLocation() + SpawnRotation.RotateVector(GunOffset);
-								World->SpawnActor<AFPSGameProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams);
-								World->SpawnActor<AFPSGameProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams);
-								World->SpawnActor<AFPSGameProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams);
-								World->SpawnActor<AFPSGameProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams);
-								World->SpawnActor<AFPSGameProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams);
-								World->SpawnActor<AFPSGameProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams);
-								World->SpawnActor<AFPSGameProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams);
-								World->SpawnActor<AFPSGameProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams);
-								World->SpawnActor<AFPSGameProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams);
-								World->SpawnActor<AFPSGameProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams);
-								break;
+								case 0: // spawn projectile for the Default Weapon... 
+									if (isCrouching)
+									{
+										GunOffset = FVector(200.0f, 10.0f, -24.0f);
+									}
+									else
+									{
+										GunOffset = FVector(200.0f, 10.0f, 40.0f); // X = Depth , Y = Side , Z = Height 
+									}
+									SpawnLocation = GetActorLocation() + SpawnRotation.RotateVector(GunOffset);
+									World->SpawnActor<AFPSGameProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams);
+									break;
+								case 1: // spawn projectile for the AR... 
+									if (isCrouching)
+									{
+										GunOffset = FVector(200.0f, 8.0f, -24.0f);
+									}
+									else
+									{
+										GunOffset = FVector(200.0f, 8.0f, 40.0f); // X = Depth , Y = Side , Z = Height 
+									}
+									SpawnLocation = GetActorLocation() + SpawnRotation.RotateVector(GunOffset);
+									World->SpawnActor<AFPSGameProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams);
+									break;
+								case 2: // spawn projectile for the Pistol... 
+									if (isCrouching)
+									{
+										GunOffset = FVector(200.0f, 8.0f, -24.0f);
+									}
+									else
+									{
+										GunOffset = FVector(200.0f, 8.0f, 40.0f); // X = Depth , Y = Side , Z = Height 
+									}
+									SpawnLocation = GetActorLocation() + SpawnRotation.RotateVector(GunOffset);
+									World->SpawnActor<AFPSGameProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams); 
+									break;
+								case 3: // spawn projectile for the Sniper... 
+									if (isCrouching)
+									{
+										GunOffset = FVector(200.0f, 8.0f, -24.0f);
+									}
+									else
+									{
+										GunOffset = FVector(200.0f, 8.0f, 40.0f); // X = Depth , Y = Side , Z = Height 
+									}
+									SpawnLocation = GetActorLocation() + SpawnRotation.RotateVector(GunOffset);
+									World->SpawnActor<AFPSGameProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams);
+									break;
+								case 4: // spawn projectile for the Shotgun... 
+									if (isCrouching)
+									{
+										GunOffset = FVector(200.0f, 8.0f, -24.0f);
+									}
+									else
+									{
+										GunOffset = FVector(200.0f, 8.0f, 40.0f); // X = Depth , Y = Side , Z = Height 
+									}
+									SpawnLocation = GetActorLocation() + SpawnRotation.RotateVector(GunOffset);
+									World->SpawnActor<AFPSGameProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams);
+									World->SpawnActor<AFPSGameProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams);
+									World->SpawnActor<AFPSGameProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams);
+									World->SpawnActor<AFPSGameProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams);
+									World->SpawnActor<AFPSGameProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams);
+									World->SpawnActor<AFPSGameProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams);
+									World->SpawnActor<AFPSGameProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams);
+									World->SpawnActor<AFPSGameProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams);
+									World->SpawnActor<AFPSGameProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams);
+									World->SpawnActor<AFPSGameProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams);
+									break;
 							}
 
 							if (weapons[weaponIndex]->isAutomatic && isShooting)
@@ -1044,6 +1082,22 @@ void AFPSGameCharacter::AddGrenades()
 	{
 		grenadeStash++; 
 	}
+}
+
+void AFPSGameCharacter::StartCrouch()
+{
+	UE_LOG(LogTemp, Warning, TEXT("Start Crouching..."));
+	isCrouching = true; 
+	GetCharacterMovement()->MaxWalkSpeed = 300.0f;
+	UE_LOG(LogTemp, Warning, TEXT("...Crouching has commenced "));
+}
+
+void AFPSGameCharacter::EndCrouch()
+{
+	UE_LOG(LogTemp, Warning, TEXT("Ending Crouching..."));
+	isCrouching = false; 
+	GetCharacterMovement()->MaxWalkSpeed = 600.0f;
+	UE_LOG(LogTemp, Warning, TEXT("...Crouching has ended "));
 }
 
 #pragma endregion MyCode 

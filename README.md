@@ -70,6 +70,24 @@ https://trello.com/b/ABDPFNxA/project-holy-shot
 ## Changelist 
 
 <details>
+  <summary>CL-000033</summary>
+
+  - Made the following changes: 
+    - Fixed bug where the player would do the grenade throwing animation even if they don't have grenades 
+    - Added crouching to the game 
+      - When the player holds 'Shift', the player will crouch 
+      - Crouching lowers the player's camera and rig lower the the ground 
+      - While crouching, movement speed is reduced from 600.0f to 300.0f 
+    - Removed the sprinting functionality 
+    - Removed the abilities functionality 
+      - And hid the icons for them in the HUD
+    - Gave the health bar priority over the red vignette in the HUD 
+      - Makes it translate a lot easier this way 
+    - Edited the README to reflect the above changes 
+
+</details>
+
+<details>
   <summary>CL-000032 (The Menus Update)</summary>
 
   - Made the following changes: 
