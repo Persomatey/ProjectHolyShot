@@ -70,6 +70,25 @@ https://trello.com/b/ABDPFNxA/project-holy-shot
 ## Changelist 
 
 <details>
+  <summary>CL-000034</summary>
+
+  - Made the following changes: 
+    - Changed the map of the test level to help test the enemy development going forward 
+      - Added two more rooms off to the sides 
+        - Each of these rooms will be fore a different enemy type 
+      - Added some ramps to move to each room 
+      - Got rid of all of the grav lifts 
+        - They're cool but they just don't really work when the computer gets to lower framerates 
+      - Each of the rooms has some barricades to crouch behind 
+      - In the Turret test room, I added a lot more Turrets 
+        - Including some on some ledges that you can't quite reach, but they can shoot you from 
+    - Changed the way the turret's head positioning works slightly 
+      - Now it's linked directly with the base's location 
+    - Edited the README to reflect the above changes 
+
+</details>
+
+<details>
   <summary>CL-000033</summary>
 
   - Made the following changes: 
