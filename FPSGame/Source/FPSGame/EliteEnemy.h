@@ -1,7 +1,7 @@
 #pragma once
-
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+#include "FPSGameProjectile.h"
 #include "EliteEnemy.generated.h"
 
 UCLASS()
@@ -12,6 +12,9 @@ class FPSGAME_API AEliteEnemy : public ACharacter
 public:
 	// Sets default values for this character's properties
 	AEliteEnemy();
+
+	UPROPERTY(BlueprintReadWrite)
+		bool isAlerted; 
 
 protected:
 	// Called when the game starts or when spawned
@@ -26,12 +29,15 @@ protected:
 	UFUNCTION(BlueprintCallable)
 		void BeginDeath();
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Enemy)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		float health;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Enemy)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		bool hasTakenDamage; 
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Enemy)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		bool isDead;
+
+	UFUNCTION(BlueprintCallable)
+		void ShootBullets(TSubclassOf<class AFPSGameProjectile> passedProj);
 };

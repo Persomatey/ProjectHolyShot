@@ -2,7 +2,18 @@
 
 *An FPS in the style of Halo* 
 
-*Following this tutorial by Shawnthebro on YouTube: https://www.youtube.com/playlist?list=PLfAjixzz6o82cLilSI3Vbv0hu868hAp7P*
+<details>
+  <summary>Some Tutorials that have helped</summary>
+
+  - [ShawntheBro's FPS Tutorial in C++ and Blueprints](https://www.youtube.com/playlist?list=PLfAjixzz6o82cLilSI3Vbv0hu868hAp7P)
+    - I didn't include all of the features and ended up changing things wuite a bit, but this tutorial was helpful in understanding the basics of Unreal Engine development 
+  - [This video by ShawntheBro on incorporating Mixamo animations](https://www.youtube.com/watch?v=VMuekRGuEVU&list=PLKX52YByM7dbvjFrFa0gutBPynA_sfWK8&index=8)
+  - [Ryan Laley's Shooter AI Tutorial primarily in Blueprints](https://www.youtube.com/playlist?list=PL4G2bSPE_8ums1OIn0tdj1xbpw_8W-GIP)
+    - I did mix in some C++ for some aspects of the enemies such as health, and later enemies aside from the Elite don't behave this way at all, but a lot of the AI behavior is still in blueprints based on this tutorial 
+  - [Tesla Dev's video that helped with some of the debugging I had to figure out](https://www.youtube.com/watch?v=jWRkM-95k2I&list=PLKX52YByM7dbvjFrFa0gutBPynA_sfWK8&index=9&t=88s)
+  - [Tesla Dev's video on camera shake](https://www.youtube.com/watch?v=kJCP_8u9odA&list=PLKX52YByM7dbvjFrFa0gutBPynA_sfWK8&index=10)
+
+</details>
 
 <details>
   <summary>Name Ideas</summary>
@@ -65,9 +76,29 @@ https://trello.com/b/ABDPFNxA/project-holy-shot
 
 **Special Thanks**
 - [Gerardo Bonnet](https://screams-from-the-cellar.itch.io/) 
-- [Shawn the Bro](https://www.youtube.com/c/Shawnthebro/) 
+- [Shawn the Bro](https://shawnthebro.com/) 
+- [Tesla Dev](https://www.youtube.com/user/TeslaUE4/)
+- [Ryan Laley](https://www.youtube.com/c/RyanLaley/)
 
 ## Changelist 
+
+<details>
+  <summary>CL-000035</summary>
+
+  - Made the following changes: 
+    - Added some animations for the Elite Enemy 
+    - Added the model for the Elite Enemy 
+    - Hooked up the animations for the Elite Enemy 
+    - Started adding some basic AI functionality for the Elite Enemy 
+    - Put an Elite enemy in the central test room for faster testing purposes 
+    - Added a tutorials section to the readme where it shows some of tutorials that have helped me along the way 
+    - Added Tesla Dev to the special thanks section of the credits 
+      - I've used his videos for some stuff before so it only feels right to include him 
+    - Added Ryan Laley to the special thanks section of the credits 
+      - I'm going to start using his videos soon to help with the enemy AI so it feels right to include him 
+    - Edited the README to reflect the above changes 
+
+</details>
 
 <details>
   <summary>CL-000034</summary>

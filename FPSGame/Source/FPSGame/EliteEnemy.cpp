@@ -6,6 +6,7 @@ AEliteEnemy::AEliteEnemy()
 	health = 1.0f;
 	hasTakenDamage = false; 
 	isDead = false; 
+	isAlerted = false; 
 }
 
 void AEliteEnemy::Tick(float DeltaTime)
@@ -40,4 +41,13 @@ void AEliteEnemy::TakeDamage(float damageTaken)
 void AEliteEnemy::BeginDeath()
 {
 	UE_LOG(LogTemp, Warning, TEXT("Elite Death Starting"));
+}
+
+void AEliteEnemy::ShootBullets(TSubclassOf<class AFPSGameProjectile> passedProj)
+{
+	const FRotator SpawnRotation = GetControlRotation();
+	FVector GunOffset = FVector(105.0f, 20.0f, 72.0f);	// X = Depth , Y = Side , Z = Height 
+	FVector SpawnLocation = GetActorLocation() + SpawnRotation.RotateVector(GunOffset);
+	UWorld* const World = GetWorld();
+	World->SpawnActor<AFPSGameProjectile>(passedProj, SpawnLocation, SpawnRotation);
 }
