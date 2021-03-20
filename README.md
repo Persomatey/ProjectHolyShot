@@ -2,14 +2,24 @@
 
 *An FPS in the style of Halo* 
 
+## Specs
+
+Unreal Engine 4.25.4
+
+SLN solution in Visual Studio Community 2019 Preview 
+https://visualstudio.microsoft.com/vs/community/
+
+Trello board: 
+https://trello.com/b/ABDPFNxA/project-holy-shot
+
 <details>
   <summary>Some Tutorials that have helped</summary>
 
   - [ShawntheBro's FPS Tutorial in C++ and Blueprints](https://www.youtube.com/playlist?list=PLfAjixzz6o82cLilSI3Vbv0hu868hAp7P)
-    - I didn't include all of the features and ended up changing things wuite a bit, but this tutorial was helpful in understanding the basics of Unreal Engine development 
+    - I didn't include all of the features such as tilting and special abilities and ended up changing things quite a bit in the end, but this tutorial was helpful in understanding the basics of Unreal Engine development 
   - [This video by ShawntheBro on incorporating Mixamo animations](https://www.youtube.com/watch?v=VMuekRGuEVU&list=PLKX52YByM7dbvjFrFa0gutBPynA_sfWK8&index=8)
   - [Ryan Laley's Shooter AI Tutorial primarily in Blueprints](https://www.youtube.com/playlist?list=PL4G2bSPE_8ums1OIn0tdj1xbpw_8W-GIP)
-    - I did mix in some C++ for some aspects of the enemies such as health, and later enemies aside from the Elite don't behave this way at all, but a lot of the AI behavior is still in blueprints based on this tutorial 
+    - I did mix in some C++ for some aspects of the enemies such as health, and later enemies aside from the Elite don't behave this way at all, but a lot of the AI behavior still in the blueprints based on this tutorial 
   - [Tesla Dev's video that helped with some of the debugging I had to figure out](https://www.youtube.com/watch?v=jWRkM-95k2I&list=PLKX52YByM7dbvjFrFa0gutBPynA_sfWK8&index=9&t=88s)
   - [Tesla Dev's video on camera shake](https://www.youtube.com/watch?v=kJCP_8u9odA&list=PLKX52YByM7dbvjFrFa0gutBPynA_sfWK8&index=10)
 
@@ -35,16 +45,6 @@ Discus Arena |
 Glowing Arena | 
 
 </details>
-
-## Specs
-
-Unreal Engine 4.25.4
-
-SLN solution in Visual Studio Community 2019 Preview 
-https://visualstudio.microsoft.com/vs/community/
-
-Trello board: 
-https://trello.com/b/ABDPFNxA/project-holy-shot
 
 ## Credits 
 
@@ -81,6 +81,27 @@ https://trello.com/b/ABDPFNxA/project-holy-shot
 - [Ryan Laley](https://www.youtube.com/c/RyanLaley/)
 
 ## Changelist 
+
+<details>
+  <summary>CL-000036 (The Elite Update)</summary>
+
+  - Made the following changes: 
+    - Added a Nav Mesh to the Elite testing room 
+    - Added an Encounter Space to the Elite testing room 
+    - Added the Elite Enemy AI 
+      - At first, the enemy is in an unalerted state
+      - If the enemy sees the player or takes damage, they will enter an alerted state 
+      - When the enemy is alerted they will alert all the other Elites in the Encounter Space 
+      - They will then enter one of two states: 
+        - If the enemy is above 50% HP: 
+          - They will then start doing 5-shot bursts at the player 
+          - If they can't see the player, they will follow the player and chase them down until they can see him 
+        - If the enemy is below 50% HP: 
+          - They will find the nearest cover and crouch behind the cover 
+          - Every few seconds, they will stand up, do a 5-shot burst at the player, then crouch again 
+    - Edited the README to reflect the above changes 
+
+</details>
 
 <details>
   <summary>CL-000035</summary>

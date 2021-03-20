@@ -420,6 +420,9 @@ class AFPSGameCharacter : public ACharacter
 		UFUNCTION(BlueprintCallable)
 			void DoAddAllWeapons(); 
 
+		UFUNCTION(BlueprintImplementableEvent)
+			void TraceAThreat(); 
+
 		UWorld* gtW(TSubclassOf<AActor> actor);
 
 		struct TouchData

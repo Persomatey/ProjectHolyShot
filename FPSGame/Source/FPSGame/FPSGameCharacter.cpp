@@ -241,6 +241,7 @@ void AFPSGameCharacter::OnFire()
 									}
 									SpawnLocation = GetActorLocation() + SpawnRotation.RotateVector(GunOffset);
 									World->SpawnActor<AFPSGameProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams);
+									TraceAThreat();
 									break;
 								case 1: // spawn projectile for the AR... 
 									if (isCrouching)
@@ -253,6 +254,7 @@ void AFPSGameCharacter::OnFire()
 									}
 									SpawnLocation = GetActorLocation() + SpawnRotation.RotateVector(GunOffset);
 									World->SpawnActor<AFPSGameProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams);
+									TraceAThreat();
 									break;
 								case 2: // spawn projectile for the Pistol... 
 									if (isCrouching)
@@ -265,6 +267,7 @@ void AFPSGameCharacter::OnFire()
 									}
 									SpawnLocation = GetActorLocation() + SpawnRotation.RotateVector(GunOffset);
 									World->SpawnActor<AFPSGameProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams); 
+									TraceAThreat();
 									break;
 								case 3: // spawn projectile for the Sniper... 
 									if (isCrouching)
@@ -277,6 +280,7 @@ void AFPSGameCharacter::OnFire()
 									}
 									SpawnLocation = GetActorLocation() + SpawnRotation.RotateVector(GunOffset);
 									World->SpawnActor<AFPSGameProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams);
+									TraceAThreat();
 									break;
 								case 4: // spawn projectile for the Shotgun... 
 									if (isCrouching)
@@ -298,6 +302,7 @@ void AFPSGameCharacter::OnFire()
 									World->SpawnActor<AFPSGameProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams);
 									World->SpawnActor<AFPSGameProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams);
 									World->SpawnActor<AFPSGameProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams);
+									TraceAThreat();
 									break;
 							}
 

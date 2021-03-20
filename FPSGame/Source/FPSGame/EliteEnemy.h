@@ -13,7 +13,10 @@ public:
 	// Sets default values for this character's properties
 	AEliteEnemy();
 
-	UPROPERTY(BlueprintReadWrite)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		bool canSeePlayer; 
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		bool isAlerted; 
 
 protected:

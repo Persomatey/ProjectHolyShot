@@ -6,6 +6,7 @@ AEliteEnemy::AEliteEnemy()
 	health = 1.0f;
 	hasTakenDamage = false; 
 	isDead = false; 
+	canSeePlayer = false; 
 	isAlerted = false; 
 }
 
