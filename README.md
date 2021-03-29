@@ -83,6 +83,17 @@ Glowing Arena |
 ## Changelist 
 
 <details>
+  <summary>CL-000037 (The Respawn Update)</summary>
+
+  - Made the following changes: 
+    - Made it so that if there are less than a certain count of enemies in the scene, the Enounter Space will spawn a new enemy every second until there are enough enemies. It will cycle between 4 different enemy locations. 
+      - The count of minimum enemies can be edited in the details pane in the map editor 
+      - The spawn locations can be edited in the details pane in the map editor 
+    - Edited the README to reflect the above changes 
+
+</details>
+
+<details>
   <summary>CL-000036 (The Elite Update)</summary>
 
   - Made the following changes: 
