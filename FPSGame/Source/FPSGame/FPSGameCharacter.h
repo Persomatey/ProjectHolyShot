@@ -120,6 +120,9 @@ class AFPSGameCharacter : public ACharacter
 
 		// Health / Respawn Stuff 
 
+		UPROPERTY(EditAnywhere, BlueprintReadWrite)
+			bool isDead; 
+
 		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Health)
 			float health; 
 
@@ -422,6 +425,9 @@ class AFPSGameCharacter : public ACharacter
 
 		UFUNCTION(BlueprintImplementableEvent)
 			void TraceAThreat(); 
+
+		UFUNCTION(BlueprintImplementableEvent)
+			void PlayerDeath(); 
 
 		UWorld* gtW(TSubclassOf<AActor> actor);
 

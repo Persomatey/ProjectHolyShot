@@ -83,6 +83,23 @@ Glowing Arena |
 ## Changelist 
 
 <details>
+  <summary>CL-000038</summary>
+
+  - Made the following changes: 
+    - Added a new character mesh for a ragdoll effect 
+    - Added a death cam. When the player dies, the following will happen: 
+      - Enable a ragdol mesh on the player controller 
+      - Disable the FPS camera and enable a death cam 
+      - The death cam slowly pans out for 3.5 seconds 
+      - All of the player's controls are disabled 
+    - Now when the player dies after the death cam effect, a new level is loaded 
+      - Currently, the death just loads the same level 
+      - Unsure if I will leave it this way in the future 
+    - Edited the README to reflect the above changes 
+
+</details>
+
+<details>
   <summary>CL-000037 (The Respawn Update)</summary>
 
   - Made the following changes: 

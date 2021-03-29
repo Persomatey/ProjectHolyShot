@@ -108,6 +108,7 @@ AFPSGameCharacter::AFPSGameCharacter() // Constructor
 	healAmount = 0.003f; 
 	healing = false; 
 	stopLooping = false; 
+	isDead = false; 
 
 	// Weapon Stuff 
 	weapon = nullptr; 
@@ -832,7 +833,8 @@ void AFPSGameCharacter::Die()
 {
 	UE_LOG(LogTemp, Warning, TEXT("Player Dying! "));
 	justDied = true;
-	Respawn(); 
+	//Respawn(); 
+	PlayerDeath(); 
 }
 
 void AFPSGameCharacter::Respawn()
