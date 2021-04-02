@@ -540,10 +540,15 @@ void AFPSGameCharacter::ManualReload()
 void AFPSGameCharacter::FinishReloading()
 {
 	isReloading = false; 
+	ableToZoom = true; 
+	ableToSwitchWeapon = true; 
 }
 
 void AFPSGameCharacter::ReloadWeapon(EWeaponType _weaponType)
 {
+	ableToZoom = false;
+	ableToSwitchWeapon = false; 
+
 	if (ableToReload)
 	{
 		UE_LOG(LogTemp, Warning, TEXT("Attempting to reload... "));

@@ -83,6 +83,22 @@ Glowing Arena |
 ## Changelist 
 
 <details>
+  <summary>CL-000039</summary>
+
+  - Made the following changes: 
+    - Fixed bug where the player was able to ADS with the Sniper even while reloading 
+      - Now the player needs to finish reloading before they can ADS again 
+    - Fixed bug where, opening the weapon wheel while pausing then unpausing the game will leave the weapon wheel active 
+      - Now when you pause the game, it deactivates the weapon wheel 
+    - Fixed bug where pressing tab while the weapon wheel was still active wouldn't do anything, forcing you to switch weapons 
+      - Now when you press tab while the weapon wheel is up, it will just close the weapon wheel 
+    - Made it so that the player is unable to open the weapon wheel while reloading 
+      - Now the player must wait until the reloading has finished to open the weapon wheel 
+    - Edited the README to reflect the above changes 
+
+</details>
+
+<details>
   <summary>CL-000038</summary>
 
   - Made the following changes: 
