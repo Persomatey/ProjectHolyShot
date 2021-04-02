@@ -83,6 +83,20 @@ Glowing Arena |
 ## Changelist 
 
 <details>
+  <summary>CL-000040 (The Mini Map Update)</summary>
+
+  - Made the following changes: 
+    - Added a Mini Map to the HUD 
+      - The Elite enemies now have a widget above them that displays a red dot 
+      - The player now has a camera pointed directly above them that renders only the red dots 
+      - The camera is rendered onto a txture and that texture onto a mat that is in the HUD as an img 
+      - Also created a cool looking UI for the minimap that displays over the camera render 
+    - Sometimes when I close the project then reopen the project, the camera will render everything. It's simple to fix, just toggle an item then untoggle it then it goes back to normal. Idk why it's happening though. 
+    - Edited the README to reflect the above changes 
+
+</details>
+
+<details>
   <summary>CL-000039</summary>
 
   - Made the following changes: 
