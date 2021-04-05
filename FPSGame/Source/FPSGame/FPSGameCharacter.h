@@ -429,6 +429,9 @@ class AFPSGameCharacter : public ACharacter
 		UFUNCTION(BlueprintImplementableEvent)
 			void PlayerDeath(); 
 
+		UFUNCTION(BlueprintImplementableEvent)
+			void MuzzleFlash();
+
 		UWorld* gtW(TSubclassOf<AActor> actor);
 
 		struct TouchData

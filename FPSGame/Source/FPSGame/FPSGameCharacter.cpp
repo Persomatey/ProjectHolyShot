@@ -241,7 +241,8 @@ void AFPSGameCharacter::OnFire()
 										GunOffset = FVector(200.0f, 10.0f, 40.0f); // X = Depth , Y = Side , Z = Height 
 									}
 									SpawnLocation = GetActorLocation() + SpawnRotation.RotateVector(GunOffset);
-									World->SpawnActor<AFPSGameProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams);
+									World->SpawnActor<AFPSGameProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams); 
+									MuzzleFlash();
 									TraceAThreat();
 									break;
 								case 1: // spawn projectile for the AR... 
@@ -255,6 +256,7 @@ void AFPSGameCharacter::OnFire()
 									}
 									SpawnLocation = GetActorLocation() + SpawnRotation.RotateVector(GunOffset);
 									World->SpawnActor<AFPSGameProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams);
+									MuzzleFlash();
 									TraceAThreat();
 									break;
 								case 2: // spawn projectile for the Pistol... 
@@ -268,6 +270,7 @@ void AFPSGameCharacter::OnFire()
 									}
 									SpawnLocation = GetActorLocation() + SpawnRotation.RotateVector(GunOffset);
 									World->SpawnActor<AFPSGameProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams); 
+									MuzzleFlash();
 									TraceAThreat();
 									break;
 								case 3: // spawn projectile for the Sniper... 
@@ -281,6 +284,7 @@ void AFPSGameCharacter::OnFire()
 									}
 									SpawnLocation = GetActorLocation() + SpawnRotation.RotateVector(GunOffset);
 									World->SpawnActor<AFPSGameProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams);
+									MuzzleFlash();
 									TraceAThreat();
 									break;
 								case 4: // spawn projectile for the Shotgun... 
@@ -303,6 +307,7 @@ void AFPSGameCharacter::OnFire()
 									World->SpawnActor<AFPSGameProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams);
 									World->SpawnActor<AFPSGameProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams);
 									World->SpawnActor<AFPSGameProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams);
+									MuzzleFlash();
 									TraceAThreat();
 									break;
 							}

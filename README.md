@@ -83,6 +83,19 @@ Glowing Arena |
 ## Changelist 
 
 <details>
+  <summary>CL-000041</summary>
+
+  - Made the following changes: 
+    - Added a little arrow on the mini map to represent the player 
+    - Added muzzle flashes for the enemy and the player weapons 
+      - The muzzle flash for the player weapon changes local location based on which weapon the player has equipped 
+    - Got rid of the enemy in the main testing room 
+      - I'm done with it so there was really no reason to keep it there 
+    - Edited the README to reflect the above changes 
+
+</details>
+
+<details>
   <summary>CL-000040 (The Mini Map Update)</summary>
 
   - Made the following changes: 
