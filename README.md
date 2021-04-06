@@ -83,6 +83,18 @@ Glowing Arena |
 ## Changelist 
 
 <details>
+  <summary>CL-000042</summary>
+
+  - Made the following changes: 
+    - Added a .png image to the main folder in the repository 
+      - This image serves as level design for the campaign/training mode 
+      - It also includes a script for me to say during the game 
+    - Added some level art for when I get to making levels 
+    - Edited the README to reflect the above changes 
+
+</details>
+
+<details>
   <summary>CL-000041</summary>
 
   - Made the following changes: 
