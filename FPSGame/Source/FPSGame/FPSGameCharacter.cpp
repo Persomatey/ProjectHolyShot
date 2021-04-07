@@ -234,25 +234,25 @@ void AFPSGameCharacter::OnFire()
 								case 0: // spawn projectile for the Default Weapon... 
 									if (isCrouching)
 									{
-										GunOffset = FVector(200.0f, 10.0f, -24.0f);
+										GunOffset = FVector(75.0f, 10.0f, -24.0f);
 									}
 									else
 									{
-										GunOffset = FVector(200.0f, 10.0f, 40.0f); // X = Depth , Y = Side , Z = Height 
+										GunOffset = FVector(75.0f, 10.0f, 40.0f); // X = Depth , Y = Side , Z = Height 
 									}
 									SpawnLocation = GetActorLocation() + SpawnRotation.RotateVector(GunOffset);
-									World->SpawnActor<AFPSGameProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams); 
+									World->SpawnActor<AFPSGameProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams);
 									MuzzleFlash();
 									TraceAThreat();
 									break;
 								case 1: // spawn projectile for the AR... 
 									if (isCrouching)
 									{
-										GunOffset = FVector(200.0f, 8.0f, -24.0f);
+										GunOffset = FVector(75.0f, 8.0f, -24.0f);
 									}
 									else
 									{
-										GunOffset = FVector(200.0f, 8.0f, 40.0f); // X = Depth , Y = Side , Z = Height 
+										GunOffset = FVector(75.0f, 8.0f, 40.0f); // X = Depth , Y = Side , Z = Height 
 									}
 									SpawnLocation = GetActorLocation() + SpawnRotation.RotateVector(GunOffset);
 									World->SpawnActor<AFPSGameProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams);
@@ -262,11 +262,11 @@ void AFPSGameCharacter::OnFire()
 								case 2: // spawn projectile for the Pistol... 
 									if (isCrouching)
 									{
-										GunOffset = FVector(200.0f, 8.0f, -24.0f);
+										GunOffset = FVector(75.0f, 8.0f, -24.0f);
 									}
 									else
 									{
-										GunOffset = FVector(200.0f, 8.0f, 40.0f); // X = Depth , Y = Side , Z = Height 
+										GunOffset = FVector(75.0f, 8.0f, 40.0f); // X = Depth , Y = Side , Z = Height 
 									}
 									SpawnLocation = GetActorLocation() + SpawnRotation.RotateVector(GunOffset);
 									World->SpawnActor<AFPSGameProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams); 
@@ -276,11 +276,11 @@ void AFPSGameCharacter::OnFire()
 								case 3: // spawn projectile for the Sniper... 
 									if (isCrouching)
 									{
-										GunOffset = FVector(200.0f, 8.0f, -24.0f);
+										GunOffset = FVector(75.0f, 8.0f, -24.0f);
 									}
 									else
 									{
-										GunOffset = FVector(200.0f, 8.0f, 40.0f); // X = Depth , Y = Side , Z = Height 
+										GunOffset = FVector(75.0f, 8.0f, 40.0f); // X = Depth , Y = Side , Z = Height 
 									}
 									SpawnLocation = GetActorLocation() + SpawnRotation.RotateVector(GunOffset);
 									World->SpawnActor<AFPSGameProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams);
@@ -290,11 +290,11 @@ void AFPSGameCharacter::OnFire()
 								case 4: // spawn projectile for the Shotgun... 
 									if (isCrouching)
 									{
-										GunOffset = FVector(200.0f, 8.0f, -24.0f);
+										GunOffset = FVector(75.0f, 8.0f, -24.0f);
 									}
 									else
 									{
-										GunOffset = FVector(200.0f, 8.0f, 40.0f); // X = Depth , Y = Side , Z = Height 
+										GunOffset = FVector(75.0f, 8.0f, 40.0f); // X = Depth , Y = Side , Z = Height 
 									}
 									SpawnLocation = GetActorLocation() + SpawnRotation.RotateVector(GunOffset);
 									World->SpawnActor<AFPSGameProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams);
@@ -500,6 +500,7 @@ void AFPSGameCharacter::ZoomIn()
 					isZoomedIn = true;
 					GetCharacterMovement()->MaxWalkSpeed = 300.0f;
 					curZoom = 1;
+					UGameplayStatics::PlaySoundAtLocation(this, zoom5xSFX, GetActorLocation());
 				}
 				else if (curZoom == 1)
 				{
@@ -508,11 +509,13 @@ void AFPSGameCharacter::ZoomIn()
 					isZoomedIn = true;
 					GetCharacterMovement()->MaxWalkSpeed = 300.0f;
 					curZoom = 2;
+					UGameplayStatics::PlaySoundAtLocation(this, zoom10xSFX, GetActorLocation());
 				}
 				else if (curZoom == 2)
 				{
 					StopZoom();
 					curZoom = 0;
+					UGameplayStatics::PlaySoundAtLocation(this, unZoomSFX, GetActorLocation());
 				}
 			}
 		}
@@ -785,6 +788,7 @@ void AFPSGameCharacter::TakeDamage(float damageAmount)
 	health -= damageAmount; 
 	UE_LOG(LogTemp, Warning, TEXT("Damage taken! "));
 	DamageShake(); 
+	StopHealingSFX();
 
 	if (health <= 0.0f)
 	{
@@ -807,6 +811,8 @@ void AFPSGameCharacter::RegenHealth()
 	{
 		health = 1.0f; 
 	}
+
+	StartHealingSFX(); 
 
 	/*UE_LOG(LogTemp, Warning, TEXT("Healing Player "));
 	justDamaged = false; 
@@ -831,6 +837,7 @@ bool AFPSGameCharacter::isFullHealth()
 {
 	if (health >= 1.0f)
 	{
+		StopHealingSFX();
 		return true; 
 	}
 	else

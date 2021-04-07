@@ -26,6 +26,14 @@ https://trello.com/b/ABDPFNxA/project-holy-shot
 </details>
 
 <details>
+  <summary>Level Design Graphs</summary>
+
+  - Tutorial Level (level design and dialogue)
+    - <img src="https://github.com/Persomatey/ProjectHolyShot/blob/master/LevelDesignAndScript.jpg" width="800" height="364" />
+
+</details>
+
+<details>
   <summary>Name Ideas</summary>
 
 _ |
@@ -67,12 +75,16 @@ Glowing Arena |
 **Animation**
 - [mixamo](https://www.mixamo.com/#/2)
 
+**Music**
+- [Faisal Anderson](https://assetstore.unity.com/publishers/31375)
+
 **SFX**
 - [Hunter Goodin](https://huntergoodin.com/)
 - [Komposite Sound](https://assetstore.unity.com/publishers/32329)
 - [Olivier Girardot](https://assetstore.unity.com/publishers/39771)
 - [Sound Earth Game Audio](https://assetstore.unity.com/publishers/12036)
 - [Shapeforms](https://assetstore.unity.com/publishers/40210)
+- [StormwaveAudio](https://www.audiomicro.com/artist/StormwaveAudio)
 
 **Special Thanks**
 - [Gerardo Bonnet](https://screams-from-the-cellar.itch.io/) 
@@ -81,6 +93,40 @@ Glowing Arena |
 - [Ryan Laley](https://www.youtube.com/c/RyanLaley/)
 
 ## Changelist 
+
+<details>
+  <summary>CL-000043 (The Audio Update)</summary>
+
+  - Made the following changes: 
+    - Audio changes: 
+      - Added a jumping SFX 
+      - Added a landing SFX 
+      - Added a healing SFX 
+      - Added a sparking SFX for the enemies 
+      - Added an explosion SFX for the enemies 
+      - Added a zooming SFX for 5x zoom 
+      - Added a zooming SFX for 10x zoom 
+      - Added an unzooming SFX 
+      - Added a grenade explosion SFX 
+      - Added a grenade throwing SFX 
+      - Added a grenade pickup SFX 
+      - Added a menu hover SFX for when you hover over a button 
+      - Added a weapon wheel hover SFX for when you hover over a weapon on the weapon wheel 
+      - Added an enemy shooting SFX 
+    - Added music
+      - Set the main menu music to the song in the UE4 starter pack 
+      - Added music for battles 
+    - Changed the way that the collision worked for the projectiles
+      - They do not collide with the player or themselves 
+      - They do collide with enemies and thw world's dymamic collision 
+    - The projectiles now spawn way closer to the player character 
+    - Added a Level Design dropdown to the README 
+      - Added the Tutorial Level's design image 
+    - Added StormwaveAudio to the SFX section of the credits 
+    - Added Faisal Anderson to the Music section of the credits 
+    - Edited the README to reflect the above changes 
+
+</details>
 
 <details>
   <summary>CL-000042</summary>

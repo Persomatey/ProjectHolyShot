@@ -1,3 +1,4 @@
+#include "Kismet/GameplayStatics.h"
 #include "EliteEnemy.h"
 
 // Sets default values
@@ -13,7 +14,7 @@ AEliteEnemy::AEliteEnemy()
 void AEliteEnemy::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-	//UE_LOG(LogTemp, Warning, TEXT("Hello, World! I am a Elite! "));
+	//UE_LOG(LogTemp, Warning, TEXT("Hello, World! I am a Elite! ")); 
 }
 
 void AEliteEnemy::BeginPlay()
@@ -42,6 +43,7 @@ void AEliteEnemy::TakeDamage(float damageTaken)
 void AEliteEnemy::BeginDeath()
 {
 	UE_LOG(LogTemp, Warning, TEXT("Elite Death Starting"));
+	//UGameplayStatics::PlaySoundAtLocation(this, enemySparksSound, GetActorLocation());
 }
 
 void AEliteEnemy::ShootBullets(TSubclassOf<class AFPSGameProjectile> passedProj)
@@ -51,4 +53,5 @@ void AEliteEnemy::ShootBullets(TSubclassOf<class AFPSGameProjectile> passedProj)
 	FVector SpawnLocation = GetActorLocation() + SpawnRotation.RotateVector(GunOffset);
 	UWorld* const World = GetWorld();
 	World->SpawnActor<AFPSGameProjectile>(passedProj, SpawnLocation, SpawnRotation);
+	UGameplayStatics::PlaySoundAtLocation(this, enemyShootSound, GetActorLocation());
 }

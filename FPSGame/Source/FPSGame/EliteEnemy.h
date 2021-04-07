@@ -19,12 +19,23 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		bool isAlerted; 
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Weapon)
+		class USoundBase* enemyShootSound;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Weapon)
+		class USoundBase* enemySparksSound;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Weapon)
+		class USoundBase* enemyExplosionSound;
+
 protected:
 	// Called when the game starts or when spawned
 	void BeginPlay();
 
 	// Called every frame 
 	void Tick(float DeltaTime);
+
+	bool deathBegan; 
 
 	UFUNCTION(BlueprintCallable)
 		void TakeDamage(float damageTaken);

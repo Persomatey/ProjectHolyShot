@@ -83,6 +83,21 @@ class AFPSGameCharacter : public ACharacter
 			class USoundBase* switchWeaponSFX;	// Sound to play each time we switch the weapon
 
 		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Gameplay)
+			class USoundBase* grenadeThrowSFX;
+
+		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Gameplay)
+			class USoundBase* jumpSFX;
+
+		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Gameplay)
+			class USoundBase* landSFX;
+
+		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Gameplay)
+			class USoundBase* healSFX;
+
+		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Gameplay)
+			bool healSFXisPlaying; 
+
+		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Gameplay)
 			uint32 bUsingMotionControllers : 1; 	// Whether to use motion controller location for aiming. 
 
 	#pragma endregion TemplateHeaderCode
@@ -260,6 +275,15 @@ class AFPSGameCharacter : public ACharacter
 		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Gameplay)
 			bool ableToGrenade; 
 
+		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Weapon)
+			class USoundBase* zoom5xSFX;
+
+		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Weapon)
+			class USoundBase* zoom10xSFX;
+
+		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Weapon)
+			class USoundBase* unZoomSFX;
+
 		// Melee Stuff 
 
 		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Gameplay)
@@ -431,6 +455,12 @@ class AFPSGameCharacter : public ACharacter
 
 		UFUNCTION(BlueprintImplementableEvent)
 			void MuzzleFlash();
+
+		UFUNCTION(BlueprintImplementableEvent)
+			void StartHealingSFX(); 
+
+		UFUNCTION(BlueprintImplementableEvent)
+			void StopHealingSFX();
 
 		UWorld* gtW(TSubclassOf<AActor> actor);
 
