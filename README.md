@@ -71,6 +71,7 @@ Glowing Arena |
 - [LemmoLab](https://assetstore.unity.com/publishers/28991) 
 - [MASH Virtual](https://assetstore.unity.com/publishers/26592) 
 - [Factory Of Models](https://assetstore.unity.com/publishers/26499) 
+- [Adventure Forge](https://assetstore.unity.com/publishers/12038)
 
 **Animation**
 - [mixamo](https://www.mixamo.com/#/2)
@@ -93,6 +94,17 @@ Glowing Arena |
 - [Ryan Laley](https://www.youtube.com/c/RyanLaley/)
 
 ## Changelist 
+
+<details>
+  <summary>CL-000044</summary>
+
+  - Made the following changes: 
+    - Created the Tutorial Level geometry 
+    - Added a weapon cabinet asset to the project 
+    - Added Adventure Forge to the Art section of the credits 
+    - Edited the README to reflect the above changes 
+
+</details>
 
 <details>
   <summary>CL-000043 (The Audio Update)</summary>
