@@ -95,6 +95,18 @@ Glowing Arena |
 
 ## Changelist 
 
+
+<details>
+  <summary>CL-000045</summary>
+
+  - Made the following changes: 
+    - Changed the player's dimensions 
+      - The player's capsule height is now 100 
+      - Now when the player crouches, the player's capsule height changes to 75 
+      - Edited the README to reflect the above changes 
+
+</details>
+
 <details>
   <summary>CL-000044</summary>
 
