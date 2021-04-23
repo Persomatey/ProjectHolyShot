@@ -86,6 +86,7 @@ Glowing Arena |
 - [Sound Earth Game Audio](https://assetstore.unity.com/publishers/12036)
 - [Shapeforms](https://assetstore.unity.com/publishers/40210)
 - [StormwaveAudio](https://www.audiomicro.com/artist/StormwaveAudio)
+- [ZapSplat](https://www.zapsplat.com/)
 
 **Special Thanks**
 - [Gerardo Bonnet](https://screams-from-the-cellar.itch.io/) 
@@ -95,6 +96,36 @@ Glowing Arena |
 
 ## Changelist 
 
+<details>
+  <summary>CL-000045 (The Tutorial Update)</summary>
+
+  - Made the following changes: 
+    - Rerecorded all tutorial dialogue as I made some mistakes the first time such as referring to the orange walls as "blue" 
+    - Incorporated the tutorial level controller into the tutorial level 
+      - It starts up right away and controls the player's experience through the level 
+      - Is able to play audio, opens doors, lift platforms, place targets, and record enemy deaths 
+    - Finished the tutorial level 
+    - Added SFX for doors opening 
+    - Added SFX for the doors closing 
+    - Added a song by Faisal Anderson (already credited) 
+      - Probably going to use this song for the arena mode as well as the fighting portion of the tutorial mode 
+    - Added collision to the weapon cabinets 
+    - Added a glow to the weapon silhouette sprites and grenade sprite 
+    - Changed the anchoring for the weapon sprites in the HUD 
+      - Before they were anchored to the middle, now they are anchored to the lower right corner 
+    - Added a collision on top of the rails in the tutorial level 
+      - So that the player can't jump over them 
+    - Added a soft radial light to the player 
+    - Changed the pistol damage from 0.1f to 0.18f 
+    - Moved the player's spawn area in the tutorial to slightly further away from the walls 
+    - Changed the material on the doors to make them orange 
+    - Made all of the enemy health bars visible from 4000 units from 2800 units 
+    - Changed the way that death works 
+      - If the player is in the tutorial level, if they die, they will respawn at a checkpoint 
+    - Added Zapslpat to the SFX section of the credits 
+      - Edited the README to reflect the above changes 
+
+</details>
 
 <details>
   <summary>CL-000045</summary>

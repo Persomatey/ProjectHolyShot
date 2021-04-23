@@ -848,7 +848,7 @@ bool AFPSGameCharacter::isFullHealth()
 
 void AFPSGameCharacter::Die()
 {
-	UE_LOG(LogTemp, Warning, TEXT("Player Dying! "));
+	//UE_LOG(LogTemp, Warning, TEXT("Player Dying! "));
 	justDied = true;
 	//Respawn(); 
 	PlayerDeath(); 
@@ -856,7 +856,7 @@ void AFPSGameCharacter::Die()
 
 void AFPSGameCharacter::Respawn()
 {
-	UE_LOG(LogTemp, Warning, TEXT("Player Respawning... "));
+	//UE_LOG(LogTemp, Warning, TEXT("Player Respawning... "));
 	health = 1.0; 
 	SetActorLocationAndRotation(respawnLoc, respawnRot); 
 	GetWorld()->GetFirstPlayerController()->SetControlRotation(respawnRot); 
@@ -866,12 +866,12 @@ void AFPSGameCharacter::SetNewSpawnLoc(FVector newLoc, FRotator newRot)
 {
 	if (respawnLoc == newLoc)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("This is already the current spawn location! "));
+		//UE_LOG(LogTemp, Warning, TEXT("This is already the current spawn location! "));
 		isSameLoc = true; 
 	}
 	else
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Setting a new spawn location... "));
+		//UE_LOG(LogTemp, Warning, TEXT("Setting a new spawn location... "));
 		respawnLoc = newLoc;
 		respawnRot = newRot;
 		isSameLoc = true; 

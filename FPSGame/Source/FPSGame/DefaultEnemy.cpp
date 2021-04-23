@@ -30,16 +30,16 @@ void ADefaultEnemy::TakeDamage(float damageTaken)
 	if (health <= 0)
 	{
 		health = 0;
-		UE_LOG(LogTemp, Warning, TEXT("I'm dead. I'm a Target! "));
+		//UE_LOG(LogTemp, Warning, TEXT("I'm dead. I'm a Target! "));
 		isDead = true;
 	}
 	else
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Oww, that hurt. I'm a Target! "));
+		//UE_LOG(LogTemp, Warning, TEXT("Oww, that hurt. I'm a Target! "));
 	}
 }
 
 void ADefaultEnemy::BeginDeath()
 {
-	UE_LOG(LogTemp, Warning, TEXT("Target Death Starting"));
+	//UE_LOG(LogTemp, Warning, TEXT("Target Death Starting"));
 }
