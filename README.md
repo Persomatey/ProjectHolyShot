@@ -97,7 +97,24 @@ Glowing Arena |
 ## Changelist 
 
 <details>
-  <summary>CL-000045 (The Tutorial Update)</summary>
+  <summary>CL-000047</summary>
+
+  - Made the following changes: 
+    - Made it so that the player can not access the weapon wheel until all 4 weapons are equipped 
+      - Technically it's making sure that the weaponSize int var is == 4 
+    - In the weapon cabinets, changed the texture for the ammo boxes to the correct textures 
+    - Closed the seam in the back of the weapon room 
+    - Raised the volume of the announcer voice
+    - Changed the way that the Elite AI works a little bit 
+      - Made it so that when they don't see the player, they won't keep shooting 
+      - Made it so that they properly alert each of their allies 
+      - Made it so that when they move towards the player, they will look in their general direction afterward 
+      - Edited the README to reflect the above changes 
+
+</details>
+
+<details>
+  <summary>CL-000046 (The Tutorial Update)</summary>
 
   - Made the following changes: 
     - Rerecorded all tutorial dialogue as I made some mistakes the first time such as referring to the orange walls as "blue" 

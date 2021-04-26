@@ -880,7 +880,7 @@ void AFPSGameCharacter::SetNewSpawnLoc(FVector newLoc, FRotator newRot)
 
 void AFPSGameCharacter::SwitchToNextPrimaryWeapon()
 {
-	if (weaponsSize > 1)
+	if (weaponsSize == 4)
 	{
 		if (ableToSwitchWeapon)
 		{
@@ -988,7 +988,6 @@ void AFPSGameCharacter::SwitchToNextPrimaryWeapon()
 //	default: break; 
 //}
 #pragma endregion Doom-Like System
-
 		}
 	}
 	else
@@ -999,8 +998,8 @@ void AFPSGameCharacter::SwitchToNextPrimaryWeapon()
 
 void AFPSGameCharacter::SwitchToNewPrimaryWeapon()
 {
-	if (ableToSwitchWeapon)
-	{
+	//if (ableToSwitchWeapon)
+	//{
 		fireTimerHandle.Invalidate();
 		weaponSwitched = true;
 
@@ -1015,7 +1014,7 @@ void AFPSGameCharacter::SwitchToNewPrimaryWeapon()
 
 		SwitchWeaponMesh(weaponIndex); 
 		UGameplayStatics::PlaySoundAtLocation(this, switchWeaponSFX, GetActorLocation());
-	}
+	//}
 }
 
 void AFPSGameCharacter::SwitchToSpecificWeapon(int passedIndex)
