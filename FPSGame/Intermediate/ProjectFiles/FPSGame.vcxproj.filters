@@ -3,7 +3,7 @@
   <ItemGroup>
     <None Include="..\..\FPSGame.uproject" />
     <Filter Include="Source">
-      <UniqueIdentifier>{FB5DC7FE-DE8C-4501-A737-57120E9C4A65}</UniqueIdentifier>
+      <UniqueIdentifier>{BCF37CF5-1BB8-4019-84EA-A4E1B805F493}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Source\FPSGame.Target.cs">
       <Filter>Source</Filter>
@@ -12,7 +12,7 @@
       <Filter>Source</Filter>
     </None>
     <Filter Include="Config">
-      <UniqueIdentifier>{58B0104F-AD72-49D9-8A63-EF70C36804DD}</UniqueIdentifier>
+      <UniqueIdentifier>{5BA00D9E-379B-4584-BC41-9CB7CABAC0E1}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Config\DefaultEditor.ini">
       <Filter>Config</Filter>
@@ -30,7 +30,7 @@
       <Filter>Config</Filter>
     </None>
     <Filter Include="Source\FPSGame">
-      <UniqueIdentifier>{F5F280CC-DBD8-4D07-83DB-B2ECCCCB0BB6}</UniqueIdentifier>
+      <UniqueIdentifier>{737BE16F-9A67-4148-961A-68F3661768CF}</UniqueIdentifier>
     </Filter>
     <ClCompile Include="..\..\Source\FPSGame\BaseAmmo.cpp">
       <Filter>Source\FPSGame</Filter>
@@ -93,6 +93,12 @@
       <Filter>Source\FPSGame</Filter>
     </ClCompile>
     <ClInclude Include="..\..\Source\FPSGame\FPSGameProjectile.h">
+      <Filter>Source\FPSGame</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\FPSGame\HighScoreTracker.cpp">
+      <Filter>Source\FPSGame</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\FPSGame\HighScoreTracker.h">
       <Filter>Source\FPSGame</Filter>
     </ClInclude>
     <ClCompile Include="..\..\Source\FPSGame\TurretEnemy.cpp">

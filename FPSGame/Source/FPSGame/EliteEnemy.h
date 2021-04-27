@@ -54,4 +54,7 @@ protected:
 
 	UFUNCTION(BlueprintCallable)
 		void ShootBullets(TSubclassOf<class AFPSGameProjectile> passedProj);
+
+	UFUNCTION(BlueprintCallable)
+		int GenerateDropIndex(); 
 };

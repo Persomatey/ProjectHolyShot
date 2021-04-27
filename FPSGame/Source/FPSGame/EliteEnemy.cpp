@@ -55,3 +55,23 @@ void AEliteEnemy::ShootBullets(TSubclassOf<class AFPSGameProjectile> passedProj)
 	World->SpawnActor<AFPSGameProjectile>(passedProj, SpawnLocation, SpawnRotation);
 	UGameplayStatics::PlaySoundAtLocation(this, enemyShootSound, GetActorLocation());
 }
+
+int AEliteEnemy::GenerateDropIndex()
+{
+	srand((unsigned)time(0));
+	int randRes = 1 + (rand() % 10);
+	int dropRes;	// 1 = grenades, 2 = Shotgun, 3 = Sniper, 4 = AR, 5 = Pistol 
+
+	if (randRes == 1)
+	{ dropRes = 1; }
+	else if (randRes == 2)
+	{ dropRes = 2; }
+	else if (randRes == 3)
+	{ dropRes = 3; }
+	else if (randRes >= 4 && randRes <= 6)
+	{ dropRes = 4; }
+	else if (randRes >= 7 && randRes <= 10)
+	{dropRes = 5;}
+
+	return dropRes; 
+}

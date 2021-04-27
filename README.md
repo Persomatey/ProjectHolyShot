@@ -97,6 +97,34 @@ Glowing Arena |
 ## Changelist 
 
 <details>
+  <summary>CL-000048 (The Arena Mode Update)</summary>
+
+    - Made the following changes: 
+    - Finished Arena Level 
+      - Copied the room in the tutorial where you fight the robots 
+    - When the enemies die in the Arena Mode, they will drop pickups for the player 
+      - 10% chance of dropping two Grenade Pickups 
+      - 10% chance of dropping a Shotgun Ammo Box 
+      - 10% chance of dropping a Sniper Ammo Box 
+      - 30% chance of dropping a Assault Rifle Ammo Box 
+      - 40% chance of dropping a Pistol Ammo Box 
+    - Made it so that when the player is dead, the health bars stop showing 
+    - Made it so that when the player dies in arena mode, it does the following instaed of reloading the level: 
+      - Sets time scale to 0 so no movement occurs 
+      - Blurs the screen 
+      - Opens a HUD Widget which displays the following: 
+        - Amount of enemies killed this game 
+        - How long you've lasted 
+        - Score (the two numbers combined)
+        - High score 
+          - If you've set the new high score, both score texts will be yellow 
+        - A button to return to main menu 
+        - A button to replay 
+      - Edited the README to reflect the above changes 
+
+</details>
+
+<details>
   <summary>CL-000047</summary>
 
   - Made the following changes: 
