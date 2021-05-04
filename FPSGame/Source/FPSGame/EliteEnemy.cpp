@@ -1,5 +1,5 @@
-#include "Kismet/GameplayStatics.h"
 #include "EliteEnemy.h"
+#include "Kismet/GameplayStatics.h"
 
 // Sets default values
 AEliteEnemy::AEliteEnemy()

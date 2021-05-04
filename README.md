@@ -97,6 +97,60 @@ Glowing Arena |
 ## Changelist 
 
 <details>
+  <summary>CL-000049 (The Builds Update)</summary>
+
+  - Made the following changes: 
+    - Fixed bug where when the game launches, I got the following error: 
+      - Default Property warnings and errors: Error: CDO Constructor (FPSGameHUD): Failed to find /Game/FirstPerson/Textures/FirstPersonCrosshair
+      - Fixed the bug by changing the reference path to the crosshair in code to my new fully transparent one 
+    - Fixed bug where when trying to load the Tutorial or Arena modes, the game will throw up a Fatal Error then crash 
+      - This was resolved with the aforemention fix 
+    - Made it so that the game will no longer open Steam VR by default when launching 
+      - Resolved this by navigating to C:\Program Files\Epic Games\"Engine Version"\Engine\Plugins\Runtime\Steam\SteamVR\SteamVR.uplugin then opening that file with a text editor, then modifying the line "EnabledByDefault" from true to false, then saving the file 
+    - Fixed the bug where in the Tutorial, the player started with all of the weapons equipped 
+      - Apparently in that scene, I had "ToggleIfIWantAllWeaponsEquippedOnStart" set to true in that scene when it should be false for the tutorial 
+    - Made the player's ragdoll a little heavier so hopefully it won't fly all over the place on death anymore 
+    - Made some collision changes for the Elite Enemy 
+      - Changed the collision for the Robot mesh to "No Collision" 
+      - Made the capsule collider wider 
+    - Set the visibility for the player's hand model (for the pistol) to false when the player dies 
+    - Fixed bug where the healthbars weren't appearing 
+      - Apparently the call GetPlayerCharacter is better than GetPlayerController for these kinds of things 
+    - Made the default enemies for the Shotgun a little bit closer
+    - Made changes to the Shotgun 
+      - Made the bullets a little more powerful 
+      - Made the range a little better than before 
+    - Made it so that Right Shoft also works for crouching
+    - Lowered how far the Door C can go in the tutorial 
+      - Used to be 170 higher than it's starting position, now it's 162 higher 
+      - 161 higher is too far, the player can't crouch that low 
+    - Fixed the NavMesh in the robot fighting room as they weren't navigating properly 
+    - Made the grenade last a little longer
+    - Made the glow around the grenade sprite a little more noticeable 
+    - Slightly changed the positioning of the grenade HUD images 
+    - Slightly changed the dimensions of the healthbar in the HUD 
+    - Got rid of the Reticle for being Unarmed 
+      - It just looked dumb and I don't have anything that you interact with by looking at it, only positionally 
+    - Raised the alarm sounds for Audio Clip 14 K, X, and P 
+    - Changed the way all of the menus look 
+      - All of the widgets no longer have background images, only image blurs 
+      - Changed the name of the "Options" menu to "Settings" 
+      - Added some more credits to the credits 
+      - Made the main menu level open to a camera pointed at a hexagonal pattern from the combat levels 
+    - Added some graphic art for the game 
+      - The name "Helation" with a lens flare going through it for the title screen and stuff 
+      - An icon featuring the Elite enemy with a lens flare going through it 
+    - Got rid of the Minimap for the HUD 
+      - It wasn't working when I packaged the game for some reason 
+        - Seems to be an issue with the current version of Unreal 
+      - May add it in in the future but for now, this is fine 
+    - Made a new HUD image without the little curve in the bottom right corner for the minimap 
+    - Added a Builds folder where I will be putting packaged builds for the game 
+      - Edited the README to reflect the above changes 
+
+</details>
+
+<details>
   <summary>CL-000048 (The Arena Mode Update)</summary>
 
     - Made the following changes: 
@@ -109,7 +163,7 @@ Glowing Arena |
       - 30% chance of dropping a Assault Rifle Ammo Box 
       - 40% chance of dropping a Pistol Ammo Box 
     - Made it so that when the player is dead, the health bars stop showing 
-    - Made it so that when the player dies in arena mode, it does the following instaed of reloading the level: 
+    - Made it so that when the player dies in arena mode, it does the following instead of reloading the level: 
       - Sets time scale to 0 so no movement occurs 
       - Blurs the screen 
       - Opens a HUD Widget which displays the following: 
