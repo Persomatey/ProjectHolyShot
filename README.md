@@ -97,6 +97,39 @@ Glowing Arena |
 ## Changelist 
 
 <details>
+  <summary>CL-000051</summary>
+
+  - Made the following changes: 
+    - Added some HUD messages for the tutorial 
+      - It'll say things like "Hold Shift to crouch" and stuff when those parts of the tutorial are occuring 
+    - Raised the location of where the HUD messages go 
+    - Centered the location of the health bar on the HUD 
+    - Made the time difference between the Elite's shots 0.1f 
+      - The same as the player's AR fire rate 
+    - Added a slight outline to the player's messages 
+    - Fixed a bug where when th eplayer pressed 'Esc' or 'P' during the pause menu, it'd get rid of the mouse and not unpause the game 
+    - Reset High Score to 0 
+      - Did this in anticipation of the game's release 
+      - Edited the README to reflect the above changes 
+
+</details>
+
+<details>
+  <summary>CL-000050</summary>
+
+  - Made the following changes: 
+    - Moved the camera and backdrop in the main menu back a little
+      - For some reason, there was a sphere in the middle of the backdrop before. Now there's not. Weird. 
+    - Changed the game's name to "Helation" in most references 
+      - The game still exports the .exe as "FPSGame.exe" but renaming it to "Helation.exe" works fine 
+    - Fixed bug where, after throwing a grenade, the enemies either won't take damage, or take very little damage 
+      - It had to do with how the grenade expanded
+        - Now, as it's expanding, it checks every frame if the damage is <= 0.0 and if it is, destroy the object 
+      - Edited the README to reflect the above changes 
+
+</details>
+
+<details>
   <summary>CL-000049 (The Builds Update)</summary>
 
   - Made the following changes: 

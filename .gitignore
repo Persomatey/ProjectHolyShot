@@ -24,6 +24,8 @@
 !/RawContent/**/*
 
 !/Helation/**/*
+!/GraphicArt/**/*
+!/LevelDesignAndScript/**/*
 
 # OS/platform generated files.
 
