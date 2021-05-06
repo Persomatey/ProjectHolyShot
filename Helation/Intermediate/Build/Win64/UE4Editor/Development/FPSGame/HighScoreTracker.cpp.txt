@@ -1,0 +1,3 @@
+C:\Users\hunte\Documents\Unreal Projects\Helation\Intermediate\Build\Win64\UE4Editor\Development\FPSGame\Definitions.FPSGame.h
+C:\Users\hunte\Documents\Unreal Projects\Helation\Source\FPSGame\HighScoreTracker.h
+C:\Users\hunte\Documents\Unreal Projects\Helation\Intermediate\Build\Win64\UE4Editor\Inc\FPSGame\HighScoreTracker.generated.h

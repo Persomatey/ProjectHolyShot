@@ -1,0 +1,34 @@
+/NOLOGO
+/errorReport:prompt
+/MACHINE:x64
+/SUBSYSTEM:WINDOWS
+/DEF
+/NAME:"UE4Editor-FPSGame-0768.dll"
+/IGNORE:4221
+/NODEFAULTLIB
+"C:\Users\hunte\Documents\Unreal Projects\FPSGame\Intermediate\Build\Win64\FPSGameEditor\Development\Engine\SharedPCH.Engine.ShadowErrors.h.obj"
+"C:\Users\hunte\Documents\Unreal Projects\FPSGame\Intermediate\Build\Win64\UE4Editor\Development\FPSGame\BaseAmmo.cpp.obj"
+"C:\Users\hunte\Documents\Unreal Projects\FPSGame\Intermediate\Build\Win64\UE4Editor\Development\FPSGame\BaseWeapon.cpp.obj"
+"C:\Users\hunte\Documents\Unreal Projects\FPSGame\Intermediate\Build\Win64\UE4Editor\Development\FPSGame\DefaultEnemy.cpp.obj"
+"C:\Users\hunte\Documents\Unreal Projects\FPSGame\Intermediate\Build\Win64\UE4Editor\Development\FPSGame\DroneEnemy.cpp.obj"
+"C:\Users\hunte\Documents\Unreal Projects\FPSGame\Intermediate\Build\Win64\UE4Editor\Development\FPSGame\EliteEnemy.cpp.obj"
+"C:\Users\hunte\Documents\Unreal Projects\FPSGame\Intermediate\Build\Win64\UE4Editor\Development\FPSGame\FPSGame.cpp.obj"
+"C:\Users\hunte\Documents\Unreal Projects\FPSGame\Intermediate\Build\Win64\UE4Editor\Development\FPSGame\FPSGameCharacter.cpp.obj"
+"C:\Users\hunte\Documents\Unreal Projects\FPSGame\Intermediate\Build\Win64\UE4Editor\Development\FPSGame\FPSGameGameMode.cpp.obj"
+"C:\Users\hunte\Documents\Unreal Projects\FPSGame\Intermediate\Build\Win64\UE4Editor\Development\FPSGame\FPSGameHUD.cpp.obj"
+"C:\Users\hunte\Documents\Unreal Projects\FPSGame\Intermediate\Build\Win64\UE4Editor\Development\FPSGame\FPSGameProjectile.cpp.obj"
+"C:\Users\hunte\Documents\Unreal Projects\FPSGame\Intermediate\Build\Win64\UE4Editor\Development\FPSGame\TurretEnemy.cpp.obj"
+"C:\Users\hunte\Documents\Unreal Projects\FPSGame\Intermediate\Build\Win64\UE4Editor\Development\FPSGame\BaseAmmo.gen.cpp.obj"
+"C:\Users\hunte\Documents\Unreal Projects\FPSGame\Intermediate\Build\Win64\UE4Editor\Development\FPSGame\BaseWeapon.gen.cpp.obj"
+"C:\Users\hunte\Documents\Unreal Projects\FPSGame\Intermediate\Build\Win64\UE4Editor\Development\FPSGame\DefaultEnemy.gen.cpp.obj"
+"C:\Users\hunte\Documents\Unreal Projects\FPSGame\Intermediate\Build\Win64\UE4Editor\Development\FPSGame\DroneEnemy.gen.cpp.obj"
+"C:\Users\hunte\Documents\Unreal Projects\FPSGame\Intermediate\Build\Win64\UE4Editor\Development\FPSGame\EliteEnemy.gen.cpp.obj"
+"C:\Users\hunte\Documents\Unreal Projects\FPSGame\Intermediate\Build\Win64\UE4Editor\Development\FPSGame\FPSGame.init.gen.cpp.obj"
+"C:\Users\hunte\Documents\Unreal Projects\FPSGame\Intermediate\Build\Win64\UE4Editor\Development\FPSGame\FPSGameCharacter.gen.cpp.obj"
+"C:\Users\hunte\Documents\Unreal Projects\FPSGame\Intermediate\Build\Win64\UE4Editor\Development\FPSGame\FPSGameGameMode.gen.cpp.obj"
+"C:\Users\hunte\Documents\Unreal Projects\FPSGame\Intermediate\Build\Win64\UE4Editor\Development\FPSGame\FPSGameHUD.gen.cpp.obj"
+"C:\Users\hunte\Documents\Unreal Projects\FPSGame\Intermediate\Build\Win64\UE4Editor\Development\FPSGame\FPSGameProjectile.gen.cpp.obj"
+"C:\Users\hunte\Documents\Unreal Projects\FPSGame\Intermediate\Build\Win64\UE4Editor\Development\FPSGame\TurretEnemy.gen.cpp.obj"
+"C:\Users\hunte\Documents\Unreal Projects\FPSGame\Intermediate\Build\Win64\UE4Editor\Development\FPSGame\Default.rc2.res"
+/OUT:"C:\Users\hunte\Documents\Unreal Projects\FPSGame\Intermediate\Build\Win64\UE4Editor\Development\FPSGame\UE4Editor-FPSGame-0768.lib"
+/INCLUDE:IMPLEMENT_MODULE_FPSGame
