@@ -1,7 +1,0 @@
-C:\Users\hunte\Documents\Unreal Projects\Helation\Intermediate\Build\Win64\UE4Editor\Development\FPSGame\Definitions.FPSGame.h
-C:\Users\hunte\Documents\Unreal Projects\Helation\Source\FPSGame\TurretEnemy.h
-C:\Program Files\Epic Games\UE_4.25\Engine\Source\Runtime\Engine\Classes\GameFramework/Character.h
-C:\Program Files\Epic Games\UE_4.25\Engine\Source\Runtime\Engine\Classes\GameFramework/RootMotionSource.h
-C:\Program Files\Epic Games\UE_4.25\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\RootMotionSource.generated.h
-C:\Program Files\Epic Games\UE_4.25\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\Character.generated.h
-C:\Users\hunte\Documents\Unreal Projects\Helation\Intermediate\Build\Win64\UE4Editor\Inc\FPSGame\TurretEnemy.generated.h

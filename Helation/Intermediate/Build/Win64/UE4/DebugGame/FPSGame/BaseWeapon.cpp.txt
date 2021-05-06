@@ -1,3 +1,0 @@
-C:\Users\hunte\Documents\Unreal Projects\FPSGame\Intermediate\Build\Win64\UE4\DebugGame\FPSGame\Definitions.FPSGame.h
-C:\Users\hunte\Documents\Unreal Projects\FPSGame\Source\FPSGame\BaseWeapon.h
-C:\Users\hunte\Documents\Unreal Projects\FPSGame\Intermediate\Build\Win64\UE4\Inc\FPSGame\BaseWeapon.generated.h
