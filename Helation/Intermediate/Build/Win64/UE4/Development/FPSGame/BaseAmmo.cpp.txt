@@ -1,0 +1,3 @@
+C:\Users\hunte\Documents\Unreal Projects\Helation\Intermediate\Build\Win64\UE4\Development\FPSGame\Definitions.FPSGame.h
+C:\Users\hunte\Documents\Unreal Projects\Helation\Source\FPSGame\BaseAmmo.h
+C:\Users\hunte\Documents\Unreal Projects\Helation\Intermediate\Build\Win64\UE4\Inc\FPSGame\BaseAmmo.generated.h

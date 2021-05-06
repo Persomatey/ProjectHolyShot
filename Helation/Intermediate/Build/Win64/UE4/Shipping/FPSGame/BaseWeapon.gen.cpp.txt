@@ -1,0 +1,5 @@
+C:\Users\hunte\Documents\Unreal Projects\FPSGame\Intermediate\Build\Win64\UE4\Shipping\FPSGame\Definitions.FPSGame.h
+C:\Program Files\Epic Games\UE_4.25\Engine\Source\Runtime\CoreUObject\Public\UObject/GeneratedCppIncludes.h
+C:\Program Files\Epic Games\UE_4.25\Engine\Source\Runtime\CoreUObject\Public\UObject/MetaData.h
+C:\Users\hunte\Documents\Unreal Projects\FPSGame\Source\FPSGame/BaseWeapon.h
+C:\Users\hunte\Documents\Unreal Projects\FPSGame\Intermediate\Build\Win64\UE4\Inc\FPSGame\BaseWeapon.generated.h
