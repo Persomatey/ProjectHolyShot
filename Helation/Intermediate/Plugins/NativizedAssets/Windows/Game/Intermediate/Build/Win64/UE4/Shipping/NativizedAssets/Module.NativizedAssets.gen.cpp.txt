@@ -1,0 +1,19 @@
+C:\Users\hunte\Documents\Unreal Projects\FPSGame\Intermediate\Plugins\NativizedAssets\Windows\Game\Intermediate\Build\Win64\UE4\Shipping\NativizedAssets\Definitions.NativizedAssets.h
+C:/Users/hunte/Documents/Unreal Projects/FPSGame/Intermediate/Plugins/NativizedAssets/Windows/Game/Intermediate/Build/Win64/UE4/Inc/NativizedAssets/ENiagaraBooleanLogicOps__pf2855420827.gen.cpp
+C:\Program Files\Epic Games\UE_4.25\Engine\Source\Runtime\CoreUObject\Public\UObject/GeneratedCppIncludes.h
+C:\Program Files\Epic Games\UE_4.25\Engine\Source\Runtime\CoreUObject\Public\UObject/MetaData.h
+C:\Users\hunte\Documents\Unreal Projects\FPSGame\Intermediate\Plugins\NativizedAssets\Windows\Game\Source\NativizedAssets/Public/ENiagaraBooleanLogicOps__pf2855420827.h
+C:\Users\hunte\Documents\Unreal Projects\FPSGame\Intermediate\Plugins\NativizedAssets\Windows\Game\Intermediate\Build\Win64\UE4\Inc\NativizedAssets\ENiagaraBooleanLogicOps__pf2855420827.generated.h
+C:/Users/hunte/Documents/Unreal Projects/FPSGame/Intermediate/Plugins/NativizedAssets/Windows/Game/Intermediate/Build/Win64/UE4/Inc/NativizedAssets/ENiagaraCoordinateSpace__pf2855420827.gen.cpp
+C:\Users\hunte\Documents\Unreal Projects\FPSGame\Intermediate\Plugins\NativizedAssets\Windows\Game\Source\NativizedAssets/Public/ENiagaraCoordinateSpace__pf2855420827.h
+C:\Users\hunte\Documents\Unreal Projects\FPSGame\Intermediate\Plugins\NativizedAssets\Windows\Game\Intermediate\Build\Win64\UE4\Inc\NativizedAssets\ENiagaraCoordinateSpace__pf2855420827.generated.h
+C:/Users/hunte/Documents/Unreal Projects/FPSGame/Intermediate/Plugins/NativizedAssets/Windows/Game/Intermediate/Build/Win64/UE4/Inc/NativizedAssets/ENiagaraExpansionMode__pf2855420827.gen.cpp
+C:\Users\hunte\Documents\Unreal Projects\FPSGame\Intermediate\Plugins\NativizedAssets\Windows\Game\Source\NativizedAssets/Public/ENiagaraExpansionMode__pf2855420827.h
+C:\Users\hunte\Documents\Unreal Projects\FPSGame\Intermediate\Plugins\NativizedAssets\Windows\Game\Intermediate\Build\Win64\UE4\Inc\NativizedAssets\ENiagaraExpansionMode__pf2855420827.generated.h
+C:/Users/hunte/Documents/Unreal Projects/FPSGame/Intermediate/Plugins/NativizedAssets/Windows/Game/Intermediate/Build/Win64/UE4/Inc/NativizedAssets/ENiagaraOrientationAxis__pf2855420827.gen.cpp
+C:\Users\hunte\Documents\Unreal Projects\FPSGame\Intermediate\Plugins\NativizedAssets\Windows\Game\Source\NativizedAssets/Public/ENiagaraOrientationAxis__pf2855420827.h
+C:\Users\hunte\Documents\Unreal Projects\FPSGame\Intermediate\Plugins\NativizedAssets\Windows\Game\Intermediate\Build\Win64\UE4\Inc\NativizedAssets\ENiagaraOrientationAxis__pf2855420827.generated.h
+C:/Users/hunte/Documents/Unreal Projects/FPSGame/Intermediate/Plugins/NativizedAssets/Windows/Game/Intermediate/Build/Win64/UE4/Inc/NativizedAssets/ENiagaraRandomnessMode__pf2855420827.gen.cpp
+C:\Users\hunte\Documents\Unreal Projects\FPSGame\Intermediate\Plugins\NativizedAssets\Windows\Game\Source\NativizedAssets/Public/ENiagaraRandomnessMode__pf2855420827.h
+C:\Users\hunte\Documents\Unreal Projects\FPSGame\Intermediate\Plugins\NativizedAssets\Windows\Game\Intermediate\Build\Win64\UE4\Inc\NativizedAssets\ENiagaraRandomnessMode__pf2855420827.generated.h
+C:/Users/hunte/Documents/Unreal Projects/FPSGame/Intermediate/Plugins/NativizedAssets/Windows/Game/Intermediate/Build/Win64/UE4/Inc/NativizedAssets/NativizedAssets.init.gen.cpp

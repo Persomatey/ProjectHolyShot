@@ -1,0 +1,60 @@
+{
+	"manifestChunkId": -1,
+	"pluginName": "NativizedAssets",
+	"outputDir": "C:/Users/hunte/Documents/Unreal Projects/FPSGame/Intermediate/Plugins/NativizedAssets/Windows/Game",
+	"moduleDependencies": [
+		"Package'/Script/CoreUObject'",
+		"Package'/Script/Engine'"
+	],
+	"convertedAssets":
+	{
+		"/Niagara/Enums/ENiagaraCoordinateSpace.ENiagaraCoordinateSpace":
+		{
+			"assetType": "Class'/Script/Engine.UserDefinedEnum'",
+			"targetObjPath": "/Niagara/Enums/ENiagaraCoordinateSpace.ENiagaraCoordinateSpace",
+			"generatedHeaderPath": "C:/Users/hunte/Documents/Unreal Projects/FPSGame/Intermediate/Plugins/NativizedAssets/Windows/Game/Source/NativizedAssets/Public/ENiagaraCoordinateSpace__pf2855420827.h",
+			"generatedCppPath": "C:/Users/hunte/Documents/Unreal Projects/FPSGame/Intermediate/Plugins/NativizedAssets/Windows/Game/Source/NativizedAssets/Private/ENiagaraCoordinateSpace__pf2855420827.cpp"
+		},
+		"/Niagara/Enums/ENiagaraOrientationAxis.ENiagaraOrientationAxis":
+		{
+			"assetType": "Class'/Script/Engine.UserDefinedEnum'",
+			"targetObjPath": "/Niagara/Enums/ENiagaraOrientationAxis.ENiagaraOrientationAxis",
+			"generatedHeaderPath": "C:/Users/hunte/Documents/Unreal Projects/FPSGame/Intermediate/Plugins/NativizedAssets/Windows/Game/Source/NativizedAssets/Public/ENiagaraOrientationAxis__pf2855420827.h",
+			"generatedCppPath": "C:/Users/hunte/Documents/Unreal Projects/FPSGame/Intermediate/Plugins/NativizedAssets/Windows/Game/Source/NativizedAssets/Private/ENiagaraOrientationAxis__pf2855420827.cpp"
+		},
+		"/Niagara/Enums/ENiagaraBooleanLogicOps.ENiagaraBooleanLogicOps":
+		{
+			"assetType": "Class'/Script/Engine.UserDefinedEnum'",
+			"targetObjPath": "/Niagara/Enums/ENiagaraBooleanLogicOps.ENiagaraBooleanLogicOps",
+			"generatedHeaderPath": "C:/Users/hunte/Documents/Unreal Projects/FPSGame/Intermediate/Plugins/NativizedAssets/Windows/Game/Source/NativizedAssets/Public/ENiagaraBooleanLogicOps__pf2855420827.h",
+			"generatedCppPath": "C:/Users/hunte/Documents/Unreal Projects/FPSGame/Intermediate/Plugins/NativizedAssets/Windows/Game/Source/NativizedAssets/Private/ENiagaraBooleanLogicOps__pf2855420827.cpp"
+		},
+		"/Niagara/Enums/ENiagaraRandomnessMode.ENiagaraRandomnessMode":
+		{
+			"assetType": "Class'/Script/Engine.UserDefinedEnum'",
+			"targetObjPath": "/Niagara/Enums/ENiagaraRandomnessMode.ENiagaraRandomnessMode",
+			"generatedHeaderPath": "C:/Users/hunte/Documents/Unreal Projects/FPSGame/Intermediate/Plugins/NativizedAssets/Windows/Game/Source/NativizedAssets/Public/ENiagaraRandomnessMode__pf2855420827.h",
+			"generatedCppPath": "C:/Users/hunte/Documents/Unreal Projects/FPSGame/Intermediate/Plugins/NativizedAssets/Windows/Game/Source/NativizedAssets/Private/ENiagaraRandomnessMode__pf2855420827.cpp"
+		},
+		"/Niagara/Enums/ENiagaraExpansionMode.ENiagaraExpansionMode":
+		{
+			"assetType": "Class'/Script/Engine.UserDefinedEnum'",
+			"targetObjPath": "/Niagara/Enums/ENiagaraExpansionMode.ENiagaraExpansionMode",
+			"generatedHeaderPath": "C:/Users/hunte/Documents/Unreal Projects/FPSGame/Intermediate/Plugins/NativizedAssets/Windows/Game/Source/NativizedAssets/Public/ENiagaraExpansionMode__pf2855420827.h",
+			"generatedCppPath": "C:/Users/hunte/Documents/Unreal Projects/FPSGame/Intermediate/Plugins/NativizedAssets/Windows/Game/Source/NativizedAssets/Private/ENiagaraExpansionMode__pf2855420827.cpp"
+		}
+	},
+	"unconvertedDependencies":
+	{
+	},
+	"nativizationOptions":
+	{
+		"platformName": "WindowsNoEditor",
+		"serverOnlyPlatform": false,
+		"clientOnlyPlatform": false,
+		"bExcludeMonolithicHeaders": false,
+		"excludedModules": [],
+		"excludedAssets": [],
+		"excludedFolderPaths": []
+	}
+}
