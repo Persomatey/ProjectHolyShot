@@ -5,27 +5,43 @@
 # Do not ignore git files in the root of the repo.
 !/.git*
 
-# Do not ignore current project's `.uproject`.
+# Do not ignore current project's '.uproject' or '.sln'.
 !/*.uproject
+!/*.sln
 
 # Do not ignore source, config and plugins dirs.
-!/Source/**
-!/Config/**
-!/Plugins/**
+#!/Source/**
+#!/Config/**
+#!/Plugins/**
 
 # Only allow .uasset and .umap files from /Content dir.
 # They're tracked by git-lfs, don't forget to track other
 # files if adding them here.
-!/Content/**/*.uasset
-!/Content/**/*.umap
+#!/Content/**/*.uasset
+#!/Content/**/*.umap
 
 # Allow any files from /RawContent dir.
 # Any file in /RawContent dir will be managed by git lfs.
-!/RawContent/**/*
+#!/RawContent/**/*
 
-!/Helation/**/*
-!/GraphicArt/**/*
-!/LevelDesignAndScript/**/*
+!/Helation/Config/**
+!/Helation/Content/**
+!/Helation/DerivedDataCache/**
+!/Helation/FileSources/**
+
+!/Helation/Intermediate/AssetRegistryCache/**
+!/Helation/Intermediate/Plugins**
+!/Helation/Intermediate/ProjectFiles/**
+!/Helation/Intermediate/ReimportCache/**
+!/Helation/Intermediate/Staging/**
+!/Helation/Intermediate/CachedAssetRegistry.bin**
+!/Helation/Intermediate/TargetInfo.json**
+
+!/Helation/Helation.sln**
+!/Helation/Helation.uproject**
+
+!/GraphicArt/**
+!/LevelDesignAndScript/**
 
 # OS/platform generated files.
 
