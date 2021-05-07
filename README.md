@@ -97,6 +97,21 @@ Glowing Arena |
 ## Changelist 
 
 <details>
+  <summary>CL-000052</summary>
+
+  - Made the following changes: 
+    - Changed the way that the movement for the checkpoint in the tutorial works 
+      - At first, the position was set to lower than it's origin 
+        - Now to moves to trigger collision with the player 
+      - At first, the target destination was set to -300 below origin 
+        - This was too high, the player needed to jump to hit it so now the target is -600 from origin
+    - Had to rebase a lot of GitHub stuff because there was issues with the repo after CL-000049 
+    - Made significant changes to the .gitignore file 
+    - Edited the README to reflect the above changes 
+
+</details>
+
+<details>
   <summary>CL-000051</summary>
 
   - Made the following changes: 
@@ -110,7 +125,7 @@ Glowing Arena |
     - Fixed a bug where when th eplayer pressed 'Esc' or 'P' during the pause menu, it'd get rid of the mouse and not unpause the game 
     - Reset High Score to 0 
       - Did this in anticipation of the game's release 
-      - Edited the README to reflect the above changes 
+    - Edited the README to reflect the above changes 
 
 </details>
 
