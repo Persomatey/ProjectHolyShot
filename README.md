@@ -101,6 +101,18 @@ Glowing Arena |
 ## Changelist 
 
 <details>
+  <summary>CL-000053 (The Quality Assurance Update)</summary>
+
+  - Made the following changes: 
+    - Fixed transparencies on the keyboard keys in the Controls menu 
+      - Did this by opening them in Photoshop, navigating to Image > Mode > RGB Color, saving, then reimporting 
+    - Fixed bug where, if the player melees while reloading, the weapon will dissappear 
+      - Fixed this by making it so that the player can't melee while reloading 
+    - Edited the README to reflect the above changes 
+
+</details>
+
+<details>
   <summary>CL-000052</summary>
 
   - Made the following changes: 

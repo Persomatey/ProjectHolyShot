@@ -550,12 +550,14 @@ void AFPSGameCharacter::FinishReloading()
 	isReloading = false; 
 	ableToZoom = true; 
 	ableToSwitchWeapon = true; 
+	ableToMelee = true; 
 }
 
 void AFPSGameCharacter::ReloadWeapon(EWeaponType _weaponType)
 {
 	ableToZoom = false;
 	ableToSwitchWeapon = false; 
+	ableToMelee = false;
 
 	if (ableToReload)
 	{
