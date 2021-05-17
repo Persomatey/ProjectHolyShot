@@ -14,7 +14,7 @@ SLN solution in Visual Studio Community 2019 Preview
 https://visualstudio.microsoft.com/vs/community/
 
 Trello board: 
-https://trello.com/b/ABDPFNxA/project-holy-shot
+https://trello.com/b/ABDPFNxA/helation
 
 <details>
   <summary>Some Tutorials that have helped</summary>
