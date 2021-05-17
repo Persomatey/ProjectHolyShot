@@ -33,7 +33,7 @@ https://trello.com/b/ABDPFNxA/project-holy-shot
   <summary>Level Design Graphs</summary>
 
   - Tutorial Level (level design and dialogue)
-    - <img src="https://github.com/Persomatey/ProjectHolyShot/blob/master/LevelDesignAndScript.jpg" width="800" height="364" />
+    - <img src="https://raw.githubusercontent.com/Persomatey/Helation/master/LevelDesignAndScript/LevelDesignAndScript-v03.jpg" width="800" height="364" />
 
 </details>
 
@@ -106,7 +106,7 @@ Glowing Arena |
   - Made the following changes: 
     - Fixed transparencies on the keyboard keys in the Controls menu 
       - Did this by opening them in Photoshop, navigating to Image > Mode > RGB Color, saving, then reimporting 
-    - Fixed bug where, if the player melees while reloading, the weapon will dissappear 
+    - Fixed bug where, if the player melees while reloading, the weapon will disappear  
       - Fixed this by making it so that the player can't melee while reloading 
     - Edited the README to reflect the above changes 
 
