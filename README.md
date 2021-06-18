@@ -9,12 +9,12 @@ https://persomatey.itch.io/helation
 ## Details
 
 <details>
-  <summary>Specs</summary>
+	<summary>Specs</summary>
 
-  - Unreal Engine 4.25.4
+	- Unreal Engine 4.25.4
 
-  - SLN solution in Visual Studio Community 2019 Preview 
-    - https://visualstudio.microsoft.com/vs/community/
+	- SLN solution in Visual Studio Community 2019 Preview 
+		- https://visualstudio.microsoft.com/vs/community/
 
   - Trello board: 
     https://trello.com/b/ABDPFNxA/helation
@@ -22,122 +22,122 @@ https://persomatey.itch.io/helation
 </details>
 
 <details>
-  <summary>Level Design Graphs</summary>
+	<summary>Level Design Graphs</summary>
 
-  - Tutorial Level (level design and dialogue)
-    - <img src="https://raw.githubusercontent.com/Persomatey/Helation/master/LevelDesignAndScript/LevelDesignAndScript-v03.jpg" width="800" height="364" />
-
-</details>
-
-<details>
-  <summary>Name Ideas</summary>
-
-  <i>Ended up going with Helation</i> |
-  ------------------ |
-  Halation | 
-  Coroter | 
-  Corotor | 
-  Halated Shot | 
-  Discus Shot | 
-  Radiant Shot | 
-  Halation Shooter |
-  Radiant Shooter |
-  Halation Arena |
-  Radiant Arena | 
-  Coroning Arena | 
-  Discus Arena | 
-  Glowing Arena | 
+	- Tutorial Level (level design and dialogue)
+		- <img src="https://raw.githubusercontent.com/Persomatey/Helation/master/LevelDesignAndScript/LevelDesignAndScript-v03.jpg" width="800" height="364" />
 
 </details>
 
 <details>
-  <summary>Credits</summary>
+	<summary>Name Ideas</summary>
 
-  **Programming**
-  - [Hunter Goodin](https://huntergoodin.com/)
-
-  **UI/UX Art/Design**
-  - [Hunter Goodin](https://huntergoodin.com/)
-
-  **Art**
-  - [Hunter Goodin](https://huntergoodin.com/)
-  - [ursa.anim](https://assetstore.unity.com/publishers/13142)
-  - [Dungeon Mason](https://assetstore.unity.com/publishers/23554)
-  - [Adequate](https://assetstore.unity.com/publishers/9348)
-  - [MLX](https://assetstore.unity.com/publishers/21576)
-  - [LemmoLab](https://assetstore.unity.com/publishers/28991) 
-  - [MASH Virtual](https://assetstore.unity.com/publishers/26592) 
-  - [Factory Of Models](https://assetstore.unity.com/publishers/26499) 
-  - [Adventure Forge](https://assetstore.unity.com/publishers/12038)
-
-  **Animation**
-  - [mixamo](https://www.mixamo.com/#/2)
-
-  **Music**
-  - [Faisal Anderson](https://assetstore.unity.com/publishers/31375)
-
-  **SFX**
-  - [Hunter Goodin](https://huntergoodin.com/)
-  - [Komposite Sound](https://assetstore.unity.com/publishers/32329)
-  - [Olivier Girardot](https://assetstore.unity.com/publishers/39771)
-  - [Sound Earth Game Audio](https://assetstore.unity.com/publishers/12036)
-  - [Shapeforms](https://assetstore.unity.com/publishers/40210)
-  - [StormwaveAudio](https://www.audiomicro.com/artist/StormwaveAudio)
-  - [ZapSplat](https://www.zapsplat.com/)
-
-  **Special Thanks**
-  - [Gerardo Bonnet](https://screams-from-the-cellar.itch.io/) 
-  - [Shawn the Bro](https://shawnthebro.com/) 
-  - [Tesla Dev](https://www.youtube.com/user/TeslaUE4/)
-  - [Ryan Laley](https://www.youtube.com/c/RyanLaley/)
+	<i>Ended up going with Helation</i> |
+	------------------ |
+	Halation | 
+	Coroter | 
+	Corotor | 
+	Halated Shot | 
+	Discus Shot | 
+	Radiant Shot | 
+	Halation Shooter |
+	Radiant Shooter |
+	Halation Arena |
+	Radiant Arena | 
+	Coroning Arena | 
+	Discus Arena | 
+	Glowing Arena | 
 
 </details>
 
 <details>
-  <summary>Change List</summary><blockquote>
+	<summary>Credits</summary>
+
+	**Programming**
+	- [Hunter Goodin](https://huntergoodin.com/)
+
+	**UI/UX Art/Design**
+	- [Hunter Goodin](https://huntergoodin.com/)
+
+	**Art**
+	- [Hunter Goodin](https://huntergoodin.com/)
+	- [ursa.anim](https://assetstore.unity.com/publishers/13142)
+	- [Dungeon Mason](https://assetstore.unity.com/publishers/23554)
+	- [Adequate](https://assetstore.unity.com/publishers/9348)
+	- [MLX](https://assetstore.unity.com/publishers/21576)
+	- [LemmoLab](https://assetstore.unity.com/publishers/28991) 
+	- [MASH Virtual](https://assetstore.unity.com/publishers/26592) 
+	- [Factory Of Models](https://assetstore.unity.com/publishers/26499) 
+	- [Adventure Forge](https://assetstore.unity.com/publishers/12038)
+
+	**Animation**
+	- [mixamo](https://www.mixamo.com/#/2)
+
+	**Music**
+	- [Faisal Anderson](https://assetstore.unity.com/publishers/31375)
+
+	**SFX**
+	- [Hunter Goodin](https://huntergoodin.com/)
+	- [Komposite Sound](https://assetstore.unity.com/publishers/32329)
+	- [Olivier Girardot](https://assetstore.unity.com/publishers/39771)
+	- [Sound Earth Game Audio](https://assetstore.unity.com/publishers/12036)
+	- [Shapeforms](https://assetstore.unity.com/publishers/40210)
+	- [StormwaveAudio](https://www.audiomicro.com/artist/StormwaveAudio)
+	- [ZapSplat](https://www.zapsplat.com/)
+
+	**Special Thanks**
+	- [Gerardo Bonnet](https://screams-from-the-cellar.itch.io/) 
+	- [Shawn the Bro](https://shawnthebro.com/) 
+	- [Tesla Dev](https://www.youtube.com/user/TeslaUE4/)
+	- [Ryan Laley](https://www.youtube.com/c/RyanLaley/)
+
+</details>
 
 <details>
-  <summary>CL-000053 (The Quality Assurance Update)</summary>
+	<summary>Change List</summary><blockquote>
 
-  - Made the following changes: 
-    - Fixed transparencies on the keyboard keys in the Controls menu 
-      - Did this by opening them in Photoshop, navigating to Image > Mode > RGB Color, saving, then reimporting 
-    - Fixed bug where, if the player melees while reloading, the weapon will disappear  
-      - Fixed this by making it so that the player can't melee while reloading 
-    - Edited the README to reflect the above changes 
+<details>
+	<summary>CL-000053 (The Quality Assurance Update)</summary>
+
+	- Made the following changes: 
+		- Fixed transparencies on the keyboard keys in the Controls menu 
+			- Did this by opening them in Photoshop, navigating to Image > Mode > RGB Color, saving, then reimporting 
+		- Fixed bug where, if the player melees while reloading, the weapon will disappear  
+			- Fixed this by making it so that the player can't melee while reloading 
+		- Edited the README to reflect the above changes 
 
 </details>
 
 <details>
   <summary>CL-000052</summary>
 
-  - Made the following changes: 
-    - Changed the way that the movement for the checkpoint in the tutorial works 
-      - At first, the position was set to lower than it's origin 
-        - Now to moves to trigger collision with the player 
-      - At first, the target destination was set to -300 below origin 
-        - This was too high, the player needed to jump to hit it so now the target is -600 from origin
-    - Had to rebase a lot of GitHub stuff because there was issues with the repo after CL-000049 
-    - Made significant changes to the .gitignore file 
-    - Edited the README to reflect the above changes 
+	- Made the following changes: 
+		- Changed the way that the movement for the checkpoint in the tutorial works 
+			- At first, the position was set to lower than it's origin 
+			- Now to moves to trigger collision with the player 
+			- At first, the target destination was set to -300 below origin 
+			- This was too high, the player needed to jump to hit it so now the target is -600 from origin
+		- Had to rebase a lot of GitHub stuff because there was issues with the repo after CL-000049 
+		- Made significant changes to the .gitignore file 
+		- Edited the README to reflect the above changes 
 
 </details>
 
 <details>
   <summary>CL-000051</summary>
 
-  - Made the following changes: 
-    - Added some HUD messages for the tutorial 
-      - It'll say things like "Hold Shift to crouch" and stuff when those parts of the tutorial are occuring 
-    - Raised the location of where the HUD messages go 
-    - Centered the location of the health bar on the HUD 
-    - Made the time difference between the Elite's shots 0.1f 
-      - The same as the player's AR fire rate 
-    - Added a slight outline to the player's messages 
-    - Fixed a bug where when th eplayer pressed 'Esc' or 'P' during the pause menu, it'd get rid of the mouse and not unpause the game 
-    - Reset High Score to 0 
-      - Did this in anticipation of the game's release 
-    - Edited the README to reflect the above changes 
+	- Made the following changes: 
+		- Added some HUD messages for the tutorial 
+			- It'll say things like "Hold Shift to crouch" and stuff when those parts of the tutorial are occuring 
+		- Raised the location of where the HUD messages go 
+		- Centered the location of the health bar on the HUD 
+		- Made the time difference between the Elite's shots 0.1f 
+			- The same as the player's AR fire rate 
+		- Added a slight outline to the player's messages 
+		- Fixed a bug where when th eplayer pressed 'Esc' or 'P' during the pause menu, it'd get rid of the mouse and not unpause the game 
+		- Reset High Score to 0 
+			- Did this in anticipation of the game's release 
+		- Edited the README to reflect the above changes 
 
 </details>
 
