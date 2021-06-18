@@ -11,13 +11,13 @@ https://persomatey.itch.io/helation
 <details>
   <summary>Specs</summary>
 
-Unreal Engine 4.25.4
+  - Unreal Engine 4.25.4
 
-SLN solution in Visual Studio Community 2019 Preview 
-https://visualstudio.microsoft.com/vs/community/
+  - SLN solution in Visual Studio Community 2019 Preview 
+    - https://visualstudio.microsoft.com/vs/community/
 
-Trello board: 
-https://trello.com/b/ABDPFNxA/helation
+  - Trello board: 
+    https://trello.com/b/ABDPFNxA/helation
 
 </details>
 
@@ -93,7 +93,8 @@ https://trello.com/b/ABDPFNxA/helation
 
 </details>
 
-## Changelist 
+<details>
+  <summary>Change List</summary><blockquote>
 
 <details>
   <summary>CL-000053 (The Quality Assurance Update)</summary>
@@ -1033,3 +1034,5 @@ https://trello.com/b/ABDPFNxA/helation
     - Edited the README to reflect some details about the project 
       
 </details>
+  
+</blockquote></details>
