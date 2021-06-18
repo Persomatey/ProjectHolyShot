@@ -1015,7 +1015,7 @@ https://persomatey.itch.io/helation
 </details>
 
 <details>
-  <summary>CL-000000 (First!)</summary>
+  <summary>CL-000000 (The First Update)</summary>
   
   - Uploaded project to it's current status: 
     - Using Unreal's FPS toolkit 
