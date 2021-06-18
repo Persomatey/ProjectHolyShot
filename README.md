@@ -6,7 +6,10 @@ https://persomatey.itch.io/helation
 
 ![Image of Helation](https://raw.githubusercontent.com/Persomatey/Helation/master/GraphicArt/HelationGraphicArt-ForWebsite.png)
 
-## Specs
+## Details
+
+<details>
+  <summary>Specs</summary>
 
 Unreal Engine 4.25.4
 
@@ -15,17 +18,6 @@ https://visualstudio.microsoft.com/vs/community/
 
 Trello board: 
 https://trello.com/b/ABDPFNxA/helation
-
-<details>
-  <summary>Some Tutorials that have helped</summary>
-
-  - [ShawntheBro's FPS Tutorial in C++ and Blueprints](https://www.youtube.com/playlist?list=PLfAjixzz6o82cLilSI3Vbv0hu868hAp7P)
-    - I didn't include all of the features such as tilting and special abilities and ended up changing things quite a bit in the end, but this tutorial was helpful in understanding the basics of Unreal Engine development 
-  - [This video by ShawntheBro on incorporating Mixamo animations](https://www.youtube.com/watch?v=VMuekRGuEVU&list=PLKX52YByM7dbvjFrFa0gutBPynA_sfWK8&index=8)
-  - [Ryan Laley's Shooter AI Tutorial primarily in Blueprints](https://www.youtube.com/playlist?list=PL4G2bSPE_8ums1OIn0tdj1xbpw_8W-GIP)
-    - I did mix in some C++ for some aspects of the enemies such as health, and later enemies aside from the Elite don't behave this way at all, but a lot of the AI behavior still in the blueprints based on this tutorial 
-  - [Tesla Dev's video that helped with some of the debugging I had to figure out](https://www.youtube.com/watch?v=jWRkM-95k2I&list=PLKX52YByM7dbvjFrFa0gutBPynA_sfWK8&index=9&t=88s)
-  - [Tesla Dev's video on camera shake](https://www.youtube.com/watch?v=kJCP_8u9odA&list=PLKX52YByM7dbvjFrFa0gutBPynA_sfWK8&index=10)
 
 </details>
 
@@ -40,63 +32,66 @@ https://trello.com/b/ABDPFNxA/helation
 <details>
   <summary>Name Ideas</summary>
 
-_ |
------------------- |
-Halation | 
-Coroter | 
-Corotor | 
-Halated Shot | 
-Discus Shot | 
-Radiant Shot | 
-Halation Shooter |
-Radiant Shooter |
-Halation Arena |
-Radiant Arena | 
-Coroning Arena | 
-Discus Arena | 
-Glowing Arena | 
+  <i>Ended up going with Helation</i> |
+  ------------------ |
+  Halation | 
+  Coroter | 
+  Corotor | 
+  Halated Shot | 
+  Discus Shot | 
+  Radiant Shot | 
+  Halation Shooter |
+  Radiant Shooter |
+  Halation Arena |
+  Radiant Arena | 
+  Coroning Arena | 
+  Discus Arena | 
+  Glowing Arena | 
 
 </details>
 
-## Credits 
+<details>
+  <summary>Credits</summary>
 
-**Programming**
-- [Hunter Goodin](https://huntergoodin.com/)
+  **Programming**
+  - [Hunter Goodin](https://huntergoodin.com/)
 
-**UI/UX Art/Design**
-- [Hunter Goodin](https://huntergoodin.com/)
+  **UI/UX Art/Design**
+  - [Hunter Goodin](https://huntergoodin.com/)
 
-**Art**
-- [Hunter Goodin](https://huntergoodin.com/)
-- [ursa.anim](https://assetstore.unity.com/publishers/13142)
-- [Dungeon Mason](https://assetstore.unity.com/publishers/23554)
-- [Adequate](https://assetstore.unity.com/publishers/9348)
-- [MLX](https://assetstore.unity.com/publishers/21576)
-- [LemmoLab](https://assetstore.unity.com/publishers/28991) 
-- [MASH Virtual](https://assetstore.unity.com/publishers/26592) 
-- [Factory Of Models](https://assetstore.unity.com/publishers/26499) 
-- [Adventure Forge](https://assetstore.unity.com/publishers/12038)
+  **Art**
+  - [Hunter Goodin](https://huntergoodin.com/)
+  - [ursa.anim](https://assetstore.unity.com/publishers/13142)
+  - [Dungeon Mason](https://assetstore.unity.com/publishers/23554)
+  - [Adequate](https://assetstore.unity.com/publishers/9348)
+  - [MLX](https://assetstore.unity.com/publishers/21576)
+  - [LemmoLab](https://assetstore.unity.com/publishers/28991) 
+  - [MASH Virtual](https://assetstore.unity.com/publishers/26592) 
+  - [Factory Of Models](https://assetstore.unity.com/publishers/26499) 
+  - [Adventure Forge](https://assetstore.unity.com/publishers/12038)
 
-**Animation**
-- [mixamo](https://www.mixamo.com/#/2)
+  **Animation**
+  - [mixamo](https://www.mixamo.com/#/2)
 
-**Music**
-- [Faisal Anderson](https://assetstore.unity.com/publishers/31375)
+  **Music**
+  - [Faisal Anderson](https://assetstore.unity.com/publishers/31375)
 
-**SFX**
-- [Hunter Goodin](https://huntergoodin.com/)
-- [Komposite Sound](https://assetstore.unity.com/publishers/32329)
-- [Olivier Girardot](https://assetstore.unity.com/publishers/39771)
-- [Sound Earth Game Audio](https://assetstore.unity.com/publishers/12036)
-- [Shapeforms](https://assetstore.unity.com/publishers/40210)
-- [StormwaveAudio](https://www.audiomicro.com/artist/StormwaveAudio)
-- [ZapSplat](https://www.zapsplat.com/)
+  **SFX**
+  - [Hunter Goodin](https://huntergoodin.com/)
+  - [Komposite Sound](https://assetstore.unity.com/publishers/32329)
+  - [Olivier Girardot](https://assetstore.unity.com/publishers/39771)
+  - [Sound Earth Game Audio](https://assetstore.unity.com/publishers/12036)
+  - [Shapeforms](https://assetstore.unity.com/publishers/40210)
+  - [StormwaveAudio](https://www.audiomicro.com/artist/StormwaveAudio)
+  - [ZapSplat](https://www.zapsplat.com/)
 
-**Special Thanks**
-- [Gerardo Bonnet](https://screams-from-the-cellar.itch.io/) 
-- [Shawn the Bro](https://shawnthebro.com/) 
-- [Tesla Dev](https://www.youtube.com/user/TeslaUE4/)
-- [Ryan Laley](https://www.youtube.com/c/RyanLaley/)
+  **Special Thanks**
+  - [Gerardo Bonnet](https://screams-from-the-cellar.itch.io/) 
+  - [Shawn the Bro](https://shawnthebro.com/) 
+  - [Tesla Dev](https://www.youtube.com/user/TeslaUE4/)
+  - [Ryan Laley](https://www.youtube.com/c/RyanLaley/)
+
+</details>
 
 ## Changelist 
 
