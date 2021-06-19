@@ -4,7 +4,7 @@
 
 https://persomatey.itch.io/helation
 
-![Image of Helation](https://raw.githubusercontent.com/Persomatey/Helation/master/GraphicArt/HelationGraphicArt-ForWebsite.png)
+<img src="https://raw.githubusercontent.com/Persomatey/Helation/master/GraphicArt/HelationGraphicArt-ForWebsite.png" width="347" height="347" />
 
 ## Details
 
