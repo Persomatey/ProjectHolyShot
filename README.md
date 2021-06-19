@@ -419,7 +419,7 @@ Glowing Arena |
 <summary>CL-000039</summary>
 <blockquote>
 
-	- Made the following changes: 
+- Made the following changes: 
 	- Fixed bug where the player was able to ADS with the Sniper even while reloading 
 		- Now the player needs to finish reloading before they can ADS again 
 	- Fixed bug where, opening the weapon wheel while pausing then unpausing the game will leave the weapon wheel active 
