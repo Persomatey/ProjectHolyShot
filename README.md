@@ -9,57 +9,62 @@ https://persomatey.itch.io/helation
 ## Details
 
 <details>
-	<summary>Specs</summary>
+<summary>Specs</summary>
+<blockquote>
 
-	- Unreal Engine 4.25.4
+- Unreal Engine 4.25.4
 
-	- SLN solution in Visual Studio Community 2019 Preview 
-		- https://visualstudio.microsoft.com/vs/community/
+- SLN solution in Visual Studio Community 2019 Preview 
+	- https://visualstudio.microsoft.com/vs/community/
 
-  - Trello board: 
-    https://trello.com/b/ABDPFNxA/helation
+- Trello board: 
+https://trello.com/b/ABDPFNxA/helation
 
+</blockquote>
 </details>
 
 <details>
-	<summary>Level Design Graphs</summary>
+<summary>Level Design Graphs</summary>
+<blockquote>
 
-	- Tutorial Level (level design and dialogue)
-		- <img src="https://raw.githubusercontent.com/Persomatey/Helation/master/LevelDesignAndScript/LevelDesignAndScript-v03.jpg" width="800" height="364" />
+- Tutorial Level (level design and dialogue)
+	- <img src="https://raw.githubusercontent.com/Persomatey/Helation/master/LevelDesignAndScript/LevelDesignAndScript-v03.jpg" width="800" height="364" />
 
+</blockquote>
 </details>
 
 <details>
-	<summary>Name Ideas</summary>
+<summary>Name Ideas</summary>
+<blockquote>
 
-	<i>Ended up going with Helation</i> |
-	------------------ |
-	Halation | 
-	Coroter | 
-	Corotor | 
-	Halated Shot | 
-	Discus Shot | 
-	Radiant Shot | 
-	Halation Shooter |
-	Radiant Shooter |
-	Halation Arena |
-	Radiant Arena | 
-	Coroning Arena | 
-	Discus Arena | 
-	Glowing Arena | 
+<i>Ended up going with Helation</i> |
+------------------ |
+Halation | 
+Coroter | 
+Corotor | 
+Halated Shot | 
+Discus Shot | 
+Radiant Shot | 
+Halation Shooter |
+Radiant Shooter |
+Halation Arena |
+Radiant Arena | 
+Coroning Arena | 
+Discus Arena | 
+Glowing Arena | 
 
+</blockquote>
 </details>
 
 <details>
-	<summary>Credits</summary>
-
-	**Programming**
+<summary>Credits</summary>
+<blockquote>
+	
+- <b>Programming</b>
 	- [Hunter Goodin](https://huntergoodin.com/)
-
-	**UI/UX Art/Design**
+- <b>UI/UX Art/Design</b>
 	- [Hunter Goodin](https://huntergoodin.com/)
-
-	**Art**
+- <b>Art</b>
 	- [Hunter Goodin](https://huntergoodin.com/)
 	- [ursa.anim](https://assetstore.unity.com/publishers/13142)
 	- [Dungeon Mason](https://assetstore.unity.com/publishers/23554)
@@ -69,14 +74,11 @@ https://persomatey.itch.io/helation
 	- [MASH Virtual](https://assetstore.unity.com/publishers/26592) 
 	- [Factory Of Models](https://assetstore.unity.com/publishers/26499) 
 	- [Adventure Forge](https://assetstore.unity.com/publishers/12038)
-
-	**Animation**
+- <b>Animation</b>
 	- [mixamo](https://www.mixamo.com/#/2)
-
-	**Music**
+- <b>Music</b>
 	- [Faisal Anderson](https://assetstore.unity.com/publishers/31375)
-
-	**SFX**
+- <b>SFX</b>
 	- [Hunter Goodin](https://huntergoodin.com/)
 	- [Komposite Sound](https://assetstore.unity.com/publishers/32329)
 	- [Olivier Girardot](https://assetstore.unity.com/publishers/39771)
@@ -84,28 +86,31 @@ https://persomatey.itch.io/helation
 	- [Shapeforms](https://assetstore.unity.com/publishers/40210)
 	- [StormwaveAudio](https://www.audiomicro.com/artist/StormwaveAudio)
 	- [ZapSplat](https://www.zapsplat.com/)
-
-	**Special Thanks**
+- <b>Special Thanks</b>
 	- [Gerardo Bonnet](https://screams-from-the-cellar.itch.io/) 
 	- [Shawn the Bro](https://shawnthebro.com/) 
 	- [Tesla Dev](https://www.youtube.com/user/TeslaUE4/)
 	- [Ryan Laley](https://www.youtube.com/c/RyanLaley/)
-
+	
+</blockquote>
 </details>
 
 <details>
-	<summary>Change List</summary><blockquote>
+<summary>Change List</summary>
+<blockquote>
 
 <details>
-	<summary>CL-000053 (The Quality Assurance Update)</summary>
+<summary>CL-000053 (The Quality Assurance Update)</summary>
+<blockquote>
 
-	- Made the following changes: 
-		- Fixed transparencies on the keyboard keys in the Controls menu 
-			- Did this by opening them in Photoshop, navigating to Image > Mode > RGB Color, saving, then reimporting 
-		- Fixed bug where, if the player melees while reloading, the weapon will disappear  
-			- Fixed this by making it so that the player can't melee while reloading 
-		- Edited the README to reflect the above changes 
-
+- Made the following changes: 
+	- Fixed transparencies on the keyboard keys in the Controls menu 
+		- Did this by opening them in Photoshop, navigating to Image > Mode > RGB Color, saving, then reimporting 
+	- Fixed bug where, if the player melees while reloading, the weapon will disappear  
+		- Fixed this by making it so that the player can't melee while reloading 
+	- Edited the README to reflect the above changes 
+	
+</blockquote>
 </details>
 
 <details>
@@ -1034,5 +1039,6 @@ https://persomatey.itch.io/helation
     - Edited the README to reflect some details about the project 
       
 </details>
-  
-</blockquote></details>
+
+</blockquote>
+</details>
