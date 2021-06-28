@@ -1,6 +1,6 @@
 # Project: Holy Shot
 
-*An FPS in the style of Halo* 
+*An FPS tech demo in the style of Halo* 
 
 https://persomatey.itch.io/helation
 
